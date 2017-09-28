@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB456BAE-6B7E-4EF5-BE59-7E6DE66428C1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>tpi_pav_3k2.My.MyApplication</StartupObject>
+    <RootNamespace>tpi_pav_3k2</RootNamespace>
+    <AssemblyName>tpi-pav-3k2</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>tpi-pav-3k2.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>tpi-pav-3k2.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABMCComputadora.Designer.vb">
+      <DependentUpon>ABMCComputadora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCComputadora.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMCProcesador.Designer.vb">
+      <DependentUpon>ABMCProcesador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCProcesador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMServicio.Designer.vb">
+      <DependentUpon>ABMServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMServicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTipoPc-Memoria.Designer.vb">
+      <DependentUpon>ABMTipoPc-Memoria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTipoPc-Memoria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ACEstadoOt.Designer.vb">
+      <DependentUpon>ACEstadoOt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ACEstadoOt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ACTipoDocumento.Designer.vb">
+      <DependentUpon>ACTipoDocumento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ACTipoDocumento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaCliente.Designer.vb">
+      <DependentUpon>AltaCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AltaCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\Buscable.vb" />
+    <Compile Include="Clases\Conexion.vb" />
+    <Compile Include="ABMCProveedores.Designer.vb">
+      <DependentUpon>ABMCProveedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCProveedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMCRepuesto.Designer.vb">
+      <DependentUpon>ABMCRepuesto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCRepuesto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMTipoRepuesto.Designer.vb">
+      <DependentUpon>ABMTipoRepuesto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMTipoRepuesto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\EstadoOtDao.vb" />
+    <Compile Include="Clases\ProcesadorDao.vb" />
+    <Compile Include="Clases\ProcesadorVo.vb" />
+    <Compile Include="Clases\ProveedorDao.vb" />
+    <Compile Include="Clases\ProveedorVo.vb" />
+    <Compile Include="Clases\RepuestoDao.vb" />
+    <Compile Include="Clases\RepuestoVo.vb" />
+    <Compile Include="Clases\ServicioDao.vb" />
+    <Compile Include="Clases\ServicioVo.vb" />
+    <Compile Include="Clases\TipoDocumentoDao.vb" />
+    <Compile Include="Clases\TipoMemoriaDao.vb" />
+    <Compile Include="Clases\TipoPcDao.vb" />
+    <Compile Include="Clases\TipoRepuestoDao.vb" />
+    <Compile Include="Clases\TiposVo.vb" />
+    <Compile Include="Clases\Utilidades.vb" />
+    <Compile Include="grillaGenerica.Designer.vb">
+      <DependentUpon>grillaGenerica.vb</DependentUpon>
+    </Compile>
+    <Compile Include="grillaGenerica.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ABMCOrdenTrabajo.Designer.vb">
+      <DependentUpon>ABMCOrdenTrabajo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABMCOrdenTrabajo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ABMCComputadora.resx">
+      <DependentUpon>ABMCComputadora.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCProcesador.resx">
+      <DependentUpon>ABMCProcesador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCRepuesto.resx">
+      <DependentUpon>ABMCRepuesto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMServicio.resx">
+      <DependentUpon>ABMServicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTipoPc-Memoria.resx">
+      <DependentUpon>ABMTipoPc-Memoria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ACEstadoOt.resx">
+      <DependentUpon>ACEstadoOt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ACTipoDocumento.resx">
+      <DependentUpon>ACTipoDocumento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaCliente.resx">
+      <DependentUpon>AltaCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCProveedores.resx">
+      <DependentUpon>ABMCProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTipoRepuesto.resx">
+      <DependentUpon>ABMTipoRepuesto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="grillaGenerica.resx">
+      <DependentUpon>grillaGenerica.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMCOrdenTrabajo.resx">
+      <DependentUpon>ABMCOrdenTrabajo.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
