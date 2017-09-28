@@ -7,6 +7,11 @@
 
     Private tienePunto As Boolean
 
+    Private Sub cbMarcaProc_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbMarcaProc.KeyPress, txtModelProc.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+
+    End Sub
+
     Private Sub ABMCProcesador_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNuevo.KeyUp, txtCantCore.KeyUp, txtFrecuencia.KeyUp, txtIdProc.KeyUp, txtModelProc.KeyUp, cbMarcaProc.KeyUp
         If e.KeyCode = Keys.Escape Then
             Me.Close()
@@ -224,4 +229,7 @@
     End Sub
 
    
+    Private Sub cbMarcaProc_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbMarcaProc.SelectedIndexChanged
+
+    End Sub
 End Class

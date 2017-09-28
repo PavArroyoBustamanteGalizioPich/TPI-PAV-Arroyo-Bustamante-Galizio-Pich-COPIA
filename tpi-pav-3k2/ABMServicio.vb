@@ -3,6 +3,11 @@
 
     Private servicioSeleccionado As DataGridViewRow
     Private servicioActual As ServicioVo
+
+    Private Sub txtNombreServicio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNombreServicio.KeyPress, txtDescripServ.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+
+    End Sub
     Private Sub ABMServicio_KeyPress(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, txtIdServicio.KeyUp, txtCostoServicio.KeyUp, txtDescripServ.KeyUp, txtGarantiaServ.KeyUp, txtNombreServicio.KeyUp, btnActualizar.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNuevo.KeyUp, cbRepRequerido.KeyUp, chkEstadoServicio.KeyUp
 
         If e.KeyCode = Keys.Escape Then
@@ -245,4 +250,7 @@
     End Sub
 
    
+    Private Sub txtNombreServicio_TextChanged(sender As Object, e As EventArgs) Handles txtNombreServicio.TextChanged
+
+    End Sub
 End Class

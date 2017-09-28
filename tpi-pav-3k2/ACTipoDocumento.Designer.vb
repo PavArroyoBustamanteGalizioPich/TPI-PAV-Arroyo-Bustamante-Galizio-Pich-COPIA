@@ -36,7 +36,7 @@ Partial Class ACTipoDocumento
         '
         'btnGuardar
         '
-        Me.btnGuardar.Location = New System.Drawing.Point(94, 126)
+        Me.btnGuardar.Location = New System.Drawing.Point(105, 140)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 4
@@ -45,7 +45,7 @@ Partial Class ACTipoDocumento
         '
         'btnNvoTipoDoc
         '
-        Me.btnNvoTipoDoc.Location = New System.Drawing.Point(12, 126)
+        Me.btnNvoTipoDoc.Location = New System.Drawing.Point(24, 140)
         Me.btnNvoTipoDoc.Name = "btnNvoTipoDoc"
         Me.btnNvoTipoDoc.Size = New System.Drawing.Size(75, 23)
         Me.btnNvoTipoDoc.TabIndex = 6
@@ -57,7 +57,7 @@ Partial Class ACTipoDocumento
         Me.txtDescripTipoDoc.Location = New System.Drawing.Point(120, 75)
         Me.txtDescripTipoDoc.Multiline = True
         Me.txtDescripTipoDoc.Name = "txtDescripTipoDoc"
-        Me.txtDescripTipoDoc.Size = New System.Drawing.Size(111, 43)
+        Me.txtDescripTipoDoc.Size = New System.Drawing.Size(131, 59)
         Me.txtDescripTipoDoc.TabIndex = 3
         '
         'lblDescripTipoDoc
@@ -74,7 +74,7 @@ Partial Class ACTipoDocumento
         Me.txtTipoDoc.Location = New System.Drawing.Point(120, 42)
         Me.txtTipoDoc.MaxLength = 10
         Me.txtTipoDoc.Name = "txtTipoDoc"
-        Me.txtTipoDoc.Size = New System.Drawing.Size(100, 20)
+        Me.txtTipoDoc.Size = New System.Drawing.Size(131, 20)
         Me.txtTipoDoc.TabIndex = 2
         '
         'lblTipoDoc
@@ -105,7 +105,7 @@ Partial Class ACTipoDocumento
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(176, 125)
+        Me.btnCancelar.Location = New System.Drawing.Point(186, 140)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 5
@@ -114,7 +114,7 @@ Partial Class ACTipoDocumento
         '
         'btnBuscar
         '
-        Me.btnBuscar.Location = New System.Drawing.Point(176, 5)
+        Me.btnBuscar.Location = New System.Drawing.Point(176, 6)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(75, 23)
         Me.btnBuscar.TabIndex = 1
@@ -125,7 +125,7 @@ Partial Class ACTipoDocumento
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 161)
+        Me.ClientSize = New System.Drawing.Size(300, 175)
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnGuardar)

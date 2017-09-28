@@ -6,6 +6,11 @@
     Private filaBuscada As DataGridViewRow
     Private proveedorActual As ProveedorVo
 
+    Private Sub txtRazonSocial_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtRazonSocial.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+
+    End Sub
+
 
     Private Sub ABMCProveedores_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, txtIdProveedor.KeyUp, txtRazonSocial.KeyUp, txtCuit.KeyUp, txtTelefono.KeyUp, btnBuscar.KeyUp, btnNuevo.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp
 
@@ -278,4 +283,7 @@
     End Sub
 
 
+    Private Sub txtRazonSocial_TextChanged(sender As Object, e As EventArgs) Handles txtRazonSocial.TextChanged
+
+    End Sub
 End Class

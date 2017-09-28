@@ -64,7 +64,7 @@ Partial Class ACEstadoOt
         Me.txtEstado.Location = New System.Drawing.Point(80, 38)
         Me.txtEstado.MaxLength = 20
         Me.txtEstado.Name = "txtEstado"
-        Me.txtEstado.Size = New System.Drawing.Size(111, 20)
+        Me.txtEstado.Size = New System.Drawing.Size(138, 20)
         Me.txtEstado.TabIndex = 3
         '
         'lblDescripEstado
@@ -78,15 +78,19 @@ Partial Class ACEstadoOt
         '
         'txtDescripEstado
         '
+        Me.txtDescripEstado.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtDescripEstado.Location = New System.Drawing.Point(80, 71)
         Me.txtDescripEstado.Multiline = True
         Me.txtDescripEstado.Name = "txtDescripEstado"
-        Me.txtDescripEstado.Size = New System.Drawing.Size(111, 63)
+        Me.txtDescripEstado.Size = New System.Drawing.Size(138, 81)
         Me.txtDescripEstado.TabIndex = 5
         '
         'btnNvoEstado
         '
-        Me.btnNvoEstado.Location = New System.Drawing.Point(12, 140)
+        Me.btnNvoEstado.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnNvoEstado.Location = New System.Drawing.Point(12, 159)
         Me.btnNvoEstado.Name = "btnNvoEstado"
         Me.btnNvoEstado.Size = New System.Drawing.Size(75, 23)
         Me.btnNvoEstado.TabIndex = 6
@@ -95,7 +99,9 @@ Partial Class ACEstadoOt
         '
         'btnGuardar
         '
-        Me.btnGuardar.Location = New System.Drawing.Point(93, 140)
+        Me.btnGuardar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnGuardar.Location = New System.Drawing.Point(93, 159)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 7
@@ -104,7 +110,9 @@ Partial Class ACEstadoOt
         '
         'btnSalir
         '
-        Me.btnSalir.Location = New System.Drawing.Point(175, 139)
+        Me.btnSalir.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnSalir.Location = New System.Drawing.Point(175, 158)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(75, 23)
         Me.btnSalir.TabIndex = 8
@@ -115,7 +123,7 @@ Partial Class ACEstadoOt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(269, 175)
+        Me.ClientSize = New System.Drawing.Size(269, 194)
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.btnNvoEstado)

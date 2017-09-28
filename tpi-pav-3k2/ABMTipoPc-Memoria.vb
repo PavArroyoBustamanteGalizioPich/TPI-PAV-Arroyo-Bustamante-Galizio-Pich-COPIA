@@ -268,7 +268,15 @@
         btnBuscarTPc.Enabled = True
     End Sub
 
+    Private Sub txtTipoMemoria_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTipoMemoria.KeyPress, txtTipoPc.KeyPress, txtDescrTPc.KeyPress, txtDescrMemoria.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+
+    End Sub
 
 
 
+
+    Private Sub txtTipoMemoria_TextChanged(sender As Object, e As EventArgs) Handles txtTipoMemoria.TextChanged
+
+    End Sub
 End Class

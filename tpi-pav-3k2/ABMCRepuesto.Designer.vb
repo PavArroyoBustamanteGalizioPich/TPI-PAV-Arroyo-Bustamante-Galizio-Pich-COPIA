@@ -48,7 +48,7 @@ Partial Class ABMCRepuesto
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(181, 242)
+        Me.btnCancelar.Location = New System.Drawing.Point(179, 254)
         Me.btnCancelar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
@@ -58,7 +58,7 @@ Partial Class ABMCRepuesto
         '
         'btnGuardar
         '
-        Me.btnGuardar.Location = New System.Drawing.Point(98, 242)
+        Me.btnGuardar.Location = New System.Drawing.Point(96, 254)
         Me.btnGuardar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
@@ -78,7 +78,7 @@ Partial Class ABMCRepuesto
         '
         'btnNuevo
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(16, 242)
+        Me.btnNuevo.Location = New System.Drawing.Point(14, 254)
         Me.btnNuevo.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
@@ -109,7 +109,7 @@ Partial Class ABMCRepuesto
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 147)
+        Me.Label3.Location = New System.Drawing.Point(9, 167)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(109, 13)
@@ -119,7 +119,7 @@ Partial Class ABMCRepuesto
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(211, 147)
+        Me.Label4.Location = New System.Drawing.Point(211, 167)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(110, 13)
@@ -129,7 +129,7 @@ Partial Class ABMCRepuesto
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(285, 76)
+        Me.Label5.Location = New System.Drawing.Point(310, 76)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(40, 13)
@@ -149,7 +149,7 @@ Partial Class ABMCRepuesto
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(9, 175)
+        Me.Label7.Location = New System.Drawing.Point(9, 192)
         Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(59, 13)
@@ -159,7 +159,7 @@ Partial Class ABMCRepuesto
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(9, 207)
+        Me.Label8.Location = New System.Drawing.Point(9, 218)
         Me.Label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(52, 13)
@@ -177,17 +177,18 @@ Partial Class ABMCRepuesto
         '
         'txtDescripcion
         '
+        Me.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescripcion.Location = New System.Drawing.Point(152, 69)
         Me.txtDescripcion.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDescripcion.Multiline = True
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtDescripcion.Size = New System.Drawing.Size(129, 61)
+        Me.txtDescripcion.Size = New System.Drawing.Size(154, 87)
         Me.txtDescripcion.TabIndex = 3
         '
         'txtPrecio
         '
-        Me.txtPrecio.Location = New System.Drawing.Point(152, 140)
+        Me.txtPrecio.Location = New System.Drawing.Point(152, 160)
         Me.txtPrecio.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPrecio.Name = "txtPrecio"
         Me.txtPrecio.Size = New System.Drawing.Size(57, 20)
@@ -195,7 +196,7 @@ Partial Class ABMCRepuesto
         '
         'txtGarantia
         '
-        Me.txtGarantia.Location = New System.Drawing.Point(152, 203)
+        Me.txtGarantia.Location = New System.Drawing.Point(152, 214)
         Me.txtGarantia.Margin = New System.Windows.Forms.Padding(2)
         Me.txtGarantia.Name = "txtGarantia"
         Me.txtGarantia.Size = New System.Drawing.Size(57, 20)
@@ -203,7 +204,7 @@ Partial Class ABMCRepuesto
         '
         'txtPorcentaje
         '
-        Me.txtPorcentaje.Location = New System.Drawing.Point(322, 140)
+        Me.txtPorcentaje.Location = New System.Drawing.Point(322, 160)
         Me.txtPorcentaje.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPorcentaje.MaxLength = 2
         Me.txtPorcentaje.Name = "txtPorcentaje"
@@ -213,7 +214,7 @@ Partial Class ABMCRepuesto
         'cbMarca
         '
         Me.cbMarca.FormattingEnabled = True
-        Me.cbMarca.Location = New System.Drawing.Point(326, 69)
+        Me.cbMarca.Location = New System.Drawing.Point(353, 69)
         Me.cbMarca.Margin = New System.Windows.Forms.Padding(2)
         Me.cbMarca.Name = "cbMarca"
         Me.cbMarca.Size = New System.Drawing.Size(120, 21)
@@ -226,14 +227,14 @@ Partial Class ABMCRepuesto
         Me.cbTipo.Location = New System.Drawing.Point(152, 40)
         Me.cbTipo.Margin = New System.Windows.Forms.Padding(2)
         Me.cbTipo.Name = "cbTipo"
-        Me.cbTipo.Size = New System.Drawing.Size(129, 21)
+        Me.cbTipo.Size = New System.Drawing.Size(154, 21)
         Me.cbTipo.TabIndex = 2
         '
         'CBProveedor
         '
         Me.CBProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBProveedor.FormattingEnabled = True
-        Me.CBProveedor.Location = New System.Drawing.Point(152, 171)
+        Me.CBProveedor.Location = New System.Drawing.Point(152, 188)
         Me.CBProveedor.Name = "CBProveedor"
         Me.CBProveedor.Size = New System.Drawing.Size(129, 21)
         Me.CBProveedor.TabIndex = 7
@@ -241,7 +242,7 @@ Partial Class ABMCRepuesto
         'lblFechaCompra
         '
         Me.lblFechaCompra.AutoSize = True
-        Me.lblFechaCompra.Location = New System.Drawing.Point(215, 207)
+        Me.lblFechaCompra.Location = New System.Drawing.Point(215, 218)
         Me.lblFechaCompra.Name = "lblFechaCompra"
         Me.lblFechaCompra.Size = New System.Drawing.Size(79, 13)
         Me.lblFechaCompra.TabIndex = 39
@@ -249,7 +250,7 @@ Partial Class ABMCRepuesto
         '
         'txtFechaCompra
         '
-        Me.txtFechaCompra.Location = New System.Drawing.Point(301, 202)
+        Me.txtFechaCompra.Location = New System.Drawing.Point(301, 213)
         Me.txtFechaCompra.Mask = "00/00/0000"
         Me.txtFechaCompra.Name = "txtFechaCompra"
         Me.txtFechaCompra.Size = New System.Drawing.Size(66, 20)
@@ -260,7 +261,7 @@ Partial Class ABMCRepuesto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(461, 280)
+        Me.ClientSize = New System.Drawing.Size(508, 288)
         Me.Controls.Add(Me.txtFechaCompra)
         Me.Controls.Add(Me.lblFechaCompra)
         Me.Controls.Add(Me.CBProveedor)

@@ -5,6 +5,8 @@
     Private repuestoActual As RepuestoVo
     Private filaBuscada As DataGridViewRow
 
+    
+
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.deshabilitarComponentes()
         Utilidades.cargarCombo("proveedor", CBProveedor)
@@ -96,7 +98,7 @@
                     repuesto.idMarca = cbMarca.SelectedValue
                 Else
                     repuesto.idMarca = 0
-                    repuesto.nombreMarca = cbMarca.Text
+                    repuesto.nombreMarca = cbMarca.Text.Trim()
                 End If
 
                 repuesto.precioCompra = Convert.ToDecimal(txtPrecio.Text)
@@ -146,10 +148,6 @@
         End If
 
     End Sub
-
-
-
-
 
 
 
@@ -247,6 +245,7 @@
 
     Private Sub txtId_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtId.KeyPress, txtGarantia.KeyPress, txtPorcentaje.KeyPress
 
+
         If Not (IsNumeric(e.KeyChar) Or Asc(e.KeyChar) = 8) Then
 
             e.Handled = True
@@ -273,4 +272,16 @@
         txtId.Enabled = True
         btnNuevo.Focus()
     End Sub
+
+    Private Sub cbMarca_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbMarca.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+    End Sub
+
+    Private Sub ABMCRepuesto_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNuevo.KeyUp, cbMarca.KeyUp, CBProveedor.KeyUp, cbTipo.KeyUp, txtDescripcion.KeyUp, txtFechaCompra.KeyUp, txtGarantia.KeyUp, txtId.KeyUp, txtPorcentaje.KeyUp, txtPrecio.KeyUp
+        If e.KeyCode = Keys.Escape Then
+            Me.Close()
+        End If
+
+    End Sub
+
 End Class

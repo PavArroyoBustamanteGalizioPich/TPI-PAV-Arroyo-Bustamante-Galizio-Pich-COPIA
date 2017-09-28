@@ -7,6 +7,11 @@
 
     End Sub
 
+    Private Sub txtTipoRepuesto_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTipoRepuesto.KeyPress, txtDesc.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+
+    End Sub
+
     Private Sub ABMTipoRepuesto_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNuevo.KeyUp, txtDesc.KeyUp, txtIdRepuesto.KeyUp, txtTipoRepuesto.KeyUp
 
         If e.KeyCode = Keys.Escape Then
@@ -160,4 +165,7 @@
 
 
 
+    Private Sub txtTipoRepuesto_TextChanged(sender As Object, e As EventArgs) Handles txtTipoRepuesto.TextChanged
+
+    End Sub
 End Class

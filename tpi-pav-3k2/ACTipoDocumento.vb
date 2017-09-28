@@ -4,6 +4,11 @@
     Private filaBuscada As DataGridViewRow
     Private tipoDocBuscado As Boolean
 
+    Private Sub txtTipoDoc_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTipoDoc.KeyPress, txtDescripTipoDoc.KeyPress
+        e.KeyChar = UCase(e.KeyChar)
+
+    End Sub
+
     Private Sub ACTipoDocumento_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNvoTipoDoc.KeyUp, txtIdTipoDoc.KeyUp, txtDescripTipoDoc.KeyUp, txtTipoDoc.KeyUp
         If e.KeyCode = Keys.Escape Then
             Me.Close()
@@ -151,4 +156,7 @@
 
     
     
+    Private Sub txtTipoDoc_TextChanged(sender As Object, e As EventArgs) Handles txtTipoDoc.TextChanged
+
+    End Sub
 End Class
