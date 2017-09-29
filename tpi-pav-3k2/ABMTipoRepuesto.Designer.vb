@@ -98,6 +98,7 @@ Partial Class ABMTipoRepuesto
         '
         'txtTipoRepuesto
         '
+        Me.txtTipoRepuesto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTipoRepuesto.Location = New System.Drawing.Point(127, 39)
         Me.txtTipoRepuesto.MaxLength = 60
         Me.txtTipoRepuesto.Name = "txtTipoRepuesto"
@@ -106,6 +107,7 @@ Partial Class ABMTipoRepuesto
         '
         'txtDesc
         '
+        Me.txtDesc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDesc.Location = New System.Drawing.Point(127, 79)
         Me.txtDesc.Multiline = True
         Me.txtDesc.Name = "txtDesc"

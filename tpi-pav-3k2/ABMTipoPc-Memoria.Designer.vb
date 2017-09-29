@@ -108,6 +108,7 @@ Partial Class ABMTipoPc_Memoria
         '
         'txtDescrMemoria
         '
+        Me.txtDescrMemoria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescrMemoria.Location = New System.Drawing.Point(96, 92)
         Me.txtDescrMemoria.Multiline = True
         Me.txtDescrMemoria.Name = "txtDescrMemoria"
@@ -126,6 +127,7 @@ Partial Class ABMTipoPc_Memoria
         '
         'txtTipoMemoria
         '
+        Me.txtTipoMemoria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTipoMemoria.Location = New System.Drawing.Point(96, 59)
         Me.txtTipoMemoria.MaxLength = 20
         Me.txtTipoMemoria.Name = "txtTipoMemoria"
@@ -218,6 +220,7 @@ Partial Class ABMTipoPc_Memoria
         '
         'txtDescrTPc
         '
+        Me.txtDescrTPc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescrTPc.Location = New System.Drawing.Point(100, 89)
         Me.txtDescrTPc.Multiline = True
         Me.txtDescrTPc.Name = "txtDescrTPc"
@@ -236,6 +239,7 @@ Partial Class ABMTipoPc_Memoria
         '
         'txtTipoPc
         '
+        Me.txtTipoPc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTipoPc.Location = New System.Drawing.Point(100, 56)
         Me.txtTipoPc.MaxLength = 20
         Me.txtTipoPc.Name = "txtTipoPc"

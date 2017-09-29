@@ -8,6 +8,8 @@
         e.KeyChar = UCase(e.KeyChar)
 
     End Sub
+
+    
     Private Sub ABMServicio_KeyPress(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, txtIdServicio.KeyUp, txtCostoServicio.KeyUp, txtDescripServ.KeyUp, txtGarantiaServ.KeyUp, txtNombreServicio.KeyUp, btnActualizar.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNuevo.KeyUp, cbRepRequerido.KeyUp, chkEstadoServicio.KeyUp
 
         If e.KeyCode = Keys.Escape Then
@@ -251,6 +253,10 @@
 
    
     Private Sub txtNombreServicio_TextChanged(sender As Object, e As EventArgs) Handles txtNombreServicio.TextChanged
+
+    End Sub
+
+    Private Sub cbRepRequerido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbRepRequerido.SelectedIndexChanged
 
     End Sub
 End Class

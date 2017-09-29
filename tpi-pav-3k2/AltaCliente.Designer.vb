@@ -23,13 +23,8 @@ Partial Class gestionClientes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(gestionClientes))
-        Me.panelBotones = New System.Windows.Forms.Panel()
-        Me.btnActualizarCli = New System.Windows.Forms.Button()
-        Me.btnCancelar = New System.Windows.Forms.Button()
-        Me.btnBuscar = New System.Windows.Forms.Button()
-        Me.btnGuardar = New System.Windows.Forms.Button()
-        Me.btnNuevoCliente = New System.Windows.Forms.Button()
         Me.gbDatosCliente = New System.Windows.Forms.GroupBox()
+        Me.btnBuscar = New System.Windows.Forms.Button()
         Me.chkBajaCliente = New System.Windows.Forms.CheckBox()
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
@@ -47,7 +42,7 @@ Partial Class gestionClientes
         Me.lblNroDocumento = New System.Windows.Forms.Label()
         Me.cbTipoDoc = New System.Windows.Forms.ComboBox()
         Me.lblTipoDoc = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtNroCliente = New System.Windows.Forms.TextBox()
         Me.lblNroCliente = New System.Windows.Forms.Label()
         Me.gbDatosComputadora = New System.Windows.Forms.GroupBox()
         Me.lblGB = New System.Windows.Forms.Label()
@@ -65,73 +60,23 @@ Partial Class gestionClientes
         Me.lblTipoCompu = New System.Windows.Forms.Label()
         Me.txtNroCompu = New System.Windows.Forms.TextBox()
         Me.lblNroPc = New System.Windows.Forms.Label()
-        Me.panelBotones.SuspendLayout()
+        Me.panelBotones = New System.Windows.Forms.Panel()
+        Me.btnActualizarCli = New System.Windows.Forms.Button()
+        Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.btnNuevoCliente = New System.Windows.Forms.Button()
         Me.gbDatosCliente.SuspendLayout()
         Me.gbDatosComputadora.SuspendLayout()
+        Me.panelBotones.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'panelBotones
-        '
-        Me.panelBotones.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelBotones.Controls.Add(Me.btnActualizarCli)
-        Me.panelBotones.Controls.Add(Me.btnCancelar)
-        Me.panelBotones.Controls.Add(Me.btnBuscar)
-        Me.panelBotones.Controls.Add(Me.btnGuardar)
-        Me.panelBotones.Controls.Add(Me.btnNuevoCliente)
-        Me.panelBotones.Location = New System.Drawing.Point(13, 13)
-        Me.panelBotones.Name = "panelBotones"
-        Me.panelBotones.Size = New System.Drawing.Size(759, 73)
-        Me.panelBotones.TabIndex = 0
-        '
-        'btnActualizarCli
-        '
-        Me.btnActualizarCli.Image = CType(resources.GetObject("btnActualizarCli.Image"), System.Drawing.Image)
-        Me.btnActualizarCli.Location = New System.Drawing.Point(143, 4)
-        Me.btnActualizarCli.Name = "btnActualizarCli"
-        Me.btnActualizarCli.Size = New System.Drawing.Size(64, 64)
-        Me.btnActualizarCli.TabIndex = 5
-        Me.btnActualizarCli.UseVisualStyleBackColor = True
-        '
-        'btnCancelar
-        '
-        Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
-        Me.btnCancelar.Location = New System.Drawing.Point(284, 4)
-        Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(64, 64)
-        Me.btnCancelar.TabIndex = 4
-        Me.btnCancelar.UseVisualStyleBackColor = True
-        '
-        'btnBuscar
-        '
-        Me.btnBuscar.Image = CType(resources.GetObject("btnBuscar.Image"), System.Drawing.Image)
-        Me.btnBuscar.Location = New System.Drawing.Point(73, 4)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Size = New System.Drawing.Size(64, 64)
-        Me.btnBuscar.TabIndex = 1
-        Me.btnBuscar.UseVisualStyleBackColor = True
-        '
-        'btnGuardar
-        '
-        Me.btnGuardar.Image = CType(resources.GetObject("btnGuardar.Image"), System.Drawing.Image)
-        Me.btnGuardar.Location = New System.Drawing.Point(213, 4)
-        Me.btnGuardar.Name = "btnGuardar"
-        Me.btnGuardar.Size = New System.Drawing.Size(64, 64)
-        Me.btnGuardar.TabIndex = 3
-        Me.btnGuardar.UseVisualStyleBackColor = True
-        '
-        'btnNuevoCliente
-        '
-        Me.btnNuevoCliente.Image = CType(resources.GetObject("btnNuevoCliente.Image"), System.Drawing.Image)
-        Me.btnNuevoCliente.Location = New System.Drawing.Point(3, 4)
-        Me.btnNuevoCliente.Name = "btnNuevoCliente"
-        Me.btnNuevoCliente.Size = New System.Drawing.Size(64, 64)
-        Me.btnNuevoCliente.TabIndex = 0
-        Me.btnNuevoCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.btnNuevoCliente.UseVisualStyleBackColor = True
         '
         'gbDatosCliente
         '
+        Me.gbDatosCliente.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gbDatosCliente.BackColor = System.Drawing.SystemColors.Control
+        Me.gbDatosCliente.Controls.Add(Me.btnBuscar)
         Me.gbDatosCliente.Controls.Add(Me.chkBajaCliente)
         Me.gbDatosCliente.Controls.Add(Me.lblNombre)
         Me.gbDatosCliente.Controls.Add(Me.txtNombre)
@@ -149,19 +94,29 @@ Partial Class gestionClientes
         Me.gbDatosCliente.Controls.Add(Me.lblNroDocumento)
         Me.gbDatosCliente.Controls.Add(Me.cbTipoDoc)
         Me.gbDatosCliente.Controls.Add(Me.lblTipoDoc)
-        Me.gbDatosCliente.Controls.Add(Me.TextBox1)
+        Me.gbDatosCliente.Controls.Add(Me.txtNroCliente)
         Me.gbDatosCliente.Controls.Add(Me.lblNroCliente)
-        Me.gbDatosCliente.Location = New System.Drawing.Point(13, 93)
+        Me.gbDatosCliente.Location = New System.Drawing.Point(13, 12)
         Me.gbDatosCliente.Name = "gbDatosCliente"
-        Me.gbDatosCliente.Size = New System.Drawing.Size(759, 121)
+        Me.gbDatosCliente.Size = New System.Drawing.Size(759, 142)
         Me.gbDatosCliente.TabIndex = 1
         Me.gbDatosCliente.TabStop = False
         Me.gbDatosCliente.Text = "Datos Cliente"
         '
+        'btnBuscar
+        '
+        Me.btnBuscar.BackColor = System.Drawing.Color.Transparent
+        Me.btnBuscar.Image = CType(resources.GetObject("btnBuscar.Image"), System.Drawing.Image)
+        Me.btnBuscar.Location = New System.Drawing.Point(387, 34)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(31, 31)
+        Me.btnBuscar.TabIndex = 19
+        Me.btnBuscar.UseVisualStyleBackColor = False
+        '
         'chkBajaCliente
         '
         Me.chkBajaCliente.AutoSize = True
-        Me.chkBajaCliente.Location = New System.Drawing.Point(284, 76)
+        Me.chkBajaCliente.Location = New System.Drawing.Point(284, 103)
         Me.chkBajaCliente.Name = "chkBajaCliente"
         Me.chkBajaCliente.Size = New System.Drawing.Size(56, 17)
         Me.chkBajaCliente.TabIndex = 18
@@ -171,7 +126,7 @@ Partial Class gestionClientes
         'lblNombre
         '
         Me.lblNombre.AutoSize = True
-        Me.lblNombre.Location = New System.Drawing.Point(6, 47)
+        Me.lblNombre.Location = New System.Drawing.Point(7, 78)
         Me.lblNombre.Name = "lblNombre"
         Me.lblNombre.Size = New System.Drawing.Size(47, 13)
         Me.lblNombre.TabIndex = 2
@@ -179,7 +134,7 @@ Partial Class gestionClientes
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(60, 40)
+        Me.txtNombre.Location = New System.Drawing.Point(60, 71)
         Me.txtNombre.MaxLength = 20
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(100, 20)
@@ -188,7 +143,7 @@ Partial Class gestionClientes
         'txtFechaBaja
         '
         Me.txtFechaBaja.Enabled = False
-        Me.txtFechaBaja.Location = New System.Drawing.Point(212, 73)
+        Me.txtFechaBaja.Location = New System.Drawing.Point(212, 100)
         Me.txtFechaBaja.Mask = "00/00/0000"
         Me.txtFechaBaja.Name = "txtFechaBaja"
         Me.txtFechaBaja.Size = New System.Drawing.Size(65, 20)
@@ -198,7 +153,7 @@ Partial Class gestionClientes
         'lblApellido
         '
         Me.lblApellido.AutoSize = True
-        Me.lblApellido.Location = New System.Drawing.Point(167, 47)
+        Me.lblApellido.Location = New System.Drawing.Point(167, 78)
         Me.lblApellido.Name = "lblApellido"
         Me.lblApellido.Size = New System.Drawing.Size(47, 13)
         Me.lblApellido.TabIndex = 4
@@ -207,7 +162,7 @@ Partial Class gestionClientes
         'lblFechaBaja
         '
         Me.lblFechaBaja.AutoSize = True
-        Me.lblFechaBaja.Location = New System.Drawing.Point(144, 80)
+        Me.lblFechaBaja.Location = New System.Drawing.Point(144, 107)
         Me.lblFechaBaja.Name = "lblFechaBaja"
         Me.lblFechaBaja.Size = New System.Drawing.Size(64, 13)
         Me.lblFechaBaja.TabIndex = 16
@@ -215,7 +170,7 @@ Partial Class gestionClientes
         '
         'txtApellido
         '
-        Me.txtApellido.Location = New System.Drawing.Point(221, 40)
+        Me.txtApellido.Location = New System.Drawing.Point(221, 71)
         Me.txtApellido.MaxLength = 20
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(100, 20)
@@ -224,7 +179,7 @@ Partial Class gestionClientes
         'txtFechaAlta
         '
         Me.txtFechaAlta.Enabled = False
-        Me.txtFechaAlta.Location = New System.Drawing.Point(81, 73)
+        Me.txtFechaAlta.Location = New System.Drawing.Point(81, 100)
         Me.txtFechaAlta.Mask = "00/00/0000"
         Me.txtFechaAlta.Name = "txtFechaAlta"
         Me.txtFechaAlta.Size = New System.Drawing.Size(56, 20)
@@ -234,7 +189,7 @@ Partial Class gestionClientes
         'lblTelefono
         '
         Me.lblTelefono.AutoSize = True
-        Me.lblTelefono.Location = New System.Drawing.Point(328, 47)
+        Me.lblTelefono.Location = New System.Drawing.Point(328, 78)
         Me.lblTelefono.Name = "lblTelefono"
         Me.lblTelefono.Size = New System.Drawing.Size(52, 13)
         Me.lblTelefono.TabIndex = 6
@@ -243,7 +198,7 @@ Partial Class gestionClientes
         'lblFechaAlta
         '
         Me.lblFechaAlta.AutoSize = True
-        Me.lblFechaAlta.Location = New System.Drawing.Point(13, 80)
+        Me.lblFechaAlta.Location = New System.Drawing.Point(7, 107)
         Me.lblFechaAlta.Name = "lblFechaAlta"
         Me.lblFechaAlta.Size = New System.Drawing.Size(61, 13)
         Me.lblFechaAlta.TabIndex = 14
@@ -251,7 +206,7 @@ Partial Class gestionClientes
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(387, 40)
+        Me.txtTelefono.Location = New System.Drawing.Point(387, 71)
         Me.txtTelefono.MaxLength = 15
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(100, 20)
@@ -259,7 +214,7 @@ Partial Class gestionClientes
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(584, 40)
+        Me.txtEmail.Location = New System.Drawing.Point(584, 71)
         Me.txtEmail.MaxLength = 60
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(148, 20)
@@ -268,7 +223,7 @@ Partial Class gestionClientes
         'lblEmail
         '
         Me.lblEmail.AutoSize = True
-        Me.lblEmail.Location = New System.Drawing.Point(492, 47)
+        Me.lblEmail.Location = New System.Drawing.Point(492, 78)
         Me.lblEmail.Name = "lblEmail"
         Me.lblEmail.Size = New System.Drawing.Size(86, 13)
         Me.lblEmail.TabIndex = 12
@@ -276,7 +231,7 @@ Partial Class gestionClientes
         '
         'txtNroDocumento
         '
-        Me.txtNroDocumento.Location = New System.Drawing.Point(450, 14)
+        Me.txtNroDocumento.Location = New System.Drawing.Point(314, 44)
         Me.txtNroDocumento.MaxLength = 11
         Me.txtNroDocumento.Name = "txtNroDocumento"
         Me.txtNroDocumento.Size = New System.Drawing.Size(62, 20)
@@ -285,7 +240,7 @@ Partial Class gestionClientes
         'lblNroDocumento
         '
         Me.lblNroDocumento.AutoSize = True
-        Me.lblNroDocumento.Location = New System.Drawing.Point(358, 22)
+        Me.lblNroDocumento.Location = New System.Drawing.Point(222, 52)
         Me.lblNroDocumento.Name = "lblNroDocumento"
         Me.lblNroDocumento.Size = New System.Drawing.Size(85, 13)
         Me.lblNroDocumento.TabIndex = 10
@@ -295,7 +250,7 @@ Partial Class gestionClientes
         '
         Me.cbTipoDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoDoc.FormattingEnabled = True
-        Me.cbTipoDoc.Location = New System.Drawing.Point(238, 14)
+        Me.cbTipoDoc.Location = New System.Drawing.Point(102, 44)
         Me.cbTipoDoc.Name = "cbTipoDoc"
         Me.cbTipoDoc.Size = New System.Drawing.Size(113, 21)
         Me.cbTipoDoc.TabIndex = 9
@@ -303,19 +258,19 @@ Partial Class gestionClientes
         'lblTipoDoc
         '
         Me.lblTipoDoc.AutoSize = True
-        Me.lblTipoDoc.Location = New System.Drawing.Point(143, 22)
+        Me.lblTipoDoc.Location = New System.Drawing.Point(7, 52)
         Me.lblTipoDoc.Name = "lblTipoDoc"
         Me.lblTipoDoc.Size = New System.Drawing.Size(89, 13)
         Me.lblTipoDoc.TabIndex = 8
         Me.lblTipoDoc.Text = "Tipo Documento:"
         '
-        'TextBox1
+        'txtNroCliente
         '
-        Me.TextBox1.Location = New System.Drawing.Point(76, 14)
-        Me.TextBox1.MaxLength = 8
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(61, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.txtNroCliente.Location = New System.Drawing.Point(76, 14)
+        Me.txtNroCliente.MaxLength = 8
+        Me.txtNroCliente.Name = "txtNroCliente"
+        Me.txtNroCliente.Size = New System.Drawing.Size(61, 20)
+        Me.txtNroCliente.TabIndex = 1
         '
         'lblNroCliente
         '
@@ -328,6 +283,9 @@ Partial Class gestionClientes
         '
         'gbDatosComputadora
         '
+        Me.gbDatosComputadora.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gbDatosComputadora.Controls.Add(Me.lblGB)
         Me.gbDatosComputadora.Controls.Add(Me.txtCapAlm)
         Me.gbDatosComputadora.Controls.Add(Me.lblCapAlmac)
@@ -343,9 +301,9 @@ Partial Class gestionClientes
         Me.gbDatosComputadora.Controls.Add(Me.lblTipoCompu)
         Me.gbDatosComputadora.Controls.Add(Me.txtNroCompu)
         Me.gbDatosComputadora.Controls.Add(Me.lblNroPc)
-        Me.gbDatosComputadora.Location = New System.Drawing.Point(13, 232)
+        Me.gbDatosComputadora.Location = New System.Drawing.Point(13, 160)
         Me.gbDatosComputadora.Name = "gbDatosComputadora"
-        Me.gbDatosComputadora.Size = New System.Drawing.Size(759, 187)
+        Me.gbDatosComputadora.Size = New System.Drawing.Size(759, 144)
         Me.gbDatosComputadora.TabIndex = 2
         Me.gbDatosComputadora.TabStop = False
         Me.gbDatosComputadora.Text = "Datos Computadora"
@@ -353,7 +311,7 @@ Partial Class gestionClientes
         'lblGB
         '
         Me.lblGB.AutoSize = True
-        Me.lblGB.Location = New System.Drawing.Point(714, 72)
+        Me.lblGB.Location = New System.Drawing.Point(714, 78)
         Me.lblGB.Name = "lblGB"
         Me.lblGB.Size = New System.Drawing.Size(28, 13)
         Me.lblGB.TabIndex = 14
@@ -361,7 +319,7 @@ Partial Class gestionClientes
         '
         'txtCapAlm
         '
-        Me.txtCapAlm.Location = New System.Drawing.Point(642, 64)
+        Me.txtCapAlm.Location = New System.Drawing.Point(642, 70)
         Me.txtCapAlm.MaxLength = 5
         Me.txtCapAlm.Name = "txtCapAlm"
         Me.txtCapAlm.Size = New System.Drawing.Size(65, 20)
@@ -370,7 +328,7 @@ Partial Class gestionClientes
         'lblCapAlmac
         '
         Me.lblCapAlmac.AutoSize = True
-        Me.lblCapAlmac.Location = New System.Drawing.Point(494, 72)
+        Me.lblCapAlmac.Location = New System.Drawing.Point(494, 78)
         Me.lblCapAlmac.Name = "lblCapAlmac"
         Me.lblCapAlmac.Size = New System.Drawing.Size(141, 13)
         Me.lblCapAlmac.TabIndex = 12
@@ -378,9 +336,8 @@ Partial Class gestionClientes
         '
         'cbModeloProc
         '
-        Me.cbModeloProc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbModeloProc.FormattingEnabled = True
-        Me.cbModeloProc.Location = New System.Drawing.Point(273, 64)
+        Me.cbModeloProc.Location = New System.Drawing.Point(273, 70)
         Me.cbModeloProc.Name = "cbModeloProc"
         Me.cbModeloProc.Size = New System.Drawing.Size(214, 21)
         Me.cbModeloProc.TabIndex = 11
@@ -388,7 +345,7 @@ Partial Class gestionClientes
         'lblModeloProc
         '
         Me.lblModeloProc.AutoSize = True
-        Me.lblModeloProc.Location = New System.Drawing.Point(196, 72)
+        Me.lblModeloProc.Location = New System.Drawing.Point(196, 78)
         Me.lblModeloProc.Name = "lblModeloProc"
         Me.lblModeloProc.Size = New System.Drawing.Size(70, 13)
         Me.lblModeloProc.TabIndex = 10
@@ -396,7 +353,7 @@ Partial Class gestionClientes
         '
         'txtCantMemoria
         '
-        Me.txtCantMemoria.Location = New System.Drawing.Point(600, 23)
+        Me.txtCantMemoria.Location = New System.Drawing.Point(600, 29)
         Me.txtCantMemoria.MaxLength = 4
         Me.txtCantMemoria.Name = "txtCantMemoria"
         Me.txtCantMemoria.Size = New System.Drawing.Size(57, 20)
@@ -405,7 +362,7 @@ Partial Class gestionClientes
         'lblCantMemoria
         '
         Me.lblCantMemoria.AutoSize = True
-        Me.lblCantMemoria.Location = New System.Drawing.Point(494, 30)
+        Me.lblCantMemoria.Location = New System.Drawing.Point(494, 36)
         Me.lblCantMemoria.Name = "lblCantMemoria"
         Me.lblCantMemoria.Size = New System.Drawing.Size(99, 13)
         Me.lblCantMemoria.TabIndex = 8
@@ -413,9 +370,8 @@ Partial Class gestionClientes
         '
         'cbTipoMemoria
         '
-        Me.cbTipoMemoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoMemoria.FormattingEnabled = True
-        Me.cbTipoMemoria.Location = New System.Drawing.Point(409, 22)
+        Me.cbTipoMemoria.Location = New System.Drawing.Point(409, 28)
         Me.cbTipoMemoria.Name = "cbTipoMemoria"
         Me.cbTipoMemoria.Size = New System.Drawing.Size(78, 21)
         Me.cbTipoMemoria.TabIndex = 7
@@ -423,7 +379,7 @@ Partial Class gestionClientes
         'lblTipoMemoria
         '
         Me.lblTipoMemoria.AutoSize = True
-        Me.lblTipoMemoria.Location = New System.Drawing.Point(328, 30)
+        Me.lblTipoMemoria.Location = New System.Drawing.Point(328, 36)
         Me.lblTipoMemoria.Name = "lblTipoMemoria"
         Me.lblTipoMemoria.Size = New System.Drawing.Size(74, 13)
         Me.lblTipoMemoria.TabIndex = 6
@@ -431,9 +387,8 @@ Partial Class gestionClientes
         '
         'cbMarcaProc
         '
-        Me.cbMarcaProc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbMarcaProc.FormattingEnabled = True
-        Me.cbMarcaProc.Location = New System.Drawing.Point(110, 64)
+        Me.cbMarcaProc.Location = New System.Drawing.Point(110, 70)
         Me.cbMarcaProc.Name = "cbMarcaProc"
         Me.cbMarcaProc.Size = New System.Drawing.Size(80, 21)
         Me.cbMarcaProc.TabIndex = 5
@@ -441,7 +396,7 @@ Partial Class gestionClientes
         'lblMarcaProc
         '
         Me.lblMarcaProc.AutoSize = True
-        Me.lblMarcaProc.Location = New System.Drawing.Point(10, 72)
+        Me.lblMarcaProc.Location = New System.Drawing.Point(10, 78)
         Me.lblMarcaProc.Name = "lblMarcaProc"
         Me.lblMarcaProc.Size = New System.Drawing.Size(97, 13)
         Me.lblMarcaProc.TabIndex = 4
@@ -451,7 +406,7 @@ Partial Class gestionClientes
         '
         Me.cbTipoPc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoPc.FormattingEnabled = True
-        Me.cbTipoPc.Location = New System.Drawing.Point(221, 22)
+        Me.cbTipoPc.Location = New System.Drawing.Point(221, 28)
         Me.cbTipoPc.Name = "cbTipoPc"
         Me.cbTipoPc.Size = New System.Drawing.Size(100, 21)
         Me.cbTipoPc.TabIndex = 3
@@ -459,7 +414,7 @@ Partial Class gestionClientes
         'lblTipoCompu
         '
         Me.lblTipoCompu.AutoSize = True
-        Me.lblTipoCompu.Location = New System.Drawing.Point(167, 30)
+        Me.lblTipoCompu.Location = New System.Drawing.Point(167, 36)
         Me.lblTipoCompu.Name = "lblTipoCompu"
         Me.lblTipoCompu.Size = New System.Drawing.Size(47, 13)
         Me.lblTipoCompu.TabIndex = 2
@@ -467,7 +422,7 @@ Partial Class gestionClientes
         '
         'txtNroCompu
         '
-        Me.txtNroCompu.Location = New System.Drawing.Point(110, 23)
+        Me.txtNroCompu.Location = New System.Drawing.Point(110, 29)
         Me.txtNroCompu.MaxLength = 8
         Me.txtNroCompu.Name = "txtNroCompu"
         Me.txtNroCompu.Size = New System.Drawing.Size(50, 20)
@@ -476,40 +431,87 @@ Partial Class gestionClientes
         'lblNroPc
         '
         Me.lblNroPc.AutoSize = True
-        Me.lblNroPc.Location = New System.Drawing.Point(10, 30)
+        Me.lblNroPc.Location = New System.Drawing.Point(10, 36)
         Me.lblNroPc.Name = "lblNroPc"
         Me.lblNroPc.Size = New System.Drawing.Size(93, 13)
         Me.lblNroPc.TabIndex = 0
         Me.lblNroPc.Text = "Nro Computadora:"
+        '
+        'panelBotones
+        '
+        Me.panelBotones.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelBotones.Controls.Add(Me.btnActualizarCli)
+        Me.panelBotones.Controls.Add(Me.btnCancelar)
+        Me.panelBotones.Controls.Add(Me.btnGuardar)
+        Me.panelBotones.Controls.Add(Me.btnNuevoCliente)
+        Me.panelBotones.Location = New System.Drawing.Point(13, 353)
+        Me.panelBotones.Name = "panelBotones"
+        Me.panelBotones.Size = New System.Drawing.Size(759, 73)
+        Me.panelBotones.TabIndex = 3
+        '
+        'btnActualizarCli
+        '
+        Me.btnActualizarCli.Image = CType(resources.GetObject("btnActualizarCli.Image"), System.Drawing.Image)
+        Me.btnActualizarCli.Location = New System.Drawing.Point(73, 4)
+        Me.btnActualizarCli.Name = "btnActualizarCli"
+        Me.btnActualizarCli.Size = New System.Drawing.Size(64, 64)
+        Me.btnActualizarCli.TabIndex = 5
+        Me.btnActualizarCli.UseVisualStyleBackColor = True
+        '
+        'btnCancelar
+        '
+        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
+        Me.btnCancelar.Location = New System.Drawing.Point(692, 4)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(64, 64)
+        Me.btnCancelar.TabIndex = 4
+        Me.btnCancelar.UseVisualStyleBackColor = True
+        '
+        'btnGuardar
+        '
+        Me.btnGuardar.Image = CType(resources.GetObject("btnGuardar.Image"), System.Drawing.Image)
+        Me.btnGuardar.Location = New System.Drawing.Point(143, 4)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(64, 64)
+        Me.btnGuardar.TabIndex = 3
+        Me.btnGuardar.UseVisualStyleBackColor = True
+        '
+        'btnNuevoCliente
+        '
+        Me.btnNuevoCliente.Image = CType(resources.GetObject("btnNuevoCliente.Image"), System.Drawing.Image)
+        Me.btnNuevoCliente.Location = New System.Drawing.Point(3, 4)
+        Me.btnNuevoCliente.Name = "btnNuevoCliente"
+        Me.btnNuevoCliente.Size = New System.Drawing.Size(64, 64)
+        Me.btnNuevoCliente.TabIndex = 0
+        Me.btnNuevoCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.btnNuevoCliente.UseVisualStyleBackColor = True
         '
         'gestionClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 438)
+        Me.Controls.Add(Me.panelBotones)
         Me.Controls.Add(Me.gbDatosComputadora)
         Me.Controls.Add(Me.gbDatosCliente)
-        Me.Controls.Add(Me.panelBotones)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "gestionClientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Gestión de Clientes"
-        Me.panelBotones.ResumeLayout(False)
         Me.gbDatosCliente.ResumeLayout(False)
         Me.gbDatosCliente.PerformLayout()
         Me.gbDatosComputadora.ResumeLayout(False)
         Me.gbDatosComputadora.PerformLayout()
+        Me.panelBotones.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents panelBotones As System.Windows.Forms.Panel
-    Friend WithEvents btnGuardar As System.Windows.Forms.Button
-    Friend WithEvents btnBuscar As System.Windows.Forms.Button
-    Friend WithEvents btnNuevoCliente As System.Windows.Forms.Button
     Friend WithEvents gbDatosCliente As System.Windows.Forms.GroupBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtNroCliente As System.Windows.Forms.TextBox
     Friend WithEvents lblNroCliente As System.Windows.Forms.Label
     Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
     Friend WithEvents lblTelefono As System.Windows.Forms.Label
@@ -543,7 +545,11 @@ Partial Class gestionClientes
     Friend WithEvents lblGB As System.Windows.Forms.Label
     Friend WithEvents txtCapAlm As System.Windows.Forms.TextBox
     Friend WithEvents lblCapAlmac As System.Windows.Forms.Label
-    Friend WithEvents btnCancelar As System.Windows.Forms.Button
-    Friend WithEvents btnActualizarCli As System.Windows.Forms.Button
     Friend WithEvents chkBajaCliente As System.Windows.Forms.CheckBox
+    Friend WithEvents panelBotones As System.Windows.Forms.Panel
+    Friend WithEvents btnActualizarCli As System.Windows.Forms.Button
+    Friend WithEvents btnCancelar As System.Windows.Forms.Button
+    Friend WithEvents btnGuardar As System.Windows.Forms.Button
+    Friend WithEvents btnNuevoCliente As System.Windows.Forms.Button
+    Friend WithEvents btnBuscar As System.Windows.Forms.Button
 End Class

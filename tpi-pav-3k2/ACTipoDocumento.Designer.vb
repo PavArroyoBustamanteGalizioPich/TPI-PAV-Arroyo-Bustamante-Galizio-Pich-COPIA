@@ -54,6 +54,7 @@ Partial Class ACTipoDocumento
         '
         'txtDescripTipoDoc
         '
+        Me.txtDescripTipoDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescripTipoDoc.Location = New System.Drawing.Point(120, 75)
         Me.txtDescripTipoDoc.Multiline = True
         Me.txtDescripTipoDoc.Name = "txtDescripTipoDoc"
@@ -71,6 +72,7 @@ Partial Class ACTipoDocumento
         '
         'txtTipoDoc
         '
+        Me.txtTipoDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTipoDoc.Location = New System.Drawing.Point(120, 42)
         Me.txtTipoDoc.MaxLength = 10
         Me.txtTipoDoc.Name = "txtTipoDoc"

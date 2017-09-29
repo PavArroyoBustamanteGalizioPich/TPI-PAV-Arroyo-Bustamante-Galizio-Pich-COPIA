@@ -119,6 +119,7 @@ Partial Class ABMCProcesador
         '
         'txtModelProc
         '
+        Me.txtModelProc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtModelProc.Location = New System.Drawing.Point(90, 76)
         Me.txtModelProc.MaxLength = 45
         Me.txtModelProc.Name = "txtModelProc"

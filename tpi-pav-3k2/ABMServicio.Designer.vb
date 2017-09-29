@@ -73,6 +73,7 @@ Partial Class ABMServicio
         '
         'txtDescripServ
         '
+        Me.txtDescripServ.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescripServ.Location = New System.Drawing.Point(127, 114)
         Me.txtDescripServ.Multiline = True
         Me.txtDescripServ.Name = "txtDescripServ"
@@ -124,6 +125,7 @@ Partial Class ABMServicio
         '
         'txtNombreServicio
         '
+        Me.txtNombreServicio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtNombreServicio.Location = New System.Drawing.Point(127, 31)
         Me.txtNombreServicio.MaxLength = 80
         Me.txtNombreServicio.Name = "txtNombreServicio"

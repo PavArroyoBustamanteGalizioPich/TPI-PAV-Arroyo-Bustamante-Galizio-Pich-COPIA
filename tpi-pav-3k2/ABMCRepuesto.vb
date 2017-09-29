@@ -284,4 +284,11 @@
 
     End Sub
 
+    Private Sub cbMarca_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbMarca.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub txtDescripcion_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcion.TextChanged
+
+    End Sub
 End Class

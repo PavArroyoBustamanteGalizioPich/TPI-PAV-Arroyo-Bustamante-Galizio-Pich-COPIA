@@ -149,6 +149,7 @@ Partial Class ABMCProveedores
         '
         'txtRazonSocial
         '
+        Me.txtRazonSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtRazonSocial.Location = New System.Drawing.Point(118, 57)
         Me.txtRazonSocial.MaxLength = 80
         Me.txtRazonSocial.Name = "txtRazonSocial"
