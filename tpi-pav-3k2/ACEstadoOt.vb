@@ -5,7 +5,7 @@
 
 
         If validarDatos() Then
-            Dim estado As New TiposVo
+            Dim estado As New TiposDto
             estado.id = Convert.ToInt32(txtIdEstado.Text)
             estado.nombreTipo = txtEstado.Text
             estado.descripcionTipo = txtDescripEstado.Text

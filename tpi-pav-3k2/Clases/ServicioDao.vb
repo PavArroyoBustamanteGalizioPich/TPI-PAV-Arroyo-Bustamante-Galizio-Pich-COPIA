@@ -1,6 +1,6 @@
 ﻿Public Class ServicioDao
 
-    Public Shared Function insertarServicio(ByRef servicio As ServicioVo)
+    Public Shared Function insertarServicio(ByRef servicio As ServicioDto)
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim filas As Int32
@@ -25,12 +25,12 @@
         Return filas
     End Function
 
-    Public Shared Function buscarServicio(ByVal idServicio As Int32) As ServicioVo
+    Public Shared Function buscarServicio(ByVal idServicio As Int32) As ServicioDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
         Dim comando As String
-        Dim servicio As New ServicioVo
+        Dim servicio As New ServicioDto
 
         comando = "select * from servicio where idServicio = " & idServicio
 
@@ -81,13 +81,13 @@
 
 
         End Try
-        
+
 
 
         Return tabla
     End Function
 
-    Public Shared Function actualizarServicio(ByVal servicio As ServicioVo) As Int32
+    Public Shared Function actualizarServicio(ByVal servicio As ServicioDto) As Int32
         Dim cantFilas As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand

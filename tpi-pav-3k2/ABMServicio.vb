@@ -2,14 +2,14 @@
     Implements Buscable
 
     Private servicioSeleccionado As DataGridViewRow
-    Private servicioActual As ServicioVo
+    Private servicioActual As ServicioDto
 
     Private Sub txtNombreServicio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNombreServicio.KeyPress, txtDescripServ.KeyPress
         e.KeyChar = UCase(e.KeyChar)
 
     End Sub
 
-    
+
     Private Sub ABMServicio_KeyPress(sender As Object, e As KeyEventArgs) Handles Me.KeyUp, txtIdServicio.KeyUp, txtCostoServicio.KeyUp, txtDescripServ.KeyUp, txtGarantiaServ.KeyUp, txtNombreServicio.KeyUp, btnActualizar.KeyUp, btnBuscar.KeyUp, btnCancelar.KeyUp, btnGuardar.KeyUp, btnNuevo.KeyUp, cbRepRequerido.KeyUp, chkEstadoServicio.KeyUp
 
         If e.KeyCode = Keys.Escape Then
@@ -61,7 +61,7 @@
                 Dim mostrarGrilla As New grillaGenerica("Servicios", grillaGenerica.formularios.SERVICIO, Me)
                 mostrarGrilla.ShowDialog()
                 If Not servicioSeleccionado.Equals(Nothing) Then
-                    servicioActual = New ServicioVo
+                    servicioActual = New ServicioDto
                     servicioActual.idServ = Convert.ToInt32(servicioSeleccionado.Cells(0).Value)
                     servicioActual.nomServicio = servicioSeleccionado.Cells(1).Value
                     servicioActual.detalleServicio = servicioSeleccionado.Cells(2).Value
@@ -165,7 +165,7 @@
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         If validarDatos() Then
-            Dim servicio As New ServicioVo
+            Dim servicio As New ServicioDto
 
             servicio.idServ = Convert.ToInt32(txtIdServicio.Text)
             servicio.nomServicio = txtNombreServicio.Text

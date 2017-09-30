@@ -1,6 +1,6 @@
 ﻿Public Class TipoPcDao
 
-    Public Shared Function insertarTipoPc(ByRef tipo As TiposVo) As Int32
+    Public Shared Function insertarTipoPc(ByRef tipo As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32
@@ -38,11 +38,11 @@
         Return tabla
     End Function
 
-    Public Shared Function buscarTipoPc(ByVal id As Int32) As TiposVo
+    Public Shared Function buscarTipoPc(ByVal id As Int32) As TiposDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
-        Dim tipo As New TiposVo
+        Dim tipo As New TiposDto
         conex.Open()
         sql.Connection = conex
         sql.CommandType = CommandType.Text
@@ -59,7 +59,7 @@
         Return tipo
     End Function
 
-    Public Shared Function actualizarTipoPc(ByVal tipo As TiposVo) As Int32
+    Public Shared Function actualizarTipoPc(ByVal tipo As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32

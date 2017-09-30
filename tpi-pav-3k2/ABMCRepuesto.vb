@@ -2,10 +2,10 @@
     Implements Buscable
 
     Private repuestoBuscado As Boolean
-    Private repuestoActual As RepuestoVo
+    Private repuestoActual As RepuestoDto
     Private filaBuscada As DataGridViewRow
 
-    
+
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.deshabilitarComponentes()
@@ -46,7 +46,7 @@
             Dim grilla As New grillaGenerica("Listado de Repuestos", grillaGenerica.formularios.REPUESTO, Me)
             grilla.ShowDialog()
             If Not IsNothing(filaBuscada) Then
-                repuestoActual = New RepuestoVo
+                repuestoActual = New RepuestoDto
                 repuestoActual.id = Convert.ToInt32(filaBuscada.Cells(0).Value)
                 repuestoActual.descripcion = filaBuscada.Cells(1).Value.ToString()
                 repuestoActual.idMarca = Convert.ToInt32(filaBuscada.Cells(2).Value)
@@ -90,7 +90,7 @@
             If Not repuestoBuscado Then
                 'parte de insercion
                 Dim cant As Int32
-                Dim repuesto As New RepuestoVo
+                Dim repuesto As New RepuestoDto
                 repuesto.id = Convert.ToInt32(txtId.Text)
                 repuesto.descripcion = txtDescripcion.Text.Trim()
                 repuesto.tipo = cbTipo.SelectedValue

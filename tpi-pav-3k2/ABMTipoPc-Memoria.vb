@@ -19,7 +19,7 @@
     Private Sub btnGuardarMem_Click(sender As Object, e As EventArgs) Handles btnGuardarMem.Click
 
         If validarTipoMemoria() Then
-            Dim tipoMemoria As New TiposVo
+            Dim tipoMemoria As New TiposDto
             tipoMemoria.id = Convert.ToInt32(txtIdMemoria.Text)
             tipoMemoria.nombreTipo = txtTipoMemoria.Text
             tipoMemoria.descripcionTipo = txtDescrMemoria.Text
@@ -67,7 +67,7 @@
     Private Sub btnBuscarTMem_Click(sender As Object, e As EventArgs) Handles btnBuscarTMem.Click
         If Not txtIdMemoria.Text.Equals("") Then
             Dim id As Int32 = Convert.ToInt32(txtIdMemoria.Text)
-            Dim tipoMemoria As TiposVo = TipoMemoriaDao.buscarTipoMemoria(id)
+            Dim tipoMemoria As TiposDto = TipoMemoriaDao.buscarTipoMemoria(id)
             If Not IsNothing(tipoMemoria.id) Then
                 btnGuardarMem.Enabled = True
                 txtIdMemoria.Enabled = False
@@ -145,7 +145,7 @@
     End Sub
 
 
-    
+
     Sub setFilaBuscada(ByRef fila As DataGridViewRow) Implements Buscable.setFilaBuscada
         filabuscada = fila
 
@@ -185,7 +185,7 @@
     Private Sub btnBuscarTPc_Click(sender As Object, e As EventArgs) Handles btnBuscarTPc.Click
         If Not txtIdTipoPc.Text.Equals("") Then
             Dim id As Int32 = Convert.ToInt32(txtIdTipoPc.Text)
-            Dim tipoPC As TiposVo = TipoPcDao.buscarTipoPc(id)
+            Dim tipoPC As TiposDto = TipoPcDao.buscarTipoPc(id)
             If Not IsNothing(tipoPC.id) Then
                 btnGuardarTpc.Enabled = True
                 txtIdTipoPc.Enabled = False
@@ -219,7 +219,7 @@
 
     Private Sub btnGuardarTpc_Click(sender As Object, e As EventArgs) Handles btnGuardarTpc.Click
         If validarTipoMemoria() Then
-            Dim tipoPc As New TiposVo
+            Dim tipoPc As New TiposDto
             tipoPc.id = Convert.ToInt32(txtIdTipoPc.Text)
             tipoPc.nombreTipo = txtTipoPc.Text
             tipoPc.descripcionTipo = txtDescrTPc.Text

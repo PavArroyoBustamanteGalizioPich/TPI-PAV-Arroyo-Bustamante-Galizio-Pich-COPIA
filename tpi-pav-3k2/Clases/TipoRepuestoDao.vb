@@ -1,5 +1,5 @@
 ﻿Public Class TipoRepuestoDao
-    Public Shared Function insertarTipoRepuesto(ByRef tipo As TiposVo) As Int32
+    Public Shared Function insertarTipoRepuesto(ByRef tipo As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32
@@ -37,11 +37,11 @@
         Return tabla
     End Function
 
-    Public Shared Function buscarTipoComponente(ByVal id As Int32) As TiposVo
+    Public Shared Function buscarTipoComponente(ByVal id As Int32) As TiposDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
-        Dim tipoComponente As New TiposVo
+        Dim tipoComponente As New TiposDto
         conex.Open()
         sql.Connection = conex
         sql.CommandType = CommandType.Text
@@ -59,7 +59,7 @@
         Return tipoComponente
     End Function
 
-    Public Shared Function actualizarTipoCompinente(ByVal tipo As TiposVo) As Int32
+    Public Shared Function actualizarTipoCompinente(ByVal tipo As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32

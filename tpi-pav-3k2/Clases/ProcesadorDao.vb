@@ -1,6 +1,6 @@
 ﻿Public Class ProcesadorDao
 
-    Public Shared Function insertarProcesador(ByRef procesador As ProcesadorVo) As Int32
+    Public Shared Function insertarProcesador(ByRef procesador As ProcesadorDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cantFilas As Int32
@@ -69,11 +69,32 @@
         Return tabla
     End Function
 
-    Public Shared Function buscarProcesador(ByVal id As Int32) As ProcesadorVo
+    Public Shared Function buscarProcesadores(ByVal marca As Int32) As DataTable
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
-        Dim procesador As ProcesadorVo
+
+        Try
+            conex.Open()
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+            sql.CommandText = "select * from procesador where marca = " & marca
+
+        Catch ex As SqlClient.SqlException
+
+
+        Finally : conex.Close()
+
+        End Try
+
+        Return tabla
+    End Function
+
+    Public Shared Function buscarProcesador(ByVal id As Int32) As ProcesadorDto
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As New SqlClient.SqlCommand
+        Dim tabla As New DataTable
+        Dim procesador As ProcesadorDto
 
 
         conex.Open()
@@ -83,7 +104,7 @@
 
         Try
             tabla.Load(sql.ExecuteReader())
-            procesador = New ProcesadorVo
+            procesador = New ProcesadorDto
             procesador.idProcesador = Convert.ToInt32(tabla.Rows(0)(0))
             procesador.modelo = tabla.Rows(0)(1).ToString()
             procesador.fecuencia = Convert.ToSingle(tabla.Rows(0)(2))
@@ -101,7 +122,7 @@
     End Function
 
 
-    Public Shared Function actualizarProcesador(ByRef procesador As ProcesadorVo) As Int32
+    Public Shared Function actualizarProcesador(ByRef procesador As ProcesadorDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cantFilas As Int32

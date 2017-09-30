@@ -3,7 +3,7 @@
 
     Private filaBuscada As DataGridViewRow
     Private procesadorBuscado As Boolean
-    Private procesadorActual As ProcesadorVo
+    Private procesadorActual As ProcesadorDto
 
     Private tienePunto As Boolean
 
@@ -40,7 +40,7 @@
             Dim grilla As New grillaGenerica("Procesadores", grillaGenerica.formularios.PROCESADOR, Me)
             grilla.ShowDialog()
             If Not IsNothing(filaBuscada) Then
-                procesadorActual = New ProcesadorVo
+                procesadorActual = New ProcesadorDto
                 procesadorActual.idProcesador = Convert.ToInt32(filaBuscada.Cells(0).Value)
                 procesadorActual.modelo = filaBuscada.Cells(1).Value.ToString()
                 procesadorActual.fecuencia = Convert.ToSingle(filaBuscada.Cells(2).Value)
@@ -74,8 +74,8 @@
         If validarDatos() Then
             If Not procesadorBuscado Then
 
-                
-                procesadorActual = New ProcesadorVo
+
+                procesadorActual = New ProcesadorDto
                 procesadorActual.idProcesador = Convert.ToInt32(txtIdProc.Text.Trim())
                 procesadorActual.modelo = txtModelProc.Text.Trim()
                 procesadorActual.fecuencia = Convert.ToSingle(txtFrecuencia.Text)

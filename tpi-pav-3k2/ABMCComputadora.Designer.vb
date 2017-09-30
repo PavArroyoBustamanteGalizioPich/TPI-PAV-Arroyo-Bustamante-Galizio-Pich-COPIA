@@ -37,7 +37,7 @@ Partial Class ABMCComputadora
         Me.cbTipoDoc = New System.Windows.Forms.ComboBox()
         Me.lblTipoDoc = New System.Windows.Forms.Label()
         Me.gbDatosPc = New System.Windows.Forms.GroupBox()
-        Me.chkBajaPc = New System.Windows.Forms.CheckBox()
+        Me.chkEstadoPc = New System.Windows.Forms.CheckBox()
         Me.txtFechaBajaPc = New System.Windows.Forms.MaskedTextBox()
         Me.lblFechaBajPc = New System.Windows.Forms.Label()
         Me.cbModeloProc = New System.Windows.Forms.ComboBox()
@@ -85,7 +85,7 @@ Partial Class ABMCComputadora
         Me.gbDatosCliente.Controls.Add(Me.lblTipoDoc)
         Me.gbDatosCliente.Location = New System.Drawing.Point(13, 13)
         Me.gbDatosCliente.Name = "gbDatosCliente"
-        Me.gbDatosCliente.Size = New System.Drawing.Size(624, 117)
+        Me.gbDatosCliente.Size = New System.Drawing.Size(639, 98)
         Me.gbDatosCliente.TabIndex = 0
         Me.gbDatosCliente.TabStop = False
         Me.gbDatosCliente.Text = "Datos Cliente"
@@ -198,7 +198,7 @@ Partial Class ABMCComputadora
         Me.gbDatosPc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbDatosPc.Controls.Add(Me.chkBajaPc)
+        Me.gbDatosPc.Controls.Add(Me.chkEstadoPc)
         Me.gbDatosPc.Controls.Add(Me.txtFechaBajaPc)
         Me.gbDatosPc.Controls.Add(Me.lblFechaBajPc)
         Me.gbDatosPc.Controls.Add(Me.cbModeloProc)
@@ -218,21 +218,21 @@ Partial Class ABMCComputadora
         Me.gbDatosPc.Controls.Add(Me.lblNroPc)
         Me.gbDatosPc.Location = New System.Drawing.Point(13, 137)
         Me.gbDatosPc.Name = "gbDatosPc"
-        Me.gbDatosPc.Size = New System.Drawing.Size(624, 147)
+        Me.gbDatosPc.Size = New System.Drawing.Size(639, 147)
         Me.gbDatosPc.TabIndex = 1
         Me.gbDatosPc.TabStop = False
         Me.gbDatosPc.Text = "Datos Computadora"
         '
-        'chkBajaPc
+        'chkEstadoPc
         '
-        Me.chkBajaPc.AutoSize = True
-        Me.chkBajaPc.Location = New System.Drawing.Point(572, 120)
-        Me.chkBajaPc.Name = "chkBajaPc"
-        Me.chkBajaPc.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.chkBajaPc.Size = New System.Drawing.Size(47, 17)
-        Me.chkBajaPc.TabIndex = 31
-        Me.chkBajaPc.Text = "Baja"
-        Me.chkBajaPc.UseVisualStyleBackColor = True
+        Me.chkEstadoPc.AutoSize = True
+        Me.chkEstadoPc.Location = New System.Drawing.Point(572, 120)
+        Me.chkEstadoPc.Name = "chkEstadoPc"
+        Me.chkEstadoPc.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.chkEstadoPc.Size = New System.Drawing.Size(56, 17)
+        Me.chkEstadoPc.TabIndex = 31
+        Me.chkEstadoPc.Text = "Activo"
+        Me.chkEstadoPc.UseVisualStyleBackColor = True
         '
         'txtFechaBajaPc
         '
@@ -396,14 +396,14 @@ Partial Class ABMCComputadora
         Me.panelBotonera.Controls.Add(Me.btnNuevaPc)
         Me.panelBotonera.Location = New System.Drawing.Point(13, 290)
         Me.panelBotonera.Name = "panelBotonera"
-        Me.panelBotonera.Size = New System.Drawing.Size(623, 60)
+        Me.panelBotonera.Size = New System.Drawing.Size(638, 60)
         Me.panelBotonera.TabIndex = 2
         '
         'btnCancelarPc
         '
         Me.btnCancelarPc.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancelarPc.Image = CType(resources.GetObject("btnCancelarPc.Image"), System.Drawing.Image)
-        Me.btnCancelarPc.Location = New System.Drawing.Point(554, 1)
+        Me.btnCancelarPc.Location = New System.Drawing.Point(569, 1)
         Me.btnCancelarPc.Name = "btnCancelarPc"
         Me.btnCancelarPc.Size = New System.Drawing.Size(65, 58)
         Me.btnCancelarPc.TabIndex = 4
@@ -449,7 +449,7 @@ Partial Class ABMCComputadora
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(649, 361)
+        Me.ClientSize = New System.Drawing.Size(664, 361)
         Me.Controls.Add(Me.panelBotonera)
         Me.Controls.Add(Me.gbDatosPc)
         Me.Controls.Add(Me.gbDatosCliente)
@@ -497,7 +497,7 @@ Partial Class ABMCComputadora
     Friend WithEvents btnCancelarPc As System.Windows.Forms.Button
     Friend WithEvents btnGuardarPc As System.Windows.Forms.Button
     Friend WithEvents btnActualizarPc As System.Windows.Forms.Button
-    Friend WithEvents chkBajaPc As System.Windows.Forms.CheckBox
+    Friend WithEvents chkEstadoPc As System.Windows.Forms.CheckBox
     Friend WithEvents txtFechaBajaPc As System.Windows.Forms.MaskedTextBox
     Friend WithEvents lblFechaBajPc As System.Windows.Forms.Label
     Friend WithEvents cbModeloProc As System.Windows.Forms.ComboBox

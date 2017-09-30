@@ -1,6 +1,6 @@
 ﻿Public Class EstadoOtDao
 
-    Public Shared Function insertarEstado(ByRef estado As TiposVo) As Int32
+    Public Shared Function insertarEstado(ByRef estado As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim cmd As New SqlClient.SqlCommand
         conex.Open()

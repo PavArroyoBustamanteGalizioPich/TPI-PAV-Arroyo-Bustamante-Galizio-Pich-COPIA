@@ -30,11 +30,11 @@
     End Function
 
 
-    Public Shared Function buscarRepuesto(ByVal id As Int32) As RepuestoVo
+    Public Shared Function buscarRepuesto(ByVal id As Int32) As RepuestoDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
-        Dim repuesto As RepuestoVo
+        Dim repuesto As RepuestoDto
 
         Try
             conex.Open()
@@ -48,7 +48,7 @@
             param.Value = id
             sql.Parameters.Add(param)
             tabla.Load(sql.ExecuteReader())
-            repuesto = New RepuestoVo
+            repuesto = New RepuestoDto
             repuesto.id = Convert.ToInt32(tabla.Rows(0)("idComponente"))
             repuesto.descripcion = tabla.Rows(0)("descripcion").ToString()
             repuesto.idMarca = Convert.ToInt32(tabla.Rows(0)("marca"))
@@ -68,7 +68,7 @@
     End Function
 
 
-    Public Shared Function insertarRepuesto(ByRef repuesto As RepuestoVo) As Int32
+    Public Shared Function insertarRepuesto(ByRef repuesto As RepuestoDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
 
@@ -115,7 +115,7 @@
 
     End Function
 
-    Public Shared Function actualizarRepuesto(ByRef repuesto As RepuestoVo) As Int32
+    Public Shared Function actualizarRepuesto(ByRef repuesto As RepuestoDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim comando As String

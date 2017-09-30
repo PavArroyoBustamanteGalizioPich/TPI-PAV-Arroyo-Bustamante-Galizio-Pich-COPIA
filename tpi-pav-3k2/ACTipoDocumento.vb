@@ -38,7 +38,7 @@
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         If validarDatos() Then
-            Dim tipoDocumento As New TiposVo
+            Dim tipoDocumento As New TiposDto
             tipoDocumento.id = Convert.ToInt32(txtIdTipoDoc.Text)
             tipoDocumento.nombreTipo = txtTipoDoc.Text
             tipoDocumento.descripcionTipo = txtDescripTipoDoc.Text
@@ -77,7 +77,7 @@
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         If Not txtIdTipoDoc.Text.Equals("") Then
             Dim id As Int32 = Convert.ToInt32(txtIdTipoDoc.Text)
-            Dim tipoDocumento As TiposVo = TipoDocumentoDao.buscarTipoDocumento(id)
+            Dim tipoDocumento As TiposDto = TipoDocumentoDao.buscarTipoDocumento(id)
             If Not IsNothing(tipoDocumento.id) Then
                 btnGuardar.Enabled = True
                 txtIdTipoDoc.Enabled = False

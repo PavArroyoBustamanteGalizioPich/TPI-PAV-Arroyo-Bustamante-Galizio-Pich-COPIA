@@ -1,6 +1,6 @@
 ﻿Public Class ProveedorDao
 
-    Public Shared Function insertarProveedor(ByRef proveedor As ProveedorVo) As Int32
+    Public Shared Function insertarProveedor(ByRef proveedor As ProveedorDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32
@@ -49,11 +49,11 @@
         Return tabla
     End Function
 
-    Public Shared Function buscarProveedor(ByVal id As Int32) As ProveedorVo
+    Public Shared Function buscarProveedor(ByVal id As Int32) As ProveedorDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
-        Dim proveedor As ProveedorVo
+        Dim proveedor As ProveedorDto
         conex.Open()
         sql.Connection = conex
         sql.CommandType = CommandType.Text
@@ -62,7 +62,7 @@
         Try
             tabla.Load(sql.ExecuteReader())
 
-            proveedor = New ProveedorVo
+            proveedor = New ProveedorDto
             proveedor.nroProveedor = Convert.ToInt32(tabla.Rows(0)(0))
             proveedor.razonSocial = tabla.Rows(0)(1).ToString()
             proveedor.cuit = tabla.Rows(0)(2).ToString()
@@ -75,7 +75,7 @@
             Else : proveedor.fechaBaja = Nothing
             End If
 
-          
+
 
         Catch ex As Exception
             proveedor = Nothing
@@ -88,7 +88,7 @@
     End Function
 
 
-    Public Shared Function actualizarProveedor(ByRef proveedor As ProveedorVo) As Int32
+    Public Shared Function actualizarProveedor(ByRef proveedor As ProveedorDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cantFilas As Int32
@@ -97,7 +97,7 @@
         sql.Connection = conex
         sql.CommandType = CommandType.Text
 
-        
+
         comando = "update proveedor set razonSocial = '" & proveedor.razonSocial & "', telefono = "
 
         If Not IsNothing(proveedor.telefono) Then
@@ -114,7 +114,7 @@
 
 
         sql.CommandText = comando
-        
+
 
         Try
             cantFilas = sql.ExecuteNonQuery()

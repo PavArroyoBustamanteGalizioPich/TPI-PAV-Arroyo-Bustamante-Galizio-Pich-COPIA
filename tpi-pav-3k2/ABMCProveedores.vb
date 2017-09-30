@@ -4,7 +4,7 @@
 
     Private proveedorBuscado As Boolean
     Private filaBuscada As DataGridViewRow
-    Private proveedorActual As ProveedorVo
+    Private proveedorActual As ProveedorDto
 
     Private Sub txtRazonSocial_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtRazonSocial.KeyPress
         e.KeyChar = UCase(e.KeyChar)
@@ -63,7 +63,7 @@
             grilla.ShowDialog()
             'If Not filaBuscada.Equals(Nothing) Then
             If Not IsNothing(filaBuscada) Then
-                proveedorActual = New ProveedorVo
+                proveedorActual = New ProveedorDto
                 proveedorActual.nroProveedor = Convert.ToInt32(filaBuscada.Cells(0).Value.ToString())
                 proveedorActual.razonSocial = filaBuscada.Cells(1).Value.ToString()
                 proveedorActual.cuit = filaBuscada.Cells(2).Value.ToString()
@@ -121,11 +121,11 @@
 
         If validarDatos() Then
             Dim cantFilas As Int32
-            
+
 
             If Not proveedorBuscado Then
 
-                Dim proveedor As New ProveedorVo
+                Dim proveedor As New ProveedorDto
                 proveedor.nroProveedor = Convert.ToInt32(txtIdProveedor.Text.Trim())
                 proveedor.razonSocial = txtRazonSocial.Text
                 proveedor.cuit = txtCuit.Text
@@ -153,7 +153,7 @@
 
             Else
 
-                
+
                 If Not txtTelefono.Text.Equals("") Then
                     proveedorActual.telefono = txtTelefono.Text.Trim()
                 Else : proveedorActual.telefono = Nothing

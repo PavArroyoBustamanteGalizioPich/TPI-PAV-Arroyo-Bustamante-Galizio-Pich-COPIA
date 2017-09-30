@@ -113,6 +113,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Clases\Buscable.vb" />
+    <Compile Include="Clases\ClienteDao.vb" />
+    <Compile Include="Clases\ClienteDto.vb" />
+    <Compile Include="Clases\ComputadoraDao.vb" />
+    <Compile Include="Clases\ComputadoraDto.vb" />
     <Compile Include="Clases\Conexion.vb" />
     <Compile Include="ABMCProveedores.Designer.vb">
       <DependentUpon>ABMCProveedores.vb</DependentUpon>
@@ -134,18 +138,18 @@
     </Compile>
     <Compile Include="Clases\EstadoOtDao.vb" />
     <Compile Include="Clases\ProcesadorDao.vb" />
-    <Compile Include="Clases\ProcesadorVo.vb" />
+    <Compile Include="Clases\ProcesadorDto.vb" />
     <Compile Include="Clases\ProveedorDao.vb" />
-    <Compile Include="Clases\ProveedorVo.vb" />
+    <Compile Include="Clases\ProveedorDto.vb" />
     <Compile Include="Clases\RepuestoDao.vb" />
-    <Compile Include="Clases\RepuestoVo.vb" />
+    <Compile Include="Clases\RepuestoDto.vb" />
     <Compile Include="Clases\ServicioDao.vb" />
-    <Compile Include="Clases\ServicioVo.vb" />
+    <Compile Include="Clases\ServicioDto.vb" />
     <Compile Include="Clases\TipoDocumentoDao.vb" />
     <Compile Include="Clases\TipoMemoriaDao.vb" />
     <Compile Include="Clases\TipoPcDao.vb" />
     <Compile Include="Clases\TipoRepuestoDao.vb" />
-    <Compile Include="Clases\TiposVo.vb" />
+    <Compile Include="Clases\TiposDto.vb" />
     <Compile Include="Clases\Utilidades.vb" />
     <Compile Include="grillaGenerica.Designer.vb">
       <DependentUpon>grillaGenerica.vb</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿Public Class TipoDocumentoDao
 
-    Public Shared Function insertarTipoDocumento(ByRef tipo As TiposVo) As Int32
+    Public Shared Function insertarTipoDocumento(ByRef tipo As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32
@@ -38,11 +38,11 @@
         Return tabla
     End Function
 
-    Public Shared Function buscarTipoDocumento(ByVal id As Int32) As TiposVo
+    Public Shared Function buscarTipoDocumento(ByVal id As Int32) As TiposDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
-        Dim tipo As New TiposVo
+        Dim tipo As New TiposDto
         conex.Open()
         sql.Connection = conex
         sql.CommandType = CommandType.Text
@@ -59,7 +59,7 @@
         Return tipo
     End Function
 
-    Public Shared Function actualizarTipoDocumento(ByVal tipo As TiposVo) As Int32
+    Public Shared Function actualizarTipoDocumento(ByVal tipo As TiposDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32

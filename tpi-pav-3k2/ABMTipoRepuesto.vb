@@ -53,7 +53,7 @@
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
 
         If validarDatos() Then
-            Dim tipoRepuesto As New TiposVo
+            Dim tipoRepuesto As New TiposDto
             tipoRepuesto.id = Convert.ToInt32(txtIdRepuesto.Text)
             tipoRepuesto.nombreTipo = txtTipoRepuesto.Text
             tipoRepuesto.descripcionTipo = txtDesc.Text
@@ -90,13 +90,13 @@
 
     End Sub
 
-   
+
 
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         If Not txtIdRepuesto.Text.Equals("") Then
             Dim id As Int32 = Convert.ToInt32(txtIdRepuesto.Text)
-            Dim tipoRepuesto As TiposVo = TipoRepuestoDao.buscarTipoComponente(id)
+            Dim tipoRepuesto As TiposDto = TipoRepuestoDao.buscarTipoComponente(id)
             If Not IsNothing(tipoRepuesto.id) Then
                 btnGuardar.Enabled = True
                 txtIdRepuesto.Enabled = False

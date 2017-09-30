@@ -18,6 +18,7 @@
         btnGuardarOt.Enabled = False
         btnCancelarOt.Enabled = False
         btnActualizarOt.Enabled = False
+        Utilidades.cargarCombo("tipoDocumento", cbTipoDocOT)
 
 
     End Sub
@@ -85,7 +86,8 @@
     End Sub
 
     Private Sub btnNuevoCliOT_Click(sender As Object, e As EventArgs) Handles btnNuevoCliOT.Click
-        Dim formAltaCliente As New gestionClientes
+        'esto despues se cambia cuando le saque el boton
+        Dim formAltaCliente As New gestionClientes(txtNroDocCliOT.Text, cbTipoDocOT.SelectedValue)
         formAltaCliente.ShowDialog()
     End Sub
 
