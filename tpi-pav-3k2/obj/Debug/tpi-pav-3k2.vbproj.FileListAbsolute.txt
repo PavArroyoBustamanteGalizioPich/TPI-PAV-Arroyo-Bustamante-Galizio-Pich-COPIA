@@ -78,13 +78,11 @@ F:\TPI-PAV-Arroyo-Bustamante-Galizio-Pich segunda entrega con casi todos los acc
 F:\TPI-PAV-Arroyo-Bustamante-Galizio-Pich segunda entrega con casi todos los accesos a datos\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.Resources.resources
 F:\TPI-PAV-Arroyo-Bustamante-Galizio-Pich segunda entrega con casi todos los accesos a datos\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCOrdenTrabajo.resources
 F:\TPI-PAV-Arroyo-Bustamante-Galizio-Pich segunda entrega con casi todos los accesos a datos\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbproj.GenerateResource.Cache
-C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.exe.config
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.exe
-C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.xml
-C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.pdb
+C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.exe.config
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.exe
+C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.pdb
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.xml
-C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbprojResolveAssemblyReference.cache
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCComputadora.resources
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCProcesador.resources
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCRepuesto.resources
@@ -99,3 +97,5 @@ C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pi
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.Resources.resources
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCOrdenTrabajo.resources
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbproj.GenerateResource.Cache
+C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.xml
+C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.pdb

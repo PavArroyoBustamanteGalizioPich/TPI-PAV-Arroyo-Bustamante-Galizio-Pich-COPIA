@@ -6,6 +6,15 @@
     Private desdeOt As Boolean
     Private cargado As Boolean
 
+
+    Public Sub New()
+
+        ' Llamada necesaria para el diseñador.
+        InitializeComponent()
+
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        Me.deshabilitarComponentes()
+    End Sub
     Public Sub New(ByVal nroDoc As String, ByVal tipoDoc As Int32)
         cargado = False
         InitializeComponent()
@@ -64,6 +73,8 @@
 
             computadora.idComputadora = Convert.ToInt32(txtNroCompu.Text)
             computadora.tipoPc = Convert.ToInt32(cbTipoPc.SelectedValue)
+            computadora.nroCliente = cliente.idCliente
+            computadora.fechaAlta = Date.Today
             If cbTipoMemoria.SelectedValue > 0 Then
                 computadora.tipoMemoria = cbTipoMemoria.SelectedValue
             Else : computadora.tipoMemoria = 0
@@ -85,30 +96,46 @@
             End If
 
             Dim cantFilas As Int32 = ClienteDao.insertarCliente(cliente, computadora)
+            Select Case cantFilas
+                Case 1
+                    MessageBox.Show("El cliente se registró correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If desdeOt Then
+                        Me.Close()
+                    Else
+                        Me.limpiarComponentes()
+                        txtNroCliente.Text = Utilidades.sugerirId("cliente", "idCliente")
+                        txtNroCompu.Text = Utilidades.sugerirId("computadora", "idComputadora")
+                        txtNroDocumento.Text = ""
+                        cbTipoDoc.SelectedValue = 1
+                        cbTipoPc.SelectedValue = 1
+                        cbMarcaProc.SelectedValue = -1
+                        cbTipoMemoria.SelectedValue = -1
+                        cbModeloProc.SelectedValue = -1
+                    End If
+                    Exit Select
+
+                Case -1
+                    MessageBox.Show("Ocurrió un error al insertar el nuevo cliente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    txtNombre.Focus()
+                    Exit Select
+                Case -2
+                    MessageBox.Show("Ocurrió un error al insertar la computadora del nuevo cliente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    cbTipoPc.Focus()
+                    Exit Select
+                Case -3
+                    MessageBox.Show("El cliente que intenta registrar ya se encuentra registrado!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                Case Else
+                    MessageBox.Show("Ocurrió un error, Por favor compruebe los datos ingresados!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    txtNombre.Focus()
+                    Exit Select
+            End Select
 
             If cantFilas = 1 Then
-                MessageBox.Show("El cliente se registró correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                If desdeOt Then
-                    Me.Close()
-                Else
-                    Me.limpiarComponentes()
-                    txtNroCliente.Text = Utilidades.sugerirId("cliente", "idCliente")
-                    txtNroCompu.Text = Utilidades.sugerirId("computadora", "idComputadora")
-                    txtNroDocumento.Text = ""
-                    cbTipoDoc.SelectedValue = 1
-                    cbTipoPc.SelectedValue = 1
-                    cbMarcaProc.SelectedValue = -1
-                    cbTipoMemoria.SelectedValue = -1
-                    cbModeloProc.SelectedValue = -1
-                End If
+                
+
 
             End If
-
-
-
-
-
-
 
 
         End If
@@ -242,5 +269,16 @@
   
     Private Sub txtNroDocumento_TextChanged(sender As Object, e As EventArgs) Handles txtNroDocumento.TextChanged
 
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+
+        If Not (txtNroCliente.Text.Equals("") Or txtNroDocumento.Text.Equals("")) Then
+
+
+        Else
+            Dim grilla As New grillaGenerica("Clientes", grillaGenerica.formularios.CLIENTE, Me)
+            grilla.ShowDialog()
+        End If
     End Sub
 End Class

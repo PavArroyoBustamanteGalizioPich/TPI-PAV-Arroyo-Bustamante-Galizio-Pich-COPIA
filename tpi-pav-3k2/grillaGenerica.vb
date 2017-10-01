@@ -67,10 +67,19 @@
 
             Case formularios.REPUESTO
                 dgvBusqueda.DataSource = RepuestoDao.buscarRepuestos()
-                Me.Size = New System.Drawing.Size(700, 400)
+                dgvBusqueda.Columns(4).Visible = False
+                dgvBusqueda.Columns(2).Visible = False
+                dgvBusqueda.Columns(6).Visible = False
+                Me.Size = New System.Drawing.Size(950, 400)
                 Exit Select
 
             Case formularios.CLIENTE
+                ' buscar la forma de mostrar los clientes en una fila y todas las compus juntas
+                ' de última las compus las muestro aparte
+                dgvBusqueda.DataSource = ClienteDao.buscarClientes()
+                dgvBusqueda.Columns(4).Visible = False
+                Me.Size = New System.Drawing.Size(900, 400)
+
                 Exit Select
 
             Case formularios.COMPUTADORA

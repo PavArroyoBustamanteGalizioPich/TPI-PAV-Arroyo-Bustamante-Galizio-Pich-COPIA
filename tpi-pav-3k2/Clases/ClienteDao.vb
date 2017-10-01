@@ -19,28 +19,30 @@ Public Class ClienteDao
             sql.CommandType = CommandType.Text
             sql.Transaction = transaccion
 
-            comando = "insert into cliente values(" & cliente.idCliente & ",'" & cliente.nombre & "'," & cliente.apellido
+            comando = "insert into cliente values(" & cliente.idCliente & ",'" & cliente.nombre & "','" & cliente.apellido
             comando &= "','" & cliente.telefono & "','" & cliente.fechaAlta.ToString("yyyy/MM/dd")
             comando &= "', null, '" & cliente.email & "', '" & cliente.nroDocumento & "'," & cliente.tipoDocumento & ")"
             sql.CommandText = comando
 
-            'sql.BeginExecuteNonQuery()
+
             cantFilas = sql.ExecuteNonQuery()
             If cantFilas = 1 Then
-                cantFilas = ComputadoraDao.insertarComputadora(computadora) 'falta implementar
+                cantFilas = ComputadoraDao.insertarComputadora(computadora, sql)
                 If cantFilas = 1 Then
                     transaccion.Commit() ' se hace el comit solamente si se inserta bien la compu
-                    Return 1
+                    Return cantFilas
                 Else : Throw New Exception("COMPUTADORA")
                 End If
             Else : Throw New Exception("CLIENTE")
             End If
 
-
         Catch ex As SqlClient.SqlException
-
             transaccion.Rollback()
-            Return -3
+
+            If ex.Message.StartsWith("Violation of UNIQUE KEY constraint") Then
+                Return -3
+            End If
+
         Catch ex As Exception
             transaccion.Rollback()
             If ex.Message.Equals("COMPUTADORA") Then
@@ -54,6 +56,71 @@ Public Class ClienteDao
 
         Return 0
 
+    End Function
+
+
+    Public Shared Function actualizarCliente(ByRef cliente As ClienteDto) As Int32
+
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As New SqlClient.SqlCommand
+        Dim cant As Int32
+        Dim comando As String
+        Try
+
+            conex.Open()
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+            comando = "update cliente set telefono = '" & cliente.telefono & "', email = '"
+            comando &= cliente.email & "',"
+
+            If Not IsNothing(cliente.fechaBaja) Then
+                comando &= "fechaBaja = '" & cliente.fechaBaja.ToString("yyyy/MM/dd") & "' "
+            Else : comando &= "fechaBaja = null "
+            End If
+
+            comando &= "where idCliente = " & cliente.idCliente
+
+            sql.CommandType = comando
+            cant = sql.ExecuteNonQuery()
+            Return cant
+
+        Catch ex As SqlClient.SqlException
+            Return -1
+        Finally : conex.Close()
+        End Try
+
+
+    End Function
+
+    Public Shared Function buscarClientes() As DataTable
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As New SqlClient.SqlCommand
+        Dim tabla As New DataTable
+        Dim comando As String
+
+        Try
+            conex.Open()
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+
+            comando = "select distinct cli.idCliente as 'Nro Cliente', cli.nombre as 'Nombre', cli.apellido as 'Apellido',"
+            comando &= "t.tipo as 'Tipo Documento', cli.tipoDoc as 'ID Tipo Documento', cli.nroDocumento as 'Nro Documento',"
+            comando &= "cli.telefono as 'Telefono', cli.fechaAlta as 'Fecha Alta', cli.fechaBaja as 'Fecha Baja',"
+            comando &= "cli.email as 'E-Mail',   compu.idComputadora as 'ID Computadoras'"
+            comando &= " from cliente cli"
+            comando &= " join tipoDocumento t on t.idTipoDocumento = cli.tipoDoc"
+            comando &= " join computadora compu on compu.client = cli.idCliente order by cli.idCliente"
+
+            sql.CommandText = comando
+
+            tabla.Load(sql.ExecuteReader())
+
+        Catch ex As SqlClient.SqlException
+        Finally : conex.Close()
+        End Try
+
+
+        Return tabla
     End Function
 
 End Class

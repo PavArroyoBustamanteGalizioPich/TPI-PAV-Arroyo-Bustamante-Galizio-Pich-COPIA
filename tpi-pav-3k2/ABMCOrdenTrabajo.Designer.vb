@@ -104,6 +104,7 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
+        Me.GestionarClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,12 +141,12 @@ Partial Class ABMCOrdenTrabajo
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
         Me.SalirToolStripMenuItem.Text = "Salir"
         '
         'AdministrarToolStripMenuItem
         '
-        Me.AdministrarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestionarProveedoresToolStripMenuItem, Me.GestionarRepuestosToolStripMenuItem, Me.GestionarTipoDeRepuestosToolStripMenuItem, Me.GestionarServiciosToolStripMenuItem, Me.GestionarTipoDePcMemoriaToolStripMenuItem, Me.GestionarEstadosDeOTToolStripMenuItem, Me.GestionarTiposDeDocumentoToolStripMenuItem, Me.GestionarProcesadoresToolStripMenuItem})
+        Me.AdministrarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GestionarProveedoresToolStripMenuItem, Me.GestionarRepuestosToolStripMenuItem, Me.GestionarTipoDeRepuestosToolStripMenuItem, Me.GestionarServiciosToolStripMenuItem, Me.GestionarTipoDePcMemoriaToolStripMenuItem, Me.GestionarEstadosDeOTToolStripMenuItem, Me.GestionarTiposDeDocumentoToolStripMenuItem, Me.GestionarProcesadoresToolStripMenuItem, Me.GestionarClientesToolStripMenuItem})
         Me.AdministrarToolStripMenuItem.Name = "AdministrarToolStripMenuItem"
         Me.AdministrarToolStripMenuItem.Size = New System.Drawing.Size(81, 20)
         Me.AdministrarToolStripMenuItem.Text = "Administrar"
@@ -882,6 +883,13 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 26)
         Me.panelBotoneraOt.TabIndex = 3
         '
+        'GestionarClientesToolStripMenuItem
+        '
+        Me.GestionarClientesToolStripMenuItem.Name = "GestionarClientesToolStripMenuItem"
+        Me.GestionarClientesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.GestionarClientesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.GestionarClientesToolStripMenuItem.Text = "Gestionar Clientes"
+        '
         'ABMCOrdenTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1004,4 +1012,5 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents GestionarEstadosDeOTToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GestionarTiposDeDocumentoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GestionarProcesadoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GestionarClientesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

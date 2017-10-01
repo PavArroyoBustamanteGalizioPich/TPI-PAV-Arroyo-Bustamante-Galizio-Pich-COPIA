@@ -220,4 +220,8 @@
     End Sub
 
     
+    Private Sub GestionarClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionarClientesToolStripMenuItem.Click
+        Dim formClientes As New gestionClientes
+        formClientes.ShowDialog()
+    End Sub
 End Class

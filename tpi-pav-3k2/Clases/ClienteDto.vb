@@ -11,6 +11,11 @@
     Private _fechaBaja As Date
     Private _computadoras As Int32()
 
+    Public Sub New()
+        fechaBaja = Nothing
+    End Sub
+
+
     Public Property idCliente As Int32
         Get
             Return _idCliente
