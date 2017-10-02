@@ -73,14 +73,14 @@ Public Class ClienteDao
             comando = "update cliente set telefono = '" & cliente.telefono & "', email = '"
             comando &= cliente.email & "',"
 
-            If Not IsNothing(cliente.fechaBaja) Then
+            If Not cliente.fechaBaja.Equals(Nothing) Then
                 comando &= "fechaBaja = '" & cliente.fechaBaja.ToString("yyyy/MM/dd") & "' "
             Else : comando &= "fechaBaja = null "
             End If
 
             comando &= "where idCliente = " & cliente.idCliente
 
-            sql.CommandType = comando
+            sql.CommandText = comando
             cant = sql.ExecuteNonQuery()
             Return cant
 
@@ -103,9 +103,9 @@ Public Class ClienteDao
             sql.Connection = conex
             sql.CommandType = CommandType.Text
 
-            comando = "select distinct cli.idCliente as 'Nro Cliente', cli.nombre as 'Nombre', cli.apellido as 'Apellido',"
+            comando = "select cli.idCliente as 'Nro Cliente', cli.nombre as 'Nombre', cli.apellido as 'Apellido',"
             comando &= "t.tipo as 'Tipo Documento', cli.tipoDoc as 'ID Tipo Documento', cli.nroDocumento as 'Nro Documento',"
-            comando &= "cli.telefono as 'Telefono', cli.fechaAlta as 'Fecha Alta', cli.fechaBaja as 'Fecha Baja',"
+            comando &= "cli.telefono as 'Teléfono', cli.fechaAlta as 'Fecha Alta', cli.fechaBaja as 'Fecha Baja',"
             comando &= "cli.email as 'E-Mail',   compu.idComputadora as 'ID Computadoras'"
             comando &= " from cliente cli"
             comando &= " join tipoDocumento t on t.idTipoDocumento = cli.tipoDoc"
@@ -121,6 +121,44 @@ Public Class ClienteDao
 
 
         Return tabla
+    End Function
+
+
+    Public Shared Function buscarCliente(ByVal tipoDoc As Int32, ByVal nroDoc As String, ByVal id As Int32) As ClienteDto
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As New SqlClient.SqlCommand
+        Dim tabla As New DataTable
+        Dim comando As String
+        Dim cliente As ClienteDto
+        Try
+            conex.Open()
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+            comando = "select * from cliente where idCliente = " & id & " or (nroDocumento = '" & nroDoc & "' and tipoDoc = " & tipoDoc & ")"
+            sql.CommandText = comando
+            tabla.Load(sql.ExecuteReader())
+
+            cliente = New ClienteDto
+            cliente.idCliente = Convert.ToInt32(tabla.Rows(0)(0))
+            cliente.nombre = tabla.Rows(0)(1).ToString()
+            cliente.apellido = tabla.Rows(0)(2).ToString()
+            cliente.telefono = tabla.Rows(0)(3).ToString()
+            cliente.fechaAlta = CDate(tabla.Rows(0)(4))
+            If Not IsDBNull(tabla.Rows(0)(5)) Then
+                cliente.fechaBaja = CDate(tabla.Rows(0)(5))
+            End If
+            cliente.email = tabla.Rows(0)(6).ToString()
+            cliente.nroDocumento = tabla.Rows(0)(7).ToString()
+            cliente.tipoDocumento = Convert.ToInt32(tabla.Rows(0)(8))
+            Return cliente
+
+        Catch ex As SqlClient.SqlException
+            MessageBox.Show(ex.Message)
+            Return Nothing
+        Finally : conex.Close()
+        End Try
+
+
     End Function
 
 End Class

@@ -133,6 +133,7 @@ Partial Class gestionClientes
         '
         'txtPcsRegistradas
         '
+        Me.txtPcsRegistradas.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtPcsRegistradas.Location = New System.Drawing.Point(154, 121)
         Me.txtPcsRegistradas.Name = "txtPcsRegistradas"
         Me.txtPcsRegistradas.Size = New System.Drawing.Size(100, 20)
@@ -169,6 +170,8 @@ Partial Class gestionClientes
         'chkEstadoCliente
         '
         Me.chkEstadoCliente.AutoSize = True
+        Me.chkEstadoCliente.Checked = True
+        Me.chkEstadoCliente.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkEstadoCliente.Location = New System.Drawing.Point(199, 95)
         Me.chkEstadoCliente.Name = "chkEstadoCliente"
         Me.chkEstadoCliente.Size = New System.Drawing.Size(56, 17)
@@ -187,6 +190,7 @@ Partial Class gestionClientes
         '
         'txtNombre
         '
+        Me.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtNombre.Location = New System.Drawing.Point(60, 59)
         Me.txtNombre.MaxLength = 20
         Me.txtNombre.Name = "txtNombre"
@@ -223,6 +227,7 @@ Partial Class gestionClientes
         '
         'txtApellido
         '
+        Me.txtApellido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtApellido.Location = New System.Drawing.Point(221, 59)
         Me.txtApellido.MaxLength = 20
         Me.txtApellido.Name = "txtApellido"
@@ -259,6 +264,7 @@ Partial Class gestionClientes
         '
         'txtTelefono
         '
+        Me.txtTelefono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTelefono.Location = New System.Drawing.Point(387, 59)
         Me.txtTelefono.MaxLength = 15
         Me.txtTelefono.Name = "txtTelefono"
@@ -267,6 +273,7 @@ Partial Class gestionClientes
         '
         'txtEmail
         '
+        Me.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtEmail.Location = New System.Drawing.Point(584, 59)
         Me.txtEmail.MaxLength = 60
         Me.txtEmail.Name = "txtEmail"
@@ -372,6 +379,7 @@ Partial Class gestionClientes
         '
         'txtCapAlm
         '
+        Me.txtCapAlm.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtCapAlm.Location = New System.Drawing.Point(642, 70)
         Me.txtCapAlm.MaxLength = 5
         Me.txtCapAlm.Name = "txtCapAlm"
@@ -406,6 +414,7 @@ Partial Class gestionClientes
         '
         'txtCantMemoria
         '
+        Me.txtCantMemoria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtCantMemoria.Location = New System.Drawing.Point(600, 29)
         Me.txtCantMemoria.MaxLength = 4
         Me.txtCantMemoria.Name = "txtCantMemoria"

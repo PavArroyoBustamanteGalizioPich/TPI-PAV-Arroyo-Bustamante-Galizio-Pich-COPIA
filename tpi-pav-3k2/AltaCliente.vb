@@ -8,11 +8,12 @@
 
 
     Public Sub New()
-
-        ' Llamada necesaria para el diseñador.
         InitializeComponent()
-
-        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        cargado = False
+        Utilidades.cargarCombo("tipoDocumento", cbTipoDoc)
+        Utilidades.cargarCombo("tipoPc", cbTipoPc)
+        Utilidades.cargarCombo("tipoMemoria", cbTipoMemoria)
+        Utilidades.cargarCombo("marcaProcesador", cbMarcaProc)
         Me.deshabilitarComponentes()
     End Sub
     Public Sub New(ByVal nroDoc As String, ByVal tipoDoc As Int32)
@@ -39,8 +40,6 @@
             btnNuevoCliente.PerformClick()
             txtNombre.Focus()
         End If
-
-        ' el modelo de procesador se carga cuando cambia la seleccion del como marca
         cargado = True
     End Sub
 
@@ -49,11 +48,73 @@
         Me.habilitarComponentes()
         txtNroCliente.Text = Utilidades.sugerirId("cliente", "idCliente")
         txtNroCompu.Text = Utilidades.sugerirId("computadora", "idComputadora")
+        cbModeloProc.DataSource = Nothing
         txtNroCliente.Enabled = False
         txtNroCompu.Enabled = False
         btnBuscar.Enabled = False
         txtFechaAlta.Text = Date.Today.ToString("dd/MM/yyyy")
         txtNroDocumento.Focus()
+    End Sub
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        clienteActual = Nothing
+        If Not (txtNroCliente.Text.Equals("") And txtNroDocumento.Text.Equals("")) Then
+            Dim id, tipoDoc As Int32
+            Dim nro As String = ""
+
+            If Not txtNroCliente.Text.Equals("") Then
+                id = Convert.ToInt32(txtNroCliente.Text)
+            End If
+            If Not txtNroDocumento.Text.Equals("") Then
+                nro = txtNroDocumento.Text
+            End If
+            tipoDoc = cbTipoDoc.SelectedValue
+            clienteActual = ClienteDao.buscarCliente(tipoDoc, nro, id)
+        Else
+            Dim grilla As New grillaGenerica("Clientes", grillaGenerica.formularios.CLIENTE, Me)
+            grilla.ShowDialog()
+
+            If Not IsNothing(filaBuscada) Then
+                clienteActual = New ClienteDto()
+                clienteActual.idCliente = Convert.ToInt32(filaBuscada.Cells("Nro Cliente").Value)
+                clienteActual.nombre = filaBuscada.Cells("Nombre").Value.ToString()
+                clienteActual.apellido = filaBuscada.Cells("Apellido").Value.ToString()
+                clienteActual.telefono = filaBuscada.Cells("Teléfono").Value.ToString()
+                clienteActual.email = filaBuscada.Cells("E-Mail").Value.ToString()
+                clienteActual.tipoDocumento = Convert.ToInt32(filaBuscada.Cells("ID Tipo Documento").Value)
+                clienteActual.nroDocumento = filaBuscada.Cells("Nro Documento").Value.ToString()
+                clienteActual.fechaAlta = CDate(filaBuscada.Cells("Fecha Alta").Value)
+                If Not IsDBNull(filaBuscada.Cells("Fecha Baja").Value) Then
+                    clienteActual.fechaBaja = CDate(filaBuscada.Cells("Fecha Baja").Value)
+
+                End If
+
+            End If
+        End If
+
+        If Not IsNothing(clienteActual) Then
+            txtNroCliente.Text = clienteActual.idCliente
+            txtNroDocumento.Text = clienteActual.nroDocumento
+            cbTipoDoc.SelectedValue = clienteActual.tipoDocumento
+            txtNombre.Text = clienteActual.nombre
+            txtApellido.Text = clienteActual.apellido
+            txtTelefono.Text = clienteActual.telefono
+            txtEmail.Text = clienteActual.email
+            txtFechaAlta.Text = clienteActual.fechaAlta.ToString("dd/MM/yyyy")
+            If Not clienteActual.fechaBaja.Equals(Nothing) Then
+                chkEstadoCliente.Checked = False
+            Else : chkEstadoCliente.Checked = True
+            End If
+            txtTelefono.Enabled = True
+            txtEmail.Enabled = True
+            btnActualizarCli.Enabled = True
+            btnGestionPc.Enabled = True
+            btnMostrarPcs.Enabled = True
+            chkEstadoCliente.Enabled = True
+            txtNroCliente.Enabled = False
+
+        End If
+
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
@@ -130,14 +191,26 @@
                     txtNombre.Focus()
                     Exit Select
             End Select
+        End If
+    End Sub
 
-            If cantFilas = 1 Then
-                
+    Private Sub btnActualizarCli_Click(sender As Object, e As EventArgs) Handles btnActualizarCli.Click
+        clienteActual.telefono = txtTelefono.Text.Trim()
+        clienteActual.email = txtEmail.Text.Trim()
+        If chkEstadoCliente.Checked Then
+            clienteActual.fechaBaja = Nothing
+        End If
+        Dim cantFilas As Int32
 
-
-            End If
-
-
+        cantFilas = ClienteDao.actualizarCliente(clienteActual)
+        If cantFilas = 1 Then
+            MessageBox.Show("El registro se ha actualizado correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.limpiarComponentes()
+            Me.deshabilitarComponentes()
+            txtNroDocumento.Text = ""
+            cbTipoDoc.SelectedValue = 1
+            clienteActual = Nothing
+        Else : MessageBox.Show("Ocurrió un error al actualizar el registro!", "información", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
     End Sub
@@ -146,64 +219,6 @@
         If Not (IsNumeric(e.KeyChar) Or Asc(e.KeyChar) = 8 Or Asc(e.KeyChar) = 46) Then
             e.Handled = True
         End If
-
-    End Sub
-
-
-    Private Sub deshabilitarComponentes()
-        txtNombre.Enabled = False
-        txtApellido.Enabled = False
-        txtTelefono.Enabled = False
-        txtEmail.Enabled = False
-        txtFechaAlta.Enabled = False
-        txtFechaBaja.Enabled = False
-        chkEstadoCliente.Enabled = False
-        txtNroCompu.Enabled = False
-        cbTipoPc.Enabled = False
-        cbMarcaProc.Enabled = False
-        cbModeloProc.Enabled = False
-        cbTipoMemoria.Enabled = False
-        txtCantMemoria.Enabled = False
-        txtCapAlm.Enabled = False
-        btnGuardar.Enabled = False
-        btnActualizarCli.Enabled = False
-
-    End Sub
-
-    Private Sub habilitarComponentes()
-        txtNombre.Enabled = True
-        txtApellido.Enabled = True
-        txtTelefono.Enabled = True
-        txtEmail.Enabled = True
-        'chkEstadoCliente.Enabled = True
-
-        cbTipoPc.Enabled = True
-        cbMarcaProc.Enabled = True
-        cbModeloProc.Enabled = True
-        cbTipoMemoria.Enabled = True
-        txtCantMemoria.Enabled = True
-        txtCapAlm.Enabled = True
-        btnGuardar.Enabled = True
-        'btnActualizarCli.Enabled = True
-    End Sub
-
-    Private Sub limpiarComponentes()
-        txtNroCliente.Text = ""
-        'txtNroDocumento.Text = ""
-        txtNombre.Text = ""
-        txtApellido.Text = ""
-        txtTelefono.Text = ""
-        txtEmail.Text = ""
-        txtFechaAlta.Text = ""
-        txtFechaBaja.Text = ""
-        'txtNroCompu.Text = ""
-        txtCantMemoria.Text = ""
-        txtCapAlm.Text = ""
-        'cbTipoDoc.SelectedValue = 1
-        cbTipoPc.SelectedValue = 1
-        cbTipoMemoria.SelectedValue = -1
-        'cbModeloProc.SelectedValue = -1
-        'cbMarcaProc.SelectedValue = -1
 
     End Sub
 
@@ -250,35 +265,116 @@
 
     Private Sub cbMarcaProc_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbMarcaProc.SelectedIndexChanged
         If cargado Then
-            If IsNumeric(cbMarcaProc.SelectedValue.ToString()) Then
-                Dim valor As Int32 = cbMarcaProc.SelectedValue
-                If valor > 0 Then
-                    cbModeloProc.DataSource = Nothing
-                    Utilidades.cargarCombo("procesador", "idProcesador", "marca", valor, cbModeloProc)
-                    cbModeloProc.SelectedValue = -1
-                End If
+            If Not IsNothing(cbMarcaProc.SelectedValue) Then
+                If IsNumeric(cbMarcaProc.SelectedValue.ToString()) Then
+                    Dim valor As Int32 = cbMarcaProc.SelectedValue
+                    If valor > 0 Then
+                        cbModeloProc.DataSource = Nothing
+                        Utilidades.cargarCombo("procesador", "idProcesador", "marca", valor, cbModeloProc)
+                        cbModeloProc.SelectedValue = -1
+                    End If
 
+                End If
             End If
         End If
 
 
     End Sub
 
-    
+    Private Sub chkEstadoCliente_CheckedChanged(sender As Object, e As EventArgs) Handles chkEstadoCliente.CheckedChanged
 
-  
-    Private Sub txtNroDocumento_TextChanged(sender As Object, e As EventArgs) Handles txtNroDocumento.TextChanged
-
-    End Sub
-
-    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
-
-        If Not (txtNroCliente.Text.Equals("") Or txtNroDocumento.Text.Equals("")) Then
-
+        If chkEstadoCliente.Checked = False Then
+            chkEstadoCliente.Text = "Inactivo"
+            If clienteActual.fechaBaja.Equals(Nothing) Then
+                txtFechaBaja.Text = Date.Today.ToString("dd/MM/yyyy")
+                clienteActual.fechaBaja = Date.Now
+            Else : txtFechaBaja.Text = clienteActual.fechaBaja.ToString("dd/MM/yyyy")
+            End If
 
         Else
-            Dim grilla As New grillaGenerica("Clientes", grillaGenerica.formularios.CLIENTE, Me)
-            grilla.ShowDialog()
+            chkEstadoCliente.Text = "Activo"
+            'servicioActual.fechaBajaServicio = Nothing
+            txtFechaBaja.Text = ""
+
         End If
+
+
+
+
     End Sub
+
+    Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+        Me.limpiarComponentes()
+        Me.deshabilitarComponentes()
+        clienteActual = Nothing
+        txtNroCliente.Enabled = True
+        txtNroDocumento.Enabled = True
+        txtNroDocumento.Text = ""
+        cbTipoMemoria.SelectedValue = -1
+        cbMarcaProc.SelectedValue = -1
+        cbModeloProc.SelectedValue = -1
+        cbTipoDoc.SelectedValue = 1
+        cbTipoDoc.Enabled = True
+        btnBuscar.Enabled = True
+        txtNroCliente.Focus()
+
+    End Sub
+    Private Sub deshabilitarComponentes()
+        txtNombre.Enabled = False
+        txtApellido.Enabled = False
+        txtTelefono.Enabled = False
+        txtEmail.Enabled = False
+        txtFechaAlta.Enabled = False
+        txtFechaBaja.Enabled = False
+        chkEstadoCliente.Enabled = False
+        txtNroCompu.Enabled = False
+        cbTipoPc.Enabled = False
+        cbMarcaProc.Enabled = False
+        cbModeloProc.Enabled = False
+        cbTipoMemoria.Enabled = False
+        txtCantMemoria.Enabled = False
+        txtCapAlm.Enabled = False
+        btnGuardar.Enabled = False
+        btnActualizarCli.Enabled = False
+
+    End Sub
+
+    Private Sub habilitarComponentes()
+        txtNombre.Enabled = True
+        txtApellido.Enabled = True
+        txtTelefono.Enabled = True
+        txtEmail.Enabled = True
+        chkEstadoCliente.Enabled = False
+
+        cbTipoPc.Enabled = True
+        cbMarcaProc.Enabled = True
+        cbModeloProc.Enabled = True
+        cbTipoMemoria.Enabled = True
+        txtCantMemoria.Enabled = True
+        txtCapAlm.Enabled = True
+        btnGuardar.Enabled = True
+        'btnActualizarCli.Enabled = True
+    End Sub
+
+    Private Sub limpiarComponentes()
+        txtNroCliente.Text = ""
+        'txtNroDocumento.Text = ""
+        txtNombre.Text = ""
+        txtApellido.Text = ""
+        txtTelefono.Text = ""
+        txtEmail.Text = ""
+        txtFechaAlta.Text = ""
+        txtFechaBaja.Text = ""
+        'txtNroCompu.Text = ""
+        txtCantMemoria.Text = ""
+        txtCapAlm.Text = ""
+        'cbTipoDoc.SelectedValue = 1
+        cbTipoPc.SelectedValue = 1
+        cbTipoMemoria.SelectedValue = -1
+        cbModeloProc.SelectedValue = -1
+        cbMarcaProc.SelectedValue = -1
+
+    End Sub
+
+   
 End Class

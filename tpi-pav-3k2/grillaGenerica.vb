@@ -78,6 +78,31 @@
                 ' de última las compus las muestro aparte
                 dgvBusqueda.DataSource = ClienteDao.buscarClientes()
                 dgvBusqueda.Columns(4).Visible = False
+                'Dim primeraFila As Boolean = True
+                'Dim idCli As Int32
+                'Dim nroFila As Int32
+                'no anda
+                'dgvBusqueda.Columns(10).ValueType = GetType(String)
+
+
+                'For Each fila As DataGridViewRow In dgvBusqueda.Rows
+                'dgvBusqueda.Rows(nroFila).Cells(10).ValueType = GetType(String)
+
+                'CTypeDynamic(dgvBusqueda.Rows(nroFila).Cells(10).Value, GetType(String))
+                'If primeraFila Then
+                'idCli = Convert.ToInt32(fila.Cells(0).Value)
+                'nroFila = fila.Index
+                'primeraFila = False
+                'Else
+                'If Convert.ToInt32(fila.Cells(0).Value) = idCli Then
+                'Dim compu As String = fila.Cells(10).Value
+                'dgvBusqueda.Rows(nroFila).Cells(10).Value = dgvBusqueda.Rows(fila.Index).Cells(0).Value.ToString & ", " & compu
+                'dgvBusqueda.Rows.RemoveAt(fila.Index)
+                'Else : primeraFila = True
+                'End If
+                'End If
+                'Next
+
                 Me.Size = New System.Drawing.Size(900, 400)
 
                 Exit Select

@@ -99,3 +99,4 @@ C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pi
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbproj.GenerateResource.Cache
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.xml
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.pdb
+C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbprojResolveAssemblyReference.cache

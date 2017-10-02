@@ -245,9 +245,6 @@
     End Sub
 
    
-
-
-
     Private Sub txtProveedor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtIdProveedor.KeyPress, txtCuit.KeyPress, txtTelefono.KeyPress
         If Not (IsNumeric(e.KeyChar) Or Asc(e.KeyChar) = 8) Then
             e.Handled = True

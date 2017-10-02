@@ -38,7 +38,7 @@
 
             If computadora.capAlmacenamiento > 0 Then
                 comando &= computadora.capAlmacenamiento & ",'"
-            Else : comando &= " null,"
+            Else : comando &= " null,'"
             End If
 
             comando &= computadora.fechaAlta.ToString("yyyy/MM/dd") & "', null ," & computadora.nroCliente & ")"
