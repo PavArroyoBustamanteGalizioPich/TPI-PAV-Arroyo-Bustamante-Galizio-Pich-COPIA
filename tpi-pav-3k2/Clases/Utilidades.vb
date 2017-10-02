@@ -44,7 +44,7 @@
         End Try
     End Sub
 
-    Public Shared Sub cargarCombo(ByRef nombreTabla As String, ByRef pk As String, ByRef tablaRestriccion As String, ByVal restriccion As Int32, ByRef combo As ComboBox)
+    Public Shared Sub cargarCombo(ByRef nombreTabla As String, ByRef pk As String, ByRef tablaRestriccion As String, ByVal restriccion As Int32, ByRef combo As ComboBox, Optional ByRef display As String = "")
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
@@ -58,7 +58,11 @@
             tabla.Load(sql.ExecuteReader())
             combo.DataSource = tabla
             combo.ValueMember = tabla.Columns(0).ColumnName
-            combo.DisplayMember = tabla.Columns(1).ColumnName
+            If display.Equals("") Then
+                combo.DisplayMember = tabla.Columns(1).ColumnName
+            Else : combo.DisplayMember = display
+            End If
+
         Catch ex As Exception
 
         Finally : conex.Close()

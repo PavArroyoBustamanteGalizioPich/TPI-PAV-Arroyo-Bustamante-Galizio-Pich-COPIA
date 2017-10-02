@@ -70,10 +70,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABMCComputadora.Designer.vb">
-      <DependentUpon>ABMCComputadora.vb</DependentUpon>
+    <Compile Include="GestionComputadoras.Designer.vb">
+      <DependentUpon>GestionComputadoras.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABMCComputadora.vb">
+    <Compile Include="GestionComputadoras.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABMCProcesador.Designer.vb">
@@ -106,10 +106,10 @@
     <Compile Include="ACTipoDocumento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AltaCliente.Designer.vb">
-      <DependentUpon>AltaCliente.vb</DependentUpon>
+    <Compile Include="GestionClientes.Designer.vb">
+      <DependentUpon>GestionClientes.vb</DependentUpon>
     </Compile>
-    <Compile Include="AltaCliente.vb">
+    <Compile Include="GestionClientes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Clases\Buscable.vb" />
@@ -151,10 +151,10 @@
     <Compile Include="Clases\TipoRepuestoDao.vb" />
     <Compile Include="Clases\TiposDto.vb" />
     <Compile Include="Clases\Utilidades.vb" />
-    <Compile Include="grillaGenerica.Designer.vb">
-      <DependentUpon>grillaGenerica.vb</DependentUpon>
+    <Compile Include="GrillaGenerica.Designer.vb">
+      <DependentUpon>GrillaGenerica.vb</DependentUpon>
     </Compile>
-    <Compile Include="grillaGenerica.vb">
+    <Compile Include="GrillaGenerica.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -180,8 +180,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ABMCComputadora.resx">
-      <DependentUpon>ABMCComputadora.vb</DependentUpon>
+    <EmbeddedResource Include="GestionComputadoras.resx">
+      <DependentUpon>GestionComputadoras.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMCProcesador.resx">
       <DependentUpon>ABMCProcesador.vb</DependentUpon>
@@ -201,8 +201,8 @@
     <EmbeddedResource Include="ACTipoDocumento.resx">
       <DependentUpon>ACTipoDocumento.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AltaCliente.resx">
-      <DependentUpon>AltaCliente.vb</DependentUpon>
+    <EmbeddedResource Include="GestionClientes.resx">
+      <DependentUpon>GestionClientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMCProveedores.resx">
       <DependentUpon>ABMCProveedores.vb</DependentUpon>
@@ -210,8 +210,8 @@
     <EmbeddedResource Include="ABMTipoRepuesto.resx">
       <DependentUpon>ABMTipoRepuesto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="grillaGenerica.resx">
-      <DependentUpon>grillaGenerica.vb</DependentUpon>
+    <EmbeddedResource Include="GrillaGenerica.resx">
+      <DependentUpon>GrillaGenerica.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

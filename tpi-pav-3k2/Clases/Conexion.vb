@@ -1,5 +1,6 @@
 ﻿Public Class Conexion
     Private Shared conex As SqlClient.SqlConnection
+    Private Shared sql As SqlClient.SqlCommand
     Private Sub New()
 
     End Sub
@@ -12,6 +13,13 @@
             'conex.ConnectionString = "Data Source=MAQUIS;Initial Catalog=MegDatabase;Persist Security Info=True;User ID=avisuales1;Password=avisuales1"
         End If
         Return conex
+    End Function
+
+    Public Shared Function getComando() As SqlClient.SqlCommand
+        If IsNothing(sql) Then
+            sql = New SqlClient.SqlCommand
+        End If
+        Return sql
     End Function
 
 End Class

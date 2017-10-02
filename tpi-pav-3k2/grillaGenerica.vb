@@ -1,4 +1,4 @@
-﻿Public Class grillaGenerica
+﻿Public Class GrillaGenerica
 
     Public Enum formularios
         SERVICIO  'ya esta
@@ -12,11 +12,12 @@
         TIPO_REPUESTO ' ya está
         TIPO_DOCUMENTO 'ya está
         PROCESADOR 'ya está
+        COMPUTADORAS_CLIENTE
 
     End Enum
     Private form As formularios
     Private formularioEmisor As Buscable
-    Public Sub New(ByRef titulo As String, ByVal nombreFormEmisor As formularios, ByRef formEmisor As Buscable)
+    Public Sub New(ByRef titulo As String, ByVal nombreFormEmisor As formularios, ByRef formEmisor As Buscable, Optional ByRef cliente As ClienteDto = Nothing)
         InitializeComponent()
         Me.Text = titulo
         form = nombreFormEmisor
@@ -31,20 +32,20 @@
             Case formularios.TIPO_MEMORIA
                 dgvBusqueda.DataSource = TipoMemoriaDao.buscarTiposMemoria()
                 Me.Size = New System.Drawing.Size(600, 400)
-                
+
 
                 Exit Select
             Case formularios.TIPO_PC
                 dgvBusqueda.DataSource = TipoPcDao.buscarTiposPc
                 Me.Size = New System.Drawing.Size(600, 400)
-                
+
 
                 Exit Select
 
             Case formularios.TIPO_REPUESTO
                 dgvBusqueda.DataSource = TipoRepuestoDao.buscarTiposRepuesto()
                 Me.Size = New System.Drawing.Size(600, 400)
-                
+
                 Exit Select
 
             Case formularios.TIPO_DOCUMENTO
@@ -57,13 +58,13 @@
             Case formularios.PROVEEDOR
                 dgvBusqueda.DataSource = ProveedorDao.buscarProveedores
                 Me.Size = New System.Drawing.Size(700, 400)
-                
+
                 Exit Select
 
             Case formularios.PROCESADOR
                 dgvBusqueda.DataSource = ProcesadorDao.buscarProcesadores()
                 Me.Size = New System.Drawing.Size(600, 400)
-                
+
 
             Case formularios.REPUESTO
                 dgvBusqueda.DataSource = RepuestoDao.buscarRepuestos()
@@ -110,6 +111,15 @@
             Case formularios.COMPUTADORA
                 Exit Select
 
+            Case formularios.COMPUTADORAS_CLIENTE
+                dgvBusqueda.DataSource = ComputadoraDao.computadorasPorCliente(cliente)
+                dgvBusqueda.Columns("ID Tipo Pc").Visible = False
+                dgvBusqueda.Columns("ID Procesador").Visible = False
+                dgvBusqueda.Columns("ID Tipo Memoria").Visible = False
+                Me.Size = New System.Drawing.Size(850, 400)
+
+                Exit Select
+
             Case formularios.ORDEN_TRABAJO
                 Exit Select
 
@@ -131,7 +141,7 @@
 
     End Sub
 
-    
+
 
     Private Sub dgvBusqueda_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
 

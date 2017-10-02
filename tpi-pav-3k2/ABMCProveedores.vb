@@ -59,7 +59,7 @@
 
         Else
             ' aca es en el caso que deje el campo nro vacio
-            Dim grilla As New grillaGenerica("Proveedores", grillaGenerica.formularios.PROVEEDOR, Me)
+            Dim grilla As New GrillaGenerica("Proveedores", GrillaGenerica.formularios.PROVEEDOR, Me)
             grilla.ShowDialog()
             'If Not filaBuscada.Equals(Nothing) Then
             If Not IsNothing(filaBuscada) Then

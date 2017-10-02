@@ -90,7 +90,7 @@
             End If
 
         Else
-            Dim grilla As New grillaGenerica("Tipos de Documento", grillaGenerica.formularios.TIPO_DOCUMENTO, Me)
+            Dim grilla As New GrillaGenerica("Tipos de Documento", GrillaGenerica.formularios.TIPO_DOCUMENTO, Me)
             grilla.ShowDialog()
             If Not IsNothing(filaBuscada) Then
                 txtIdTipoDoc.Enabled = False

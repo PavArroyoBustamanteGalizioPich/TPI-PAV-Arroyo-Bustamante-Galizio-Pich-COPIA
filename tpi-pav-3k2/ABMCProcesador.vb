@@ -37,7 +37,7 @@
 
         Else ' en caso que deje vacio
 
-            Dim grilla As New grillaGenerica("Procesadores", grillaGenerica.formularios.PROCESADOR, Me)
+            Dim grilla As New GrillaGenerica("Procesadores", GrillaGenerica.formularios.PROCESADOR, Me)
             grilla.ShowDialog()
             If Not IsNothing(filaBuscada) Then
                 procesadorActual = New ProcesadorDto

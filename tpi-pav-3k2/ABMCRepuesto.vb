@@ -43,7 +43,7 @@
             End If
 
         Else
-            Dim grilla As New grillaGenerica("Listado de Repuestos", grillaGenerica.formularios.REPUESTO, Me)
+            Dim grilla As New GrillaGenerica("Listado de Repuestos", GrillaGenerica.formularios.REPUESTO, Me)
             grilla.ShowDialog()
             If Not IsNothing(filaBuscada) Then
                 repuestoActual = New RepuestoDto

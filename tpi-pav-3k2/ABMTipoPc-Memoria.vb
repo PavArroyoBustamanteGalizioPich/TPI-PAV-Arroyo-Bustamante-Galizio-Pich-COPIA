@@ -80,7 +80,7 @@
             End If
 
         Else
-            Dim grilla As New grillaGenerica("Tipos de Memoria", grillaGenerica.formularios.TIPO_MEMORIA, Me)
+            Dim grilla As New GrillaGenerica("Tipos de Memoria", GrillaGenerica.formularios.TIPO_MEMORIA, Me)
             grilla.ShowDialog()
             If Not IsNothing(filabuscada) Then
                 txtIdMemoria.Enabled = False
@@ -198,7 +198,7 @@
             End If
 
         Else
-            Dim grilla As New grillaGenerica("Tipos de Memoria", grillaGenerica.formularios.TIPO_PC, Me)
+            Dim grilla As New GrillaGenerica("Tipos de Memoria", GrillaGenerica.formularios.TIPO_PC, Me)
             grilla.ShowDialog()
             If Not IsNothing(filabuscada) Then
                 txtIdTipoPc.Enabled = False

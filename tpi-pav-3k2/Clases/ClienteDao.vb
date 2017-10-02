@@ -106,14 +106,16 @@ Public Class ClienteDao
             comando = "select cli.idCliente as 'Nro Cliente', cli.nombre as 'Nombre', cli.apellido as 'Apellido',"
             comando &= "t.tipo as 'Tipo Documento', cli.tipoDoc as 'ID Tipo Documento', cli.nroDocumento as 'Nro Documento',"
             comando &= "cli.telefono as 'Teléfono', cli.fechaAlta as 'Fecha Alta', cli.fechaBaja as 'Fecha Baja',"
-            comando &= "cli.email as 'E-Mail',   compu.idComputadora as 'ID Computadoras'"
+            comando &= "cli.email as 'E-Mail'"
             comando &= " from cliente cli"
             comando &= " join tipoDocumento t on t.idTipoDocumento = cli.tipoDoc"
-            comando &= " join computadora compu on compu.client = cli.idCliente order by cli.idCliente"
+            comando &= " order by cli.idCliente"
 
             sql.CommandText = comando
 
             tabla.Load(sql.ExecuteReader())
+
+
 
         Catch ex As SqlClient.SqlException
         Finally : conex.Close()
@@ -130,6 +132,7 @@ Public Class ClienteDao
         Dim tabla As New DataTable
         Dim comando As String
         Dim cliente As ClienteDto
+
         Try
             conex.Open()
             sql.Connection = conex
@@ -150,6 +153,14 @@ Public Class ClienteDao
             cliente.email = tabla.Rows(0)(6).ToString()
             cliente.nroDocumento = tabla.Rows(0)(7).ToString()
             cliente.tipoDocumento = Convert.ToInt32(tabla.Rows(0)(8))
+            tabla.Clear()
+            Dim compus As DataTable = ComputadoraDao.computadorasPorCliente(cliente)
+            Dim computadoras(compus.Rows.Count - 1) As Int32
+            For i As Int32 = 0 To compus.Rows.Count - 1
+                computadoras(i) = Convert.ToInt32(compus.Rows(i)(0))
+            Next
+            cliente.computadoras = computadoras
+
             Return cliente
 
         Catch ex As SqlClient.SqlException

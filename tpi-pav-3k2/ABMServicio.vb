@@ -58,7 +58,7 @@
         Else
 
             Try
-                Dim mostrarGrilla As New grillaGenerica("Servicios", grillaGenerica.formularios.SERVICIO, Me)
+                Dim mostrarGrilla As New GrillaGenerica("Servicios", GrillaGenerica.formularios.SERVICIO, Me)
                 mostrarGrilla.ShowDialog()
                 If Not servicioSeleccionado.Equals(Nothing) Then
                     servicioActual = New ServicioDto

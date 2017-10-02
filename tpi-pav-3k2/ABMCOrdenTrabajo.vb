@@ -87,7 +87,7 @@
 
     Private Sub btnNuevoCliOT_Click(sender As Object, e As EventArgs) Handles btnNuevoCliOT.Click
         'esto despues se cambia cuando le saque el boton
-        Dim formAltaCliente As New gestionClientes(txtNroDocCliOT.Text, cbTipoDocOT.SelectedValue)
+        Dim formAltaCliente As New GestionClientes(txtNroDocCliOT.Text, cbTipoDocOT.SelectedValue)
         formAltaCliente.ShowDialog()
     End Sub
 
@@ -215,13 +215,13 @@
     End Sub
 
     Private Sub btnNuevaPcOt_Click(sender As Object, e As EventArgs) Handles btnNuevaPcOt.Click
-        Dim formNvaCompu As New ABMCComputadora
-        formNvaCompu.ShowDialog()
+        'Dim formNvaCompu As New GestionComputadoras
+        'formNvaCompu.ShowDialog()
     End Sub
 
-    
+
     Private Sub GestionarClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionarClientesToolStripMenuItem.Click
-        Dim formClientes As New gestionClientes
+        Dim formClientes As New GestionClientes
         formClientes.ShowDialog()
     End Sub
 End Class

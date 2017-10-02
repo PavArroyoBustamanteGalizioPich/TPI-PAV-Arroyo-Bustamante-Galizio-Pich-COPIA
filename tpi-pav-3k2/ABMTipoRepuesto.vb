@@ -109,7 +109,7 @@
             End If
 
         Else
-            Dim grilla As New grillaGenerica("Tipos de Repuesto", grillaGenerica.formularios.TIPO_REPUESTO, Me)
+            Dim grilla As New GrillaGenerica("Tipos de Repuesto", GrillaGenerica.formularios.TIPO_REPUESTO, Me)
             grilla.ShowDialog()
             If Not IsNothing(filabuscada) Then
                 txtIdRepuesto.Enabled = False
