@@ -67,6 +67,8 @@
 
 
         Try
+
+            ' este hay que cambiarlo para que traiga la marca del procesador para cargar el combo
             conex.Open()
             sql.Connection = conex
             sql.CommandType = CommandType.Text
@@ -144,6 +146,96 @@
         End Try
 
         Return tabla
+    End Function
+
+    'falta cuscar todas
+    Public Shared Function buscarComputadoras() As DataTable
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+        Dim tabla As New DataTable
+        Dim comando As String
+
+
+        Try
+
+            conex.Open()
+           
+
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+
+            comando = "select compu.idComputadora as 'ID Computadora', compu.tipo as 'ID Tipo Pc', tipoP.tipo as 'Tipo Pc',"
+            comando &= "compu.microProcesador as 'ID Procesador', proce.modeloProcesador as 'Procesador', tipoM.idTipoMemoria as 'ID Tipo Memoria',"
+            comando &= "tipoM.tipo as 'Tipo Memoria',"
+            comando &= "compu.cantidadMemoria as 'Cantidad de Memoria', compu.almacenamiento as 'Almacenamiento', compu.fechaAlta as 'Fecha Alta',"
+            comando &= "compu.fechaBaja as 'Fecha Baja' from computadora compu"
+            comando &= " left join tipoPc tipoP on tipoP.idTipoPc = compu.tipo"
+            comando &= " left join procesador proce on proce.idProcesador = compu.microProcesador"
+            comando &= " left join tipoMemoria tipoM on tipoM.idTipoMemoria = compu.tipoMem"
+
+            sql.CommandText = comando
+            tabla.Load(sql.ExecuteReader())
+
+
+        Catch ex As SqlClient.SqlException
+        Finally
+
+            conex.Close()
+
+
+        End Try
+
+        Return tabla
+    End Function
+
+    Public Shared Function actualizarComputadora(ByRef computadora As ComputadoraDto) As Conexion.EventosSql
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+        Dim comando As String
+
+        Try
+            conex.Open()
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+            comando = "update computadora set "
+            If computadora.procesador <> 0 Then
+                comando &= "microprocesador = " & computadora.procesador & ","
+            Else : comando &= "microprocesador = null,"
+            End If
+
+            If computadora.tipoMemoria <> 0 Then
+                comando &= "tipoMem = " & computadora.tipoMemoria & ","
+            Else : comando &= "tipoMem = null,"
+            End If
+
+            If computadora.cantidadMemoria <> 0 Then
+                comando &= "cantidadMemoria = " & computadora.cantidadMemoria & ","
+            Else : comando &= "cantidadMemoria = null,"
+            End If
+
+            If computadora.capAlmacenamiento <> 0 Then
+                comando &= "almacenamiento = " & computadora.capAlmacenamiento & ","
+            Else : comando &= "almacenaiento = null,"
+            End If
+
+            If Not computadora.fechaBaja.Equals(Nothing) Then
+                comando &= "fechaBaja = " & computadora.fechaBaja.ToString("yyyy/MM/dd")
+            Else : comando &= "fechaBaja = null"
+            End If
+            comando &= " where idComputadora = " & computadora.idComputadora
+            sql.CommandText = comando
+            Dim cantFilas As Int32 = sql.ExecuteNonQuery()
+
+            Return Conexion.EventosSql.INSERCION_CORRECTA
+
+        Catch ex As SqlClient.SqlException
+            Return Conexion.EventosSql.ERROR_COMPUTADORA
+
+        Finally : conex.Close()
+        End Try
+
+
+
     End Function
 
 

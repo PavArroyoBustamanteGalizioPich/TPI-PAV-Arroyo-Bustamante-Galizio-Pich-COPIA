@@ -2,7 +2,7 @@
 
     Private _idProcesador As Int32
     Private _modelo As String
-    Private _frecuencia As Single
+    Private _frecuencia As Decimal
     Private _cantNucleos As Int32
     Private _idMarca As Int32
     Private _marca As String
@@ -25,11 +25,11 @@
         End Set
     End Property
 
-    Property fecuencia As Single
+    Property frecuencia As Decimal
         Get
             Return _frecuencia
         End Get
-        Set(value As Single)
+        Set(value As Decimal)
             _frecuencia = value
         End Set
     End Property

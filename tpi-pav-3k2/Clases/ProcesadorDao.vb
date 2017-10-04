@@ -1,13 +1,12 @@
 ﻿Public Class ProcesadorDao
 
-    Public Shared Function insertarProcesador(ByRef procesador As ProcesadorDto) As Int32
+    Public Shared Function insertarProcesador(ByRef procesador As ProcesadorDto) As Conexion.EventosSql
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim cantFilas As Int32
         Dim comando As String
         Dim comandoMarca
-        'conex.Open()
-        'sql.Connection = conex
+
         sql.CommandType = CommandType.Text
 
         'primero compruevo que la marca exista o sea != de -1, si no existe entonces la creo
@@ -22,7 +21,7 @@
                 sql.ExecuteNonQuery()
 
             Catch ex As SqlClient.SqlException
-                Return -1
+                Return Conexion.EventosSql.ERROR_MARCA_PROCESADOR
             Finally : conex.Close()
             End Try
 
@@ -31,18 +30,21 @@
         conex.Open()
         sql.Connection = conex
         comando = "insert into procesador values(" & procesador.idProcesador & ",'" & procesador.modelo & "',"
-        comando &= procesador.fecuencia & "," & procesador.cantNucleos & "," & procesador.idMarca & ")"
+        comando &= procesador.frecuencia & "," & procesador.cantNucleos & "," & procesador.idMarca & ")"
 
         Try
             sql.CommandText = comando
             cantFilas = sql.ExecuteNonQuery()
-
+            Return cantFilas
         Catch ex As SqlClient.SqlException
-            cantFilas = ex.ErrorCode
+            If ex.Message.StartsWith("Violation of UNIQUE KEY constraint") Then
+                Return Conexion.EventosSql.VIOLACION_UQ
+            End If
+            Return Conexion.EventosSql.OTRO
         Finally : conex.Close()
         End Try
 
-        Return cantFilas
+
 
     End Function
 
@@ -107,7 +109,7 @@
             procesador = New ProcesadorDto
             procesador.idProcesador = Convert.ToInt32(tabla.Rows(0)(0))
             procesador.modelo = tabla.Rows(0)(1).ToString()
-            procesador.fecuencia = Convert.ToSingle(tabla.Rows(0)(2))
+            procesador.frecuencia = Convert.ToDecimal(tabla.Rows(0)(2))
             procesador.cantNucleos = Convert.ToInt32(tabla.Rows(0)(3))
             procesador.idMarca = Convert.ToInt32(tabla.Rows(0)(4))
 
@@ -131,7 +133,7 @@
         conex.Open()
         sql.Connection = conex
 
-        comando = "update procesador set frecuencia = " & procesador.fecuencia & ", cantidadNucleos = "
+        comando = "update procesador set frecuencia = " & procesador.frecuencia & ", cantidadNucleos = "
         comando &= procesador.cantNucleos & " where idProcesador = " & procesador.idProcesador
 
         Try

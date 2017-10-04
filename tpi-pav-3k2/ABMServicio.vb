@@ -65,7 +65,7 @@
                     servicioActual.idServ = Convert.ToInt32(servicioSeleccionado.Cells(0).Value)
                     servicioActual.nomServicio = servicioSeleccionado.Cells(1).Value
                     servicioActual.detalleServicio = servicioSeleccionado.Cells(2).Value
-                    servicioActual.costoServicio = Convert.ToSingle(servicioSeleccionado.Cells(3).Value)
+                    servicioActual.costoServicio = Convert.ToDecimal(servicioSeleccionado.Cells(3).Value)
                     servicioActual.garantiaServicio = Convert.ToInt32(servicioSeleccionado.Cells(4).Value)
                     If Not IsDBNull(servicioSeleccionado.Cells(5).Value) Then
                         servicioActual.fechaBajaServicio = CDate(servicioSeleccionado.Cells(5).Value)
@@ -170,7 +170,7 @@
             servicio.idServ = Convert.ToInt32(txtIdServicio.Text)
             servicio.nomServicio = txtNombreServicio.Text
             servicio.detalleServicio = txtDescripServ.Text
-            servicio.costoServicio = Convert.ToSingle(txtCostoServicio.Text)
+            servicio.costoServicio = Convert.ToDecimal(txtCostoServicio.Text)
             servicio.garantiaServicio = Convert.ToInt32(txtGarantiaServ.Text)
             If cbRepRequerido.SelectedValue = -1 Then
                 servicio.repuestoReq = Nothing

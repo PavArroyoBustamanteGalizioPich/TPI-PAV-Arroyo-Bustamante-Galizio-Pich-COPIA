@@ -26,8 +26,6 @@ Partial Class GestionClientes
         Me.gbDatosCliente = New System.Windows.Forms.GroupBox()
         Me.btnGestionPc = New System.Windows.Forms.Button()
         Me.btnMostrarPcs = New System.Windows.Forms.Button()
-        Me.txtPcsRegistradas = New System.Windows.Forms.TextBox()
-        Me.lblComputadorasCliente = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.chkEstadoCliente = New System.Windows.Forms.CheckBox()
@@ -83,8 +81,6 @@ Partial Class GestionClientes
         Me.gbDatosCliente.BackColor = System.Drawing.SystemColors.Control
         Me.gbDatosCliente.Controls.Add(Me.btnGestionPc)
         Me.gbDatosCliente.Controls.Add(Me.btnMostrarPcs)
-        Me.gbDatosCliente.Controls.Add(Me.txtPcsRegistradas)
-        Me.gbDatosCliente.Controls.Add(Me.lblComputadorasCliente)
         Me.gbDatosCliente.Controls.Add(Me.Label1)
         Me.gbDatosCliente.Controls.Add(Me.btnBuscar)
         Me.gbDatosCliente.Controls.Add(Me.chkEstadoCliente)
@@ -115,7 +111,7 @@ Partial Class GestionClientes
         '
         'btnGestionPc
         '
-        Me.btnGestionPc.Location = New System.Drawing.Point(400, 117)
+        Me.btnGestionPc.Location = New System.Drawing.Point(146, 117)
         Me.btnGestionPc.Name = "btnGestionPc"
         Me.btnGestionPc.Size = New System.Drawing.Size(154, 23)
         Me.btnGestionPc.TabIndex = 24
@@ -124,29 +120,12 @@ Partial Class GestionClientes
         '
         'btnMostrarPcs
         '
-        Me.btnMostrarPcs.Location = New System.Drawing.Point(264, 118)
+        Me.btnMostrarPcs.Location = New System.Drawing.Point(10, 118)
         Me.btnMostrarPcs.Name = "btnMostrarPcs"
         Me.btnMostrarPcs.Size = New System.Drawing.Size(129, 23)
         Me.btnMostrarPcs.TabIndex = 23
         Me.btnMostrarPcs.Text = "Mostrar Computadoras"
         Me.btnMostrarPcs.UseVisualStyleBackColor = True
-        '
-        'txtPcsRegistradas
-        '
-        Me.txtPcsRegistradas.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtPcsRegistradas.Location = New System.Drawing.Point(154, 121)
-        Me.txtPcsRegistradas.Name = "txtPcsRegistradas"
-        Me.txtPcsRegistradas.Size = New System.Drawing.Size(100, 20)
-        Me.txtPcsRegistradas.TabIndex = 22
-        '
-        'lblComputadorasCliente
-        '
-        Me.lblComputadorasCliente.AutoSize = True
-        Me.lblComputadorasCliente.Location = New System.Drawing.Point(10, 129)
-        Me.lblComputadorasCliente.Name = "lblComputadorasCliente"
-        Me.lblComputadorasCliente.Size = New System.Drawing.Size(137, 13)
-        Me.lblComputadorasCliente.TabIndex = 21
-        Me.lblComputadorasCliente.Text = "Computadoras Registradas:"
         '
         'Label1
         '
@@ -614,8 +593,6 @@ Partial Class GestionClientes
     Friend WithEvents btnGuardar As System.Windows.Forms.Button
     Friend WithEvents btnNuevoCliente As System.Windows.Forms.Button
     Friend WithEvents btnBuscar As System.Windows.Forms.Button
-    Friend WithEvents txtPcsRegistradas As System.Windows.Forms.TextBox
-    Friend WithEvents lblComputadorasCliente As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents btnGestionPc As System.Windows.Forms.Button
     Friend WithEvents btnMostrarPcs As System.Windows.Forms.Button

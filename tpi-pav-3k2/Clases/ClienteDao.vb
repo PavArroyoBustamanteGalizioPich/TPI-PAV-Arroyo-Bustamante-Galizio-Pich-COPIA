@@ -3,7 +3,7 @@ Imports System.Data.SqlClient.SqlTransaction
 Public Class ClienteDao
 
 
-    Public Shared Function insertarCliente(ByRef cliente As ClienteDto, ByRef computadora As ComputadoraDto) As Int32
+    Public Shared Function insertarCliente(ByRef cliente As ClienteDto, ByRef computadora As ComputadoraDto) As Conexion.EventosSql
 
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
@@ -13,7 +13,7 @@ Public Class ClienteDao
         conex.Open()
         transaccion = conex.BeginTransaction()
         Try
-            
+
             sql.Connection = conex
 
             sql.CommandType = CommandType.Text
@@ -30,7 +30,7 @@ Public Class ClienteDao
                 cantFilas = ComputadoraDao.insertarComputadora(computadora, sql)
                 If cantFilas = 1 Then
                     transaccion.Commit() ' se hace el comit solamente si se inserta bien la compu
-                    Return cantFilas
+                    Return Conexion.EventosSql.INSERCION_CORRECTA
                 Else : Throw New Exception("COMPUTADORA")
                 End If
             Else : Throw New Exception("CLIENTE")
@@ -40,16 +40,16 @@ Public Class ClienteDao
             transaccion.Rollback()
 
             If ex.Message.StartsWith("Violation of UNIQUE KEY constraint") Then
-                Return -3
+                Return Conexion.EventosSql.VIOLACION_UQ
             End If
 
         Catch ex As Exception
             transaccion.Rollback()
             If ex.Message.Equals("COMPUTADORA") Then
-                Return -2
+                Return Conexion.EventosSql.ERROR_COMPUTADORA
             End If
             If ex.Message.Equals("CLIENTE") Then
-                Return -1
+                Return Conexion.EventosSql.ERROR_CLIENTE
             End If
         Finally : conex.Close()
         End Try
@@ -59,7 +59,7 @@ Public Class ClienteDao
     End Function
 
 
-    Public Shared Function actualizarCliente(ByRef cliente As ClienteDto) As Int32
+    Public Shared Function actualizarCliente(ByRef cliente As ClienteDto) As Conexion.EventosSql
 
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
@@ -82,10 +82,10 @@ Public Class ClienteDao
 
             sql.CommandText = comando
             cant = sql.ExecuteNonQuery()
-            Return cant
+            Return Conexion.EventosSql.INSERCION_CORRECTA
 
         Catch ex As SqlClient.SqlException
-            Return -1
+            Return Conexion.EventosSql.OTRO
         Finally : conex.Close()
         End Try
 
@@ -154,12 +154,7 @@ Public Class ClienteDao
             cliente.nroDocumento = tabla.Rows(0)(7).ToString()
             cliente.tipoDocumento = Convert.ToInt32(tabla.Rows(0)(8))
             tabla.Clear()
-            Dim compus As DataTable = ComputadoraDao.computadorasPorCliente(cliente)
-            Dim computadoras(compus.Rows.Count - 1) As Int32
-            For i As Int32 = 0 To compus.Rows.Count - 1
-                computadoras(i) = Convert.ToInt32(compus.Rows(i)(0))
-            Next
-            cliente.computadoras = computadoras
+            
 
             Return cliente
 

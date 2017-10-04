@@ -43,7 +43,7 @@
                 procesadorActual = New ProcesadorDto
                 procesadorActual.idProcesador = Convert.ToInt32(filaBuscada.Cells(0).Value)
                 procesadorActual.modelo = filaBuscada.Cells(1).Value.ToString()
-                procesadorActual.fecuencia = Convert.ToSingle(filaBuscada.Cells(2).Value)
+                procesadorActual.frecuencia = Convert.ToDecimal(filaBuscada.Cells(2).Value)
                 procesadorActual.cantNucleos = Convert.ToInt32(filaBuscada.Cells(3).Value)
                 procesadorActual.idMarca = Convert.ToInt32(filaBuscada.Cells(4).Value)
                 procesadorActual.marca = filaBuscada.Cells(5).Value
@@ -62,7 +62,7 @@
             cbMarcaProc.SelectedValue = procesadorActual.idMarca
             txtModelProc.Text = procesadorActual.modelo
             txtCantCore.Text = procesadorActual.cantNucleos
-            txtFrecuencia.Text = procesadorActual.fecuencia
+            txtFrecuencia.Text = procesadorActual.frecuencia
             procesadorBuscado = True
         End If
 
@@ -78,7 +78,7 @@
                 procesadorActual = New ProcesadorDto
                 procesadorActual.idProcesador = Convert.ToInt32(txtIdProc.Text.Trim())
                 procesadorActual.modelo = txtModelProc.Text.Trim()
-                procesadorActual.fecuencia = Convert.ToSingle(txtFrecuencia.Text)
+                procesadorActual.frecuencia = Convert.ToSingle(txtFrecuencia.Text)
                 procesadorActual.cantNucleos = Convert.ToInt32(txtCantCore.Text.Trim())
                 procesadorActual.idMarca = cbMarcaProc.SelectedValue
                 procesadorActual.marca = cbMarcaProc.Text
@@ -93,10 +93,10 @@
                 Else
 
                     Select Case cantFilas
-                        ' Case -2146232060
-                        ' MessageBox.Show("El modelo de procesador ingresado ya pertenece a un procesador registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        ' Exit Select
-                        Case -1
+                        Case Conexion.EventosSql.VIOLACION_UQ
+                            MessageBox.Show("El modelo de procesador ingresado ya pertenece a un procesador registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Select
+                        Case Conexion.EventosSql.ERROR_MARCA_PROCESADOR
                             MessageBox.Show("Ocurrio un error al insertar la marca del procesador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Select
                         Case Else
@@ -109,7 +109,7 @@
             Else
                 If Not txtCantCore.Text.Equals("") And Not txtFrecuencia.Text.Equals("") Then
                     procesadorActual.cantNucleos = Convert.ToInt32(txtCantCore.Text.Trim())
-                    procesadorActual.fecuencia = Convert.ToSingle(txtFrecuencia.Text)
+                    procesadorActual.frecuencia = Convert.ToDecimal(txtFrecuencia.Text)
 
                     Dim cantFilas As Int32 = ProcesadorDao.actualizarProcesador(procesadorActual)
                     If cantFilas = 1 Then

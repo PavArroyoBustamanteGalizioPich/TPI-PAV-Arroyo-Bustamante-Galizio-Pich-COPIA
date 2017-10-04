@@ -55,7 +55,7 @@
             repuesto.tipo = Convert.ToInt32(tabla.Rows(0)("tipoComp"))
             repuesto.proveedor = Convert.ToInt32(tabla.Rows(0)("numProveedor"))
             repuesto.garantia = Convert.ToInt32(tabla.Rows(0)("garantia"))
-            repuesto.precioCompra = Convert.ToDouble(tabla.Rows(0)("precioCompra"))
+            repuesto.precioCompra = Convert.ToDecimal(tabla.Rows(0)("precioCompra"))
             repuesto.porcentajeGanancia = Convert.ToInt32(tabla.Rows(0)("porcentajeGanancia"))
             repuesto.fechaCompra = CDate(tabla.Rows(0)("fechaCompra"))
 

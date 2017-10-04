@@ -56,7 +56,7 @@
                 If computadoraActual.tipoMemoria <> 0 Then
                     cbTipoMemoria.SelectedValue = computadoraActual.tipoMemoria
                 End If
-                'falta agregarle la marca de procesador a la tabla computadora
+
                 If computadoraActual.procesador <> 0 Then
                     cbTipoMemoria.SelectedValue = computadoraActual.tipoMemoria
                 End If

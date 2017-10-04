@@ -9,6 +9,7 @@
     Private _capacidadAlmacenamiento As Int32
     Private _fechaAlta As Date
     Private _fechaBaja As Date
+    Private _marcaProcesador As Int32
 
     Public Property idComputadora As Int32
         Get
@@ -61,6 +62,15 @@
         End Get
         Set(value As Int32)
             _capacidadAlmacenamiento = value
+        End Set
+    End Property
+
+    Public Property marcaProcesador As Int32
+        Get
+            Return _marcaProcesador
+        End Get
+        Set(value As Int32)
+            _marcaProcesador = value
         End Set
     End Property
 

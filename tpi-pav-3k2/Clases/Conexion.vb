@@ -1,4 +1,17 @@
 ﻿Public Class Conexion
+
+    Public Enum EventosSql
+        INSERCION_CORRECTA
+        VIOLACION_PK
+        VIOLACION_UQ
+        ERROR_CLIENTE
+        ERROR_COMPUTADORA
+        ERROR_MARCA_PROCESADOR
+        OTRO
+
+    End Enum
+
+
     Private Shared conex As SqlClient.SqlConnection
     Private Shared sql As SqlClient.SqlCommand
     Private Sub New()

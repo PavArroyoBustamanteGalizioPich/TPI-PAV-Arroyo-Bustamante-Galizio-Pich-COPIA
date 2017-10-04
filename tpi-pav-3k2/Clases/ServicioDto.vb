@@ -3,7 +3,7 @@
     Private idServicio As Int32
     Private nombreServicio As String
     Private detalle As String
-    Private costo As Single
+    Private costo As Decimal
     Private garantia As Int32
     Private fechaBaja As Date
     Private repuestoRequerido As Int32
@@ -35,11 +35,11 @@
         End Set
     End Property
 
-    Property costoServicio As Single
+    Property costoServicio As Decimal
         Get
             Return costo
         End Get
-        Set(value As Single)
+        Set(value As Decimal)
             costo = value
         End Set
     End Property

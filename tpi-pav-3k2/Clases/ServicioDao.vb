@@ -43,7 +43,7 @@
             servicio.idServ = Convert.ToInt32(tabla.Rows(0)(0))
             servicio.nomServicio = tabla.Rows(0)(1)
             servicio.detalleServicio = tabla.Rows(0)(2)
-            servicio.costoServicio = Convert.ToSingle(tabla.Rows(0)(3))
+            servicio.costoServicio = Convert.ToDecimal(tabla.Rows(0)(3))
             servicio.garantiaServicio = Convert.ToInt32(tabla.Rows(0)(4))
             If Not IsDBNull(tabla.Rows(0)(5)) Then
                 servicio.fechaBajaServicio = CDate(tabla.Rows(0)(5))

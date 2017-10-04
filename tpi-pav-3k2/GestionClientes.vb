@@ -34,7 +34,7 @@
 
     Private Sub AltaCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        txtPcsRegistradas.ReadOnly = True
+
 
         Me.deshabilitarComponentes()
         If desdeOt Then
@@ -114,18 +114,6 @@
             chkEstadoCliente.Enabled = True
             txtNroCliente.Enabled = False
 
-            If Not IsNothing(clienteActual.computadoras) Then
-                Dim prim As Boolean = True
-                For Each compu As Int32 In clienteActual.computadoras
-
-                    If prim Then
-                        txtPcsRegistradas.Text &= compu
-                        prim = False
-                    Else : txtPcsRegistradas.Text &= ", " & compu
-                    End If
-
-                Next
-            End If
         End If
 
     End Sub
@@ -169,9 +157,9 @@
             Else : computadora.capAlmacenamiento = 0
             End If
 
-            Dim cantFilas As Int32 = ClienteDao.insertarCliente(cliente, computadora)
-            Select Case cantFilas
-                Case 1
+            Dim resultado As Conexion.EventosSql = ClienteDao.insertarCliente(cliente, computadora)
+            Select Case resultado
+                Case Conexion.EventosSql.INSERCION_CORRECTA
                     MessageBox.Show("El cliente se registró correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If desdeOt Then
                         Me.Close()
@@ -188,15 +176,15 @@
                     End If
                     Exit Select
 
-                Case -1
+                Case Conexion.EventosSql.ERROR_CLIENTE
                     MessageBox.Show("Ocurrió un error al insertar el nuevo cliente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     txtNombre.Focus()
                     Exit Select
-                Case -2
+                Case Conexion.EventosSql.ERROR_COMPUTADORA
                     MessageBox.Show("Ocurrió un error al insertar la computadora del nuevo cliente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     cbTipoPc.Focus()
                     Exit Select
-                Case -3
+                Case Conexion.EventosSql.VIOLACION_UQ
                     MessageBox.Show("El cliente que intenta registrar ya se encuentra registrado!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
                 Case Else
@@ -213,17 +201,20 @@
         If chkEstadoCliente.Checked Then
             clienteActual.fechaBaja = Nothing
         End If
-        Dim cantFilas As Int32
 
-        cantFilas = ClienteDao.actualizarCliente(clienteActual)
-        If cantFilas = 1 Then
-            MessageBox.Show("El registro se ha actualizado correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Me.limpiarComponentes()
-            Me.deshabilitarComponentes()
-            txtNroDocumento.Text = ""
-            cbTipoDoc.SelectedValue = 1
-            clienteActual = Nothing
-        Else : MessageBox.Show("Ocurrió un error al actualizar el registro!", "información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If validarDatos() Then
+            Dim resultado As Conexion.EventosSql
+
+            resultado = ClienteDao.actualizarCliente(clienteActual)
+            If resultado = Conexion.EventosSql.INSERCION_CORRECTA Then
+                MessageBox.Show("El registro se ha actualizado correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.limpiarComponentes()
+                Me.deshabilitarComponentes()
+                txtNroDocumento.Text = ""
+                cbTipoDoc.SelectedValue = 1
+                clienteActual = Nothing
+            Else : MessageBox.Show("Ocurrió un error al actualizar el registro!", "información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         End If
 
     End Sub
