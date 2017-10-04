@@ -158,7 +158,7 @@ Public Class ClienteDao
 
             Return cliente
 
-        Catch ex As SqlClient.SqlException
+        Catch ex As Exception
             MessageBox.Show(ex.Message)
             Return Nothing
         Finally : conex.Close()

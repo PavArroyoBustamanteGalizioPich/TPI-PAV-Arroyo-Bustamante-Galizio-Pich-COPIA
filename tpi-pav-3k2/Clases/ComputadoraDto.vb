@@ -101,4 +101,10 @@
         End Set
     End Property
 
+    Public Overrides Function toString() As String
+
+        Return "Hola mundo!"
+
+    End Function
+
 End Class

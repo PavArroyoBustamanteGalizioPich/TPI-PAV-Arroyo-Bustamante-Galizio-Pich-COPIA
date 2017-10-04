@@ -64,7 +64,15 @@ Partial Class ABMCOrdenTrabajo
         Me.cbServiciosOt = New System.Windows.Forms.ComboBox()
         Me.lblServicioOt = New System.Windows.Forms.Label()
         Me.gbListadoRepuestos = New System.Windows.Forms.GroupBox()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
+        Me.Repuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColCantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColSubtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gbListadoServiciosOt = New System.Windows.Forms.GroupBox()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Servicios = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SubTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelDatosOt = New System.Windows.Forms.Panel()
         Me.txtDescrFallaOt = New System.Windows.Forms.TextBox()
         Me.lblDescripcionFallaOt = New System.Windows.Forms.Label()
@@ -77,14 +85,14 @@ Partial Class ABMCOrdenTrabajo
         Me.lblDescripcionPcOt = New System.Windows.Forms.Label()
         Me.txtTipoPcOt = New System.Windows.Forms.TextBox()
         Me.lblTipoPcOT = New System.Windows.Forms.Label()
-        Me.cbNroPcOt = New System.Windows.Forms.ComboBox()
+        Me.cbNroPc = New System.Windows.Forms.ComboBox()
         Me.lblNroPcOt = New System.Windows.Forms.Label()
         Me.panelDatosClienteOt = New System.Windows.Forms.Panel()
-        Me.txtApellidoClienteOt = New System.Windows.Forms.TextBox()
+        Me.txtApellidoCliente = New System.Windows.Forms.TextBox()
         Me.lblApellidoClienteOt = New System.Windows.Forms.Label()
-        Me.txtNombreCLienteOt = New System.Windows.Forms.TextBox()
+        Me.txtNombreCLiente = New System.Windows.Forms.TextBox()
         Me.lblNombreClienteOt = New System.Windows.Forms.Label()
-        Me.txtNroClienteOt = New System.Windows.Forms.TextBox()
+        Me.txtNroCliente = New System.Windows.Forms.TextBox()
         Me.lblNroClienteOt = New System.Windows.Forms.Label()
         Me.panelBuscarOT = New System.Windows.Forms.Panel()
         Me.btnBuscarOT = New System.Windows.Forms.Button()
@@ -95,14 +103,6 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.Servicios = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SubTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.Repuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColCantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColSubtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         Me.gbDatosOT.SuspendLayout()
@@ -110,14 +110,14 @@ Partial Class ABMCOrdenTrabajo
         Me.panelCierre.SuspendLayout()
         Me.gbAniadirServicios.SuspendLayout()
         Me.gbListadoRepuestos.SuspendLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbListadoServiciosOt.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelDatosOt.SuspendLayout()
         Me.panelDatosPcOt.SuspendLayout()
         Me.panelDatosClienteOt.SuspendLayout()
         Me.panelBuscarOT.SuspendLayout()
         Me.panelBotoneraOt.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -509,6 +509,30 @@ Partial Class ABMCOrdenTrabajo
         Me.gbListadoRepuestos.TabStop = False
         Me.gbListadoRepuestos.Text = "Listado de Repuestos"
         '
+        'DataGridView3
+        '
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Repuesto, Me.ColCantidad, Me.ColSubtotal})
+        Me.DataGridView3.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.Size = New System.Drawing.Size(326, 143)
+        Me.DataGridView3.TabIndex = 0
+        '
+        'Repuesto
+        '
+        Me.Repuesto.HeaderText = "Repuesto"
+        Me.Repuesto.Name = "Repuesto"
+        '
+        'ColCantidad
+        '
+        Me.ColCantidad.HeaderText = "Cantidad"
+        Me.ColCantidad.Name = "ColCantidad"
+        '
+        'ColSubtotal
+        '
+        Me.ColSubtotal.HeaderText = "Subtotal"
+        Me.ColSubtotal.Name = "ColSubtotal"
+        '
         'gbListadoServiciosOt
         '
         Me.gbListadoServiciosOt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -520,6 +544,30 @@ Partial Class ABMCOrdenTrabajo
         Me.gbListadoServiciosOt.TabIndex = 13
         Me.gbListadoServiciosOt.TabStop = False
         Me.gbListadoServiciosOt.Text = "Listado de Servicios"
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Servicios, Me.Cantidad, Me.SubTotal})
+        Me.DataGridView2.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.Size = New System.Drawing.Size(326, 136)
+        Me.DataGridView2.TabIndex = 0
+        '
+        'Servicios
+        '
+        Me.Servicios.HeaderText = "Servicios"
+        Me.Servicios.Name = "Servicios"
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        '
+        'SubTotal
+        '
+        Me.SubTotal.HeaderText = "SubTotal"
+        Me.SubTotal.Name = "SubTotal"
         '
         'panelDatosOt
         '
@@ -599,7 +647,7 @@ Partial Class ABMCOrdenTrabajo
         Me.panelDatosPcOt.Controls.Add(Me.lblDescripcionPcOt)
         Me.panelDatosPcOt.Controls.Add(Me.txtTipoPcOt)
         Me.panelDatosPcOt.Controls.Add(Me.lblTipoPcOT)
-        Me.panelDatosPcOt.Controls.Add(Me.cbNroPcOt)
+        Me.panelDatosPcOt.Controls.Add(Me.cbNroPc)
         Me.panelDatosPcOt.Controls.Add(Me.lblNroPcOt)
         Me.panelDatosPcOt.Location = New System.Drawing.Point(459, 3)
         Me.panelDatosPcOt.Name = "panelDatosPcOt"
@@ -643,14 +691,14 @@ Partial Class ABMCOrdenTrabajo
         Me.lblTipoPcOT.TabIndex = 2
         Me.lblTipoPcOT.Text = "Tipo Pc:"
         '
-        'cbNroPcOt
+        'cbNroPc
         '
-        Me.cbNroPcOt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbNroPcOt.FormattingEnabled = True
-        Me.cbNroPcOt.Location = New System.Drawing.Point(99, 3)
-        Me.cbNroPcOt.Name = "cbNroPcOt"
-        Me.cbNroPcOt.Size = New System.Drawing.Size(47, 21)
-        Me.cbNroPcOt.TabIndex = 1
+        Me.cbNroPc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbNroPc.FormattingEnabled = True
+        Me.cbNroPc.Location = New System.Drawing.Point(99, 3)
+        Me.cbNroPc.Name = "cbNroPc"
+        Me.cbNroPc.Size = New System.Drawing.Size(47, 21)
+        Me.cbNroPc.TabIndex = 1
         '
         'lblNroPcOt
         '
@@ -663,25 +711,25 @@ Partial Class ABMCOrdenTrabajo
         '
         'panelDatosClienteOt
         '
-        Me.panelDatosClienteOt.Controls.Add(Me.txtApellidoClienteOt)
+        Me.panelDatosClienteOt.Controls.Add(Me.txtApellidoCliente)
         Me.panelDatosClienteOt.Controls.Add(Me.lblApellidoClienteOt)
-        Me.panelDatosClienteOt.Controls.Add(Me.txtNombreCLienteOt)
+        Me.panelDatosClienteOt.Controls.Add(Me.txtNombreCLiente)
         Me.panelDatosClienteOt.Controls.Add(Me.lblNombreClienteOt)
-        Me.panelDatosClienteOt.Controls.Add(Me.txtNroClienteOt)
+        Me.panelDatosClienteOt.Controls.Add(Me.txtNroCliente)
         Me.panelDatosClienteOt.Controls.Add(Me.lblNroClienteOt)
         Me.panelDatosClienteOt.Location = New System.Drawing.Point(3, 3)
         Me.panelDatosClienteOt.Name = "panelDatosClienteOt"
         Me.panelDatosClienteOt.Size = New System.Drawing.Size(450, 40)
         Me.panelDatosClienteOt.TabIndex = 10
         '
-        'txtApellidoClienteOt
+        'txtApellidoCliente
         '
-        Me.txtApellidoClienteOt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtApellidoClienteOt.Location = New System.Drawing.Point(340, 4)
-        Me.txtApellidoClienteOt.MaxLength = 20
-        Me.txtApellidoClienteOt.Name = "txtApellidoClienteOt"
-        Me.txtApellidoClienteOt.Size = New System.Drawing.Size(100, 20)
-        Me.txtApellidoClienteOt.TabIndex = 5
+        Me.txtApellidoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtApellidoCliente.Location = New System.Drawing.Point(340, 4)
+        Me.txtApellidoCliente.MaxLength = 20
+        Me.txtApellidoCliente.Name = "txtApellidoCliente"
+        Me.txtApellidoCliente.Size = New System.Drawing.Size(100, 20)
+        Me.txtApellidoCliente.TabIndex = 5
         '
         'lblApellidoClienteOt
         '
@@ -692,14 +740,14 @@ Partial Class ABMCOrdenTrabajo
         Me.lblApellidoClienteOt.TabIndex = 4
         Me.lblApellidoClienteOt.Text = "Apellido:"
         '
-        'txtNombreCLienteOt
+        'txtNombreCLiente
         '
-        Me.txtNombreCLienteOt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtNombreCLienteOt.Location = New System.Drawing.Point(182, 4)
-        Me.txtNombreCLienteOt.MaxLength = 20
-        Me.txtNombreCLienteOt.Name = "txtNombreCLienteOt"
-        Me.txtNombreCLienteOt.Size = New System.Drawing.Size(100, 20)
-        Me.txtNombreCLienteOt.TabIndex = 3
+        Me.txtNombreCLiente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtNombreCLiente.Location = New System.Drawing.Point(182, 4)
+        Me.txtNombreCLiente.MaxLength = 20
+        Me.txtNombreCLiente.Name = "txtNombreCLiente"
+        Me.txtNombreCLiente.Size = New System.Drawing.Size(100, 20)
+        Me.txtNombreCLiente.TabIndex = 3
         '
         'lblNombreClienteOt
         '
@@ -710,13 +758,13 @@ Partial Class ABMCOrdenTrabajo
         Me.lblNombreClienteOt.TabIndex = 2
         Me.lblNombreClienteOt.Text = "Nombre:"
         '
-        'txtNroClienteOt
+        'txtNroCliente
         '
-        Me.txtNroClienteOt.Location = New System.Drawing.Point(70, 4)
-        Me.txtNroClienteOt.MaxLength = 8
-        Me.txtNroClienteOt.Name = "txtNroClienteOt"
-        Me.txtNroClienteOt.Size = New System.Drawing.Size(54, 20)
-        Me.txtNroClienteOt.TabIndex = 1
+        Me.txtNroCliente.Location = New System.Drawing.Point(70, 4)
+        Me.txtNroCliente.MaxLength = 8
+        Me.txtNroCliente.Name = "txtNroCliente"
+        Me.txtNroCliente.Size = New System.Drawing.Size(54, 20)
+        Me.txtNroCliente.TabIndex = 1
         '
         'lblNroClienteOt
         '
@@ -818,54 +866,6 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
         '
-        'DataGridView2
-        '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Servicios, Me.Cantidad, Me.SubTotal})
-        Me.DataGridView2.Location = New System.Drawing.Point(6, 19)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(326, 136)
-        Me.DataGridView2.TabIndex = 0
-        '
-        'Servicios
-        '
-        Me.Servicios.HeaderText = "Servicios"
-        Me.Servicios.Name = "Servicios"
-        '
-        'Cantidad
-        '
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        '
-        'SubTotal
-        '
-        Me.SubTotal.HeaderText = "SubTotal"
-        Me.SubTotal.Name = "SubTotal"
-        '
-        'DataGridView3
-        '
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Repuesto, Me.ColCantidad, Me.ColSubtotal})
-        Me.DataGridView3.Location = New System.Drawing.Point(6, 19)
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.Size = New System.Drawing.Size(326, 143)
-        Me.DataGridView3.TabIndex = 0
-        '
-        'Repuesto
-        '
-        Me.Repuesto.HeaderText = "Repuesto"
-        Me.Repuesto.Name = "Repuesto"
-        '
-        'ColCantidad
-        '
-        Me.ColCantidad.HeaderText = "Cantidad"
-        Me.ColCantidad.Name = "ColCantidad"
-        '
-        'ColSubtotal
-        '
-        Me.ColSubtotal.HeaderText = "Subtotal"
-        Me.ColSubtotal.Name = "ColSubtotal"
-        '
         'ABMCOrdenTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -891,7 +891,9 @@ Partial Class ABMCOrdenTrabajo
         Me.gbAniadirServicios.ResumeLayout(False)
         Me.gbAniadirServicios.PerformLayout()
         Me.gbListadoRepuestos.ResumeLayout(False)
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbListadoServiciosOt.ResumeLayout(False)
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelDatosOt.ResumeLayout(False)
         Me.panelDatosOt.PerformLayout()
         Me.panelDatosPcOt.ResumeLayout(False)
@@ -901,8 +903,6 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBuscarOT.ResumeLayout(False)
         Me.panelBuscarOT.PerformLayout()
         Me.panelBotoneraOt.ResumeLayout(False)
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -955,14 +955,14 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents lblDescripcionPcOt As System.Windows.Forms.Label
     Friend WithEvents txtTipoPcOt As System.Windows.Forms.TextBox
     Friend WithEvents lblTipoPcOT As System.Windows.Forms.Label
-    Friend WithEvents cbNroPcOt As System.Windows.Forms.ComboBox
+    Friend WithEvents cbNroPc As System.Windows.Forms.ComboBox
     Friend WithEvents lblNroPcOt As System.Windows.Forms.Label
     Friend WithEvents panelDatosClienteOt As System.Windows.Forms.Panel
-    Friend WithEvents txtApellidoClienteOt As System.Windows.Forms.TextBox
+    Friend WithEvents txtApellidoCliente As System.Windows.Forms.TextBox
     Friend WithEvents lblApellidoClienteOt As System.Windows.Forms.Label
-    Friend WithEvents txtNombreCLienteOt As System.Windows.Forms.TextBox
+    Friend WithEvents txtNombreCLiente As System.Windows.Forms.TextBox
     Friend WithEvents lblNombreClienteOt As System.Windows.Forms.Label
-    Friend WithEvents txtNroClienteOt As System.Windows.Forms.TextBox
+    Friend WithEvents txtNroCliente As System.Windows.Forms.TextBox
     Friend WithEvents lblNroClienteOt As System.Windows.Forms.Label
     Friend WithEvents txtTipoRepRequerido As System.Windows.Forms.TextBox
     Friend WithEvents lblRepuestoRequerido As System.Windows.Forms.Label

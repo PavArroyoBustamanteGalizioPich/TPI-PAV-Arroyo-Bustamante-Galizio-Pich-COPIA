@@ -1,8 +1,8 @@
 ﻿Public Class ComputadoraDao
 
-    Public Shared Function insertarComputadora(ByRef computadora As ComputadoraDto, Optional ByRef sqlCli As SqlClient.SqlCommand = Nothing) As Int32
+    Public Shared Function insertarComputadora(ByRef computadora As ComputadoraDto) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
-        Dim sql As SqlClient.SqlCommand
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim cantFilas As Int32
         Dim abierta As Boolean = False
         Dim comando As String
@@ -11,10 +11,7 @@
             abierta = True
         End If
 
-        If Not IsNothing(sqlCli) Then
-            sql = sqlCli
-        Else : sql = New SqlClient.SqlCommand
-        End If
+        
 
         Try
             sql.Connection = conex
@@ -64,7 +61,7 @@
         Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim tabla As New DataTable
         Dim computadora As ComputadoraDto
-
+        Dim comando As String
 
         Try
 
@@ -72,31 +69,44 @@
             conex.Open()
             sql.Connection = conex
             sql.CommandType = CommandType.Text
-            sql.CommandText = "select * from computadora where idComputadora = " & id
+            comando = "select compu.idComputadora as 'ID Computadora',compu.client as 'Cliente', compu.tipo as 'ID Tipo Pc', tipoP.tipo as 'Tipo Pc',"
+            comando &= "compu.microProcesador as 'ID Procesador', proce.marca as 'Marca Procesador', proce.modeloProcesador as 'Procesador', tipoM.idTipoMemoria as 'ID Tipo Memoria',"
+            comando &= "tipoM.tipo as 'Tipo Memoria',"
+            comando &= "compu.cantidadMemoria as 'Tamaño Memoria', compu.almacenamiento as 'Almacenamiento', compu.fechaAlta as 'Fecha Alta',"
+            comando &= "compu.fechaBaja as 'Fecha Baja' from computadora compu"
+            comando &= " left join tipoPc tipoP on tipoP.idTipoPc = compu.tipo"
+            comando &= " left join procesador proce on proce.idProcesador = compu.microProcesador"
+            comando &= " left join tipoMemoria tipoM on tipoM.idTipoMemoria = compu.tipoMem where idComputadora = " & id
+            sql.CommandText = comando
             tabla.Load(sql.ExecuteReader())
             computadora = New ComputadoraDto
-            computadora.idComputadora = Convert.ToInt32(tabla.Rows(0)("idComputadora"))
-            computadora.tipoPc = Convert.ToInt32(tabla.Rows(0)("tipo"))
-            If Not IsDBNull(tabla.Rows(0)("microProcesador")) Then
-                computadora.procesador = Convert.ToInt32(tabla.Rows(0)("microprocesador"))
+            computadora.idComputadora = Convert.ToInt32(tabla.Rows(0)("ID Computadora"))
+            computadora.tipoPc = Convert.ToInt32(tabla.Rows(0)("ID Tipo Pc"))
+            If Not IsDBNull(tabla.Rows(0)("Procesador")) Then
+                computadora.procesador = Convert.ToInt32(tabla.Rows(0)("Procesador"))
 
             End If
-            If Not IsDBNull(tabla.Rows(0)("tipoMem")) Then
-                computadora.tipoMemoria = Convert.ToInt32(tabla.Rows(0)("tipoMem"))
+            If Not IsDBNull(tabla.Rows(0)("ID Tipo Memoria")) Then
+                computadora.tipoMemoria = Convert.ToInt32(tabla.Rows(0)("ID Tipo Memoria"))
             End If
-            If Not IsDBNull(tabla.Rows(0)("cantidadMemoria")) Then
-                computadora.cantidadMemoria = Convert.ToInt32(tabla.Rows(0)("cantidadMemoria"))
+            If Not IsDBNull(tabla.Rows(0)("Tamaño Memoria")) Then
+                computadora.cantidadMemoria = Convert.ToInt32(tabla.Rows(0)("Tamaño Memoria"))
             End If
-            If Not IsDBNull(tabla.Rows(0)("almacenamiento")) Then
-                computadora.capAlmacenamiento = Convert.ToInt32(tabla.Rows(0)("almacenamiento"))
+            If Not IsDBNull(tabla.Rows(0)("Almacenamiento")) Then
+                computadora.capAlmacenamiento = Convert.ToInt32(tabla.Rows(0)("Almacenamiento"))
             End If
-            If Not IsDBNull(tabla.Rows(0)("fechaBaja")) Then
-                computadora.fechaBaja = CDate(tabla.Rows(0)("fechaBaja"))
+            If Not IsDBNull(tabla.Rows(0)("Fecha Baja")) Then
+                computadora.fechaBaja = CDate(tabla.Rows(0)("Fecha Baja"))
             Else : computadora.fechaBaja = Nothing
             End If
 
-            computadora.fechaAlta = CDate(tabla.Rows(0)("fechaAlta"))
-            computadora.nroCliente = Convert.ToInt32(tabla.Rows(0)("client"))
+            If Not IsDBNull(tabla.Rows(0)("Marca Procesador")) Then
+                computadora.marcaProcesador = Convert.ToInt32(tabla.Rows(0)("Marca Procesador"))
+
+            End If
+
+            computadora.fechaAlta = CDate(tabla.Rows(0)("Fecha Alta"))
+            computadora.nroCliente = Convert.ToInt32(tabla.Rows(0)("Cliente"))
 
 
         Catch ex As Exception
@@ -125,7 +135,7 @@
             sql.CommandType = CommandType.Text
 
             comando = "select compu.idComputadora as 'ID Computadora', compu.tipo as 'ID Tipo Pc', tipoP.tipo as 'Tipo Pc',"
-            comando &= "compu.microProcesador as 'ID Procesador', proce.modeloProcesador as 'Procesador', tipoM.idTipoMemoria as 'ID Tipo Memoria',"
+            comando &= "compu.microProcesador as 'ID Procesador', proce.idMarca as 'Marca Procesador', proce.modeloProcesador as 'Procesador', tipoM.idTipoMemoria as 'ID Tipo Memoria',"
             comando &= "tipoM.tipo as 'Tipo Memoria',"
             comando &= "compu.cantidadMemoria as 'Cantidad de Memoria', compu.almacenamiento as 'Almacenamiento', compu.fechaAlta as 'Fecha Alta',"
             comando &= "compu.fechaBaja as 'Fecha Baja' from computadora compu"

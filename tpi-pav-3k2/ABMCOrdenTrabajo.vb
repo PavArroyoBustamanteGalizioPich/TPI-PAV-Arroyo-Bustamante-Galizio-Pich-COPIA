@@ -1,6 +1,6 @@
 ﻿Public Class ABMCOrdenTrabajo
 
-    Private clienteActrual As ClienteDto
+    Private clienteActual As ClienteDto
     Private computadoraActual As ComputadoraDto
 
     Private Sub RegistroOT2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -39,9 +39,9 @@
 
         gbAniadirServicios.Enabled = False
         panelCierre.Enabled = False
-        txtNroClienteOt.ReadOnly = True
-        txtNombreCLienteOt.ReadOnly = True
-        txtApellidoClienteOt.ReadOnly = True
+        txtNroCliente.ReadOnly = True
+        txtNombreCLiente.ReadOnly = True
+        txtApellidoCliente.ReadOnly = True
         txtTipoPcOt.ReadOnly = True
         txtDescripcionPcOt.ReadOnly = True
         txtFechaRecepcionOt.Text = Format(Date.Now, "dd/MM/yyyy")
@@ -65,7 +65,7 @@
     Private Sub btnGuardarOt_Click(sender As Object, e As EventArgs) Handles btnGuardarOt.Click
         Dim msjError As String = ""
 
-        If (txtNroClienteOt.Text.Equals("")) Then
+        If (txtNroCliente.Text.Equals("")) Then
             msjError &= "- Debe especificar un cliente" & vbCrLf
         End If
 
@@ -88,26 +88,44 @@
 
     End Sub
 
-    Private Sub btnNuevoCliOT_Click(sender As Object, e As EventArgs)
-        'esto despues se cambia cuando le saque el boton
-        Dim formAltaCliente As New GestionClientes(txtNroDocCliOT.Text, cbTipoDocOT.SelectedValue)
-        formAltaCliente.ShowDialog()
-    End Sub
 
     Private Sub btnBuscarCliOT_Click(sender As Object, e As EventArgs) Handles btnBuscarCliOT.Click
 
-       
+
         If Not txtNroDocCliOT.Text.Equals("") Then
-            If ClienteDao.buscarCliente(cbTipoDocOT.SelectedValue, txtNroClienteOt.Text).Equals(Nothing) Then
+
+            clienteActual = ClienteDao.buscarCliente(cbTipoDocOT.SelectedValue, txtNroDocCliOT.Text.Trim())
+
+            If IsNothing(clienteActual) Then
                 If MessageBox.Show("El Cliente no existe, desea agregarlo?", "Existe Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
-                    GestionClientes.Show()
+                    Dim gestionClientes As New GestionClientes(txtNroDocCliOT.Text.Trim(), cbTipoDocOT.SelectedValue, clienteActual)
+                    gestionClientes.ShowDialog()
+                    btnBuscarCliOT.PerformClick()
+
                 End If
-            Else
 
             End If
+
+            If Not IsNothing(clienteActual) Then
+                txtNroCliente.Text = clienteActual.idCliente
+                txtNombreCLiente.Text = clienteActual.nombre
+                txtApellidoCliente.Text = clienteActual.apellido
+                Utilidades.cargarCombo("computadora", "idComputadora", "client", clienteActual.idCliente, cbNroPc, "idComputadora")
+                cbNroPc.SelectedValue = -1
+                If Not IsNothing(computadoraActual) Then
+                    txtDescripcionPcOt.Text = computadoraActual.toString()
+                End If
+
+            End If
+
+
         Else
-            MessageBox.Show("Ingrese un Número de documento!", "Complete los campos!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+
+
         End If
+
+        
 
 
     End Sub
@@ -142,15 +160,15 @@
 
         txtNroDocCliOT.Text = ""
         txtNroOT.Text = ""
-        txtNombreCLienteOt.Text = ""
-        txtApellidoClienteOt.Text = ""
+        txtNombreCLiente.Text = ""
+        txtApellidoCliente.Text = ""
         txtTipoPcOt.Text = ""
         txtFechaRecepcionOt.Text = ""
         txtTipoRepRequerido.Text = ""
         txtDescrFallaOt.Text = ""
         txtDescripcionPcOt.Text = ""
         txtNroCobroOt.Text = ""
-        txtNroClienteOt.Text = ""
+        txtNroCliente.Text = ""
         txtFechaReparacion.Text = ""
         txtMontoOt.Text = ""
 
@@ -234,7 +252,7 @@
         formClientes.ShowDialog()
     End Sub
 
-    Private Sub txtNombreCLienteOt_TextChanged(sender As Object, e As EventArgs) Handles txtNombreCLienteOt.TextChanged
+    Private Sub txtNombreCLienteOt_TextChanged(sender As Object, e As EventArgs) Handles txtNombreCLiente.TextChanged
 
     End Sub
 
@@ -243,6 +261,20 @@
     End Sub
 
     Private Sub txtNroDocCliOT_TextChanged(sender As Object, e As EventArgs) Handles txtNroDocCliOT.TextChanged
+
+    End Sub
+
+    Private Sub cbNroPc_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbNroPc.SelectedValueChanged
+
+        If IsNumeric(cbNroPc.SelectedValue) Then
+
+            If cbNroPc.SelectedValue > 0 Then
+                computadoraActual = ComputadoraDao.buscarComputadora(Convert.ToInt32(cbNroPc.SelectedValue))
+            End If
+
+
+        End If
+
 
     End Sub
 End Class

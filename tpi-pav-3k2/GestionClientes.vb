@@ -17,7 +17,7 @@
         Me.deshabilitarComponentes()
         btnNuevoCliente.Enabled = False
     End Sub
-    Public Sub New(ByVal nroDoc As String, ByVal tipoDoc As Int32)
+    Public Sub New(ByVal nroDoc As String, ByVal tipoDoc As Int32, ByRef cliente As ClienteDto)
         cargado = False
         InitializeComponent()
         Utilidades.cargarCombo("tipoDocumento", cbTipoDoc)
@@ -29,6 +29,7 @@
         txtNroDocumento.Text = nroDoc
         cbTipoDoc.SelectedItem = tipoDoc
         desdeOt = True
+        clienteActual = cliente
     End Sub
 
 
@@ -123,6 +124,7 @@
         If validarDatos() Then
 
             Dim cliente As New ClienteDto
+
             Dim computadora As New ComputadoraDto
             cliente.idCliente = Convert.ToInt32(txtNroCliente.Text.Trim())
             cliente.tipoDocumento = Convert.ToInt32(cbTipoDoc.SelectedValue)
@@ -162,8 +164,10 @@
                 Case Conexion.EventosSql.INSERCION_CORRECTA
                     MessageBox.Show("El cliente se registró correctamente!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If desdeOt Then
+                        clienteActual = cliente
                         Me.Close()
                     Else
+                        clienteActual = Nothing
                         Me.limpiarComponentes()
                         txtNroCliente.Text = Utilidades.sugerirId("cliente", "idCliente")
                         txtNroCompu.Text = Utilidades.sugerirId("computadora", "idComputadora")
