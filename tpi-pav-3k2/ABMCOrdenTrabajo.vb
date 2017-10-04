@@ -1,5 +1,8 @@
 ﻿Public Class ABMCOrdenTrabajo
 
+    Private clienteActrual As ClienteDto
+    Private computadoraActual As ComputadoraDto
+
     Private Sub RegistroOT2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
 
         If MessageBox.Show("Seguro que desea salir?", "Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.No Then
@@ -85,7 +88,7 @@
 
     End Sub
 
-    Private Sub btnNuevoCliOT_Click(sender As Object, e As EventArgs) Handles btnNuevoCliOT.Click
+    Private Sub btnNuevoCliOT_Click(sender As Object, e As EventArgs)
         'esto despues se cambia cuando le saque el boton
         Dim formAltaCliente As New GestionClientes(txtNroDocCliOT.Text, cbTipoDocOT.SelectedValue)
         formAltaCliente.ShowDialog()
@@ -93,11 +96,19 @@
 
     Private Sub btnBuscarCliOT_Click(sender As Object, e As EventArgs) Handles btnBuscarCliOT.Click
 
-        If txtNroDocCliOT.Text.Equals("") Then
-            MessageBox.Show("- Ingrese un número de documento!", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            txtNroDocCliOT.Focus()
+       
+        If Not txtNroDocCliOT.Text.Equals("") Then
+            If ClienteDao.buscarCliente(cbTipoDocOT.SelectedValue, txtNroClienteOt.Text).Equals(Nothing) Then
+                If MessageBox.Show("El Cliente no existe, desea agregarlo?", "Existe Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = Windows.Forms.DialogResult.Yes Then
+                    GestionClientes.Show()
+                End If
+            Else
 
+            End If
+        Else
+            MessageBox.Show("Ingrese un Número de documento!", "Complete los campos!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+
 
     End Sub
 
@@ -142,8 +153,6 @@
         txtNroClienteOt.Text = ""
         txtFechaReparacion.Text = ""
         txtMontoOt.Text = ""
-        lvRepuestosOt.Clear()
-        lvServiciosOt.Clear()
 
     End Sub
 
@@ -223,5 +232,17 @@
     Private Sub GestionarClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionarClientesToolStripMenuItem.Click
         Dim formClientes As New GestionClientes
         formClientes.ShowDialog()
+    End Sub
+
+    Private Sub txtNombreCLienteOt_TextChanged(sender As Object, e As EventArgs) Handles txtNombreCLienteOt.TextChanged
+
+    End Sub
+
+    Private Sub cbTipoDocOT_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTipoDocOT.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub txtNroDocCliOT_TextChanged(sender As Object, e As EventArgs) Handles txtNroDocCliOT.TextChanged
+
     End Sub
 End Class

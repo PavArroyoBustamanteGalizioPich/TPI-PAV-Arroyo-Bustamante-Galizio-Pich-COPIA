@@ -126,7 +126,7 @@ Public Class ClienteDao
     End Function
 
 
-    Public Shared Function buscarCliente(ByVal tipoDoc As Int32, ByVal nroDoc As String, ByVal id As Int32) As ClienteDto
+    Public Shared Function buscarCliente(ByVal tipoDoc As Int32, ByVal nroDoc As String, Optional ByVal id As Int32 = 0) As ClienteDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
@@ -154,7 +154,7 @@ Public Class ClienteDao
             cliente.nroDocumento = tabla.Rows(0)(7).ToString()
             cliente.tipoDocumento = Convert.ToInt32(tabla.Rows(0)(8))
             tabla.Clear()
-            
+
 
             Return cliente
 

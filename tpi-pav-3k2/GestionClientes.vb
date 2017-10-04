@@ -372,7 +372,6 @@
         txtFechaAlta.Text = ""
         txtFechaBaja.Text = ""
         txtNroCompu.Text = ""
-        txtPcsRegistradas.Text = ""
         txtCantMemoria.Text = ""
         txtCapAlm.Text = ""
         'cbTipoDoc.SelectedValue = 1

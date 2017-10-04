@@ -34,10 +34,9 @@ Partial Class ABMCOrdenTrabajo
         Me.GestionarEstadosDeOTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestionarTiposDeDocumentoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestionarProcesadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GestionarClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbDatosCliOT = New System.Windows.Forms.GroupBox()
         Me.btnNuevaPcOt = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.btnNuevoCliOT = New System.Windows.Forms.Button()
         Me.btnBuscarCliOT = New System.Windows.Forms.Button()
         Me.txtNroDocCliOT = New System.Windows.Forms.TextBox()
         Me.lblNroDocBuscCliOT = New System.Windows.Forms.Label()
@@ -65,15 +64,7 @@ Partial Class ABMCOrdenTrabajo
         Me.cbServiciosOt = New System.Windows.Forms.ComboBox()
         Me.lblServicioOt = New System.Windows.Forms.Label()
         Me.gbListadoRepuestos = New System.Windows.Forms.GroupBox()
-        Me.lvRepuestosOt = New System.Windows.Forms.ListView()
-        Me.colRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colCantidadRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colSubTotalRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.gbListadoServiciosOt = New System.Windows.Forms.GroupBox()
-        Me.lvServiciosOt = New System.Windows.Forms.ListView()
-        Me.colServicios = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colCantidad = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colSubTot = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.panelDatosOt = New System.Windows.Forms.Panel()
         Me.txtDescrFallaOt = New System.Windows.Forms.TextBox()
         Me.lblDescripcionFallaOt = New System.Windows.Forms.Label()
@@ -104,10 +95,16 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
-        Me.GestionarClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Servicios = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SubTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
+        Me.Repuesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColCantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColSubtotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbDatosOT.SuspendLayout()
         Me.panelDatosNvaOt.SuspendLayout()
         Me.panelCierre.SuspendLayout()
@@ -119,6 +116,8 @@ Partial Class ABMCOrdenTrabajo
         Me.panelDatosClienteOt.SuspendLayout()
         Me.panelBuscarOT.SuspendLayout()
         Me.panelBotoneraOt.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -204,13 +203,18 @@ Partial Class ABMCOrdenTrabajo
         Me.GestionarProcesadoresToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.GestionarProcesadoresToolStripMenuItem.Text = "Gestionar Procesadores"
         '
+        'GestionarClientesToolStripMenuItem
+        '
+        Me.GestionarClientesToolStripMenuItem.Name = "GestionarClientesToolStripMenuItem"
+        Me.GestionarClientesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.GestionarClientesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.GestionarClientesToolStripMenuItem.Text = "Gestionar Clientes"
+        '
         'gbDatosCliOT
         '
         Me.gbDatosCliOT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gbDatosCliOT.Controls.Add(Me.btnNuevaPcOt)
-        Me.gbDatosCliOT.Controls.Add(Me.DataGridView1)
-        Me.gbDatosCliOT.Controls.Add(Me.btnNuevoCliOT)
         Me.gbDatosCliOT.Controls.Add(Me.btnBuscarCliOT)
         Me.gbDatosCliOT.Controls.Add(Me.txtNroDocCliOT)
         Me.gbDatosCliOT.Controls.Add(Me.lblNroDocBuscCliOT)
@@ -218,39 +222,19 @@ Partial Class ABMCOrdenTrabajo
         Me.gbDatosCliOT.Controls.Add(Me.lblTipoDocBuscCliOT)
         Me.gbDatosCliOT.Location = New System.Drawing.Point(0, 27)
         Me.gbDatosCliOT.Name = "gbDatosCliOT"
-        Me.gbDatosCliOT.Size = New System.Drawing.Size(1084, 122)
+        Me.gbDatosCliOT.Size = New System.Drawing.Size(1084, 51)
         Me.gbDatosCliOT.TabIndex = 1
         Me.gbDatosCliOT.TabStop = False
         Me.gbDatosCliOT.Text = "Datos Cliente"
         '
         'btnNuevaPcOt
         '
-        Me.btnNuevaPcOt.Location = New System.Drawing.Point(577, 10)
+        Me.btnNuevaPcOt.Location = New System.Drawing.Point(487, 11)
         Me.btnNuevaPcOt.Name = "btnNuevaPcOt"
         Me.btnNuevaPcOt.Size = New System.Drawing.Size(117, 23)
         Me.btnNuevaPcOt.TabIndex = 7
-        Me.btnNuevaPcOt.Text = "Nueva computadora"
+        Me.btnNuevaPcOt.Text = "Gestionar Clientes"
         Me.btnNuevaPcOt.UseVisualStyleBackColor = True
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 37)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1066, 78)
-        Me.DataGridView1.TabIndex = 6
-        '
-        'btnNuevoCliOT
-        '
-        Me.btnNuevoCliOT.Location = New System.Drawing.Point(489, 10)
-        Me.btnNuevoCliOT.Name = "btnNuevoCliOT"
-        Me.btnNuevoCliOT.Size = New System.Drawing.Size(82, 23)
-        Me.btnNuevoCliOT.TabIndex = 5
-        Me.btnNuevoCliOT.Text = "Nuevo Cliente"
-        Me.btnNuevoCliOT.UseVisualStyleBackColor = True
         '
         'btnBuscarCliOT
         '
@@ -298,16 +282,15 @@ Partial Class ABMCOrdenTrabajo
         '
         'gbDatosOT
         '
-        Me.gbDatosOT.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gbDatosOT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gbDatosOT.AutoSize = True
         Me.gbDatosOT.BackColor = System.Drawing.SystemColors.Control
         Me.gbDatosOT.Controls.Add(Me.panelDatosNvaOt)
         Me.gbDatosOT.Controls.Add(Me.panelBuscarOT)
-        Me.gbDatosOT.Location = New System.Drawing.Point(9, 156)
+        Me.gbDatosOT.Location = New System.Drawing.Point(9, 84)
         Me.gbDatosOT.Name = "gbDatosOT"
-        Me.gbDatosOT.Size = New System.Drawing.Size(1075, 398)
+        Me.gbDatosOT.Size = New System.Drawing.Size(1075, 492)
         Me.gbDatosOT.TabIndex = 2
         Me.gbDatosOT.TabStop = False
         Me.gbDatosOT.Text = "Orden de Trabajo"
@@ -326,7 +309,7 @@ Partial Class ABMCOrdenTrabajo
         Me.panelDatosNvaOt.Controls.Add(Me.panelDatosClienteOt)
         Me.panelDatosNvaOt.Location = New System.Drawing.Point(7, 62)
         Me.panelDatosNvaOt.Name = "panelDatosNvaOt"
-        Me.panelDatosNvaOt.Size = New System.Drawing.Size(1056, 317)
+        Me.panelDatosNvaOt.Size = New System.Drawing.Size(1056, 389)
         Me.panelDatosNvaOt.TabIndex = 1
         '
         'panelCierre
@@ -434,6 +417,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'txtTipoRepRequerido
         '
+        Me.txtTipoRepRequerido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTipoRepRequerido.Location = New System.Drawing.Point(130, 48)
         Me.txtTipoRepRequerido.MaxLength = 20
         Me.txtTipoRepRequerido.Name = "txtTipoRepRequerido"
@@ -517,78 +501,25 @@ Partial Class ABMCOrdenTrabajo
         Me.gbListadoRepuestos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbListadoRepuestos.Controls.Add(Me.lvRepuestosOt)
-        Me.gbListadoRepuestos.Location = New System.Drawing.Point(712, 198)
+        Me.gbListadoRepuestos.Controls.Add(Me.DataGridView3)
+        Me.gbListadoRepuestos.Location = New System.Drawing.Point(712, 218)
         Me.gbListadoRepuestos.Name = "gbListadoRepuestos"
-        Me.gbListadoRepuestos.Size = New System.Drawing.Size(338, 116)
+        Me.gbListadoRepuestos.Size = New System.Drawing.Size(338, 168)
         Me.gbListadoRepuestos.TabIndex = 14
         Me.gbListadoRepuestos.TabStop = False
         Me.gbListadoRepuestos.Text = "Listado de Repuestos"
-        '
-        'lvRepuestosOt
-        '
-        Me.lvRepuestosOt.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvRepuestosOt.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colRepuesto, Me.colCantidadRepuesto, Me.colSubTotalRepuesto})
-        Me.lvRepuestosOt.Location = New System.Drawing.Point(7, 20)
-        Me.lvRepuestosOt.Name = "lvRepuestosOt"
-        Me.lvRepuestosOt.Size = New System.Drawing.Size(325, 90)
-        Me.lvRepuestosOt.TabIndex = 0
-        Me.lvRepuestosOt.UseCompatibleStateImageBehavior = False
-        Me.lvRepuestosOt.View = System.Windows.Forms.View.Details
-        '
-        'colRepuesto
-        '
-        Me.colRepuesto.Text = "Repuesto"
-        Me.colRepuesto.Width = 200
-        '
-        'colCantidadRepuesto
-        '
-        Me.colCantidadRepuesto.Text = "Cantidad"
-        '
-        'colSubTotalRepuesto
-        '
-        Me.colSubTotalRepuesto.Text = "SubTotal"
         '
         'gbListadoServiciosOt
         '
         Me.gbListadoServiciosOt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbListadoServiciosOt.Controls.Add(Me.lvServiciosOt)
+        Me.gbListadoServiciosOt.Controls.Add(Me.DataGridView2)
         Me.gbListadoServiciosOt.Location = New System.Drawing.Point(712, 50)
         Me.gbListadoServiciosOt.Name = "gbListadoServiciosOt"
-        Me.gbListadoServiciosOt.Size = New System.Drawing.Size(338, 142)
+        Me.gbListadoServiciosOt.Size = New System.Drawing.Size(338, 161)
         Me.gbListadoServiciosOt.TabIndex = 13
         Me.gbListadoServiciosOt.TabStop = False
         Me.gbListadoServiciosOt.Text = "Listado de Servicios"
-        '
-        'lvServiciosOt
-        '
-        Me.lvServiciosOt.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvServiciosOt.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colServicios, Me.colCantidad, Me.colSubTot})
-        Me.lvServiciosOt.Location = New System.Drawing.Point(7, 20)
-        Me.lvServiciosOt.Name = "lvServiciosOt"
-        Me.lvServiciosOt.Size = New System.Drawing.Size(331, 116)
-        Me.lvServiciosOt.TabIndex = 0
-        Me.lvServiciosOt.UseCompatibleStateImageBehavior = False
-        Me.lvServiciosOt.View = System.Windows.Forms.View.Details
-        '
-        'colServicios
-        '
-        Me.colServicios.Text = "Servicios"
-        Me.colServicios.Width = 200
-        '
-        'colCantidad
-        '
-        Me.colCantidad.Text = "Cantidad"
-        Me.colCantidad.Width = 64
-        '
-        'colSubTot
-        '
-        Me.colSubTot.Text = "SubTotal"
         '
         'panelDatosOt
         '
@@ -679,6 +610,7 @@ Partial Class ABMCOrdenTrabajo
         '
         Me.txtDescripcionPcOt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtDescripcionPcOt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtDescripcionPcOt.Location = New System.Drawing.Point(361, 4)
         Me.txtDescripcionPcOt.Name = "txtDescripcionPcOt"
         Me.txtDescripcionPcOt.Size = New System.Drawing.Size(230, 20)
@@ -695,6 +627,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'txtTipoPcOt
         '
+        Me.txtTipoPcOt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtTipoPcOt.Location = New System.Drawing.Point(201, 4)
         Me.txtTipoPcOt.MaxLength = 15
         Me.txtTipoPcOt.Name = "txtTipoPcOt"
@@ -743,6 +676,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'txtApellidoClienteOt
         '
+        Me.txtApellidoClienteOt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtApellidoClienteOt.Location = New System.Drawing.Point(340, 4)
         Me.txtApellidoClienteOt.MaxLength = 20
         Me.txtApellidoClienteOt.Name = "txtApellidoClienteOt"
@@ -760,6 +694,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'txtNombreCLienteOt
         '
+        Me.txtNombreCLienteOt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtNombreCLienteOt.Location = New System.Drawing.Point(182, 4)
         Me.txtNombreCLienteOt.MaxLength = 20
         Me.txtNombreCLienteOt.Name = "txtNombreCLienteOt"
@@ -833,7 +768,7 @@ Partial Class ABMCOrdenTrabajo
         'btnNvaOt
         '
         Me.btnNvaOt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnNvaOt.Location = New System.Drawing.Point(3, 3)
+        Me.btnNvaOt.Location = New System.Drawing.Point(3, 6)
         Me.btnNvaOt.Name = "btnNvaOt"
         Me.btnNvaOt.Size = New System.Drawing.Size(75, 23)
         Me.btnNvaOt.TabIndex = 1
@@ -843,7 +778,7 @@ Partial Class ABMCOrdenTrabajo
         'btnActualizarOt
         '
         Me.btnActualizarOt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnActualizarOt.Location = New System.Drawing.Point(84, 3)
+        Me.btnActualizarOt.Location = New System.Drawing.Point(84, 6)
         Me.btnActualizarOt.Name = "btnActualizarOt"
         Me.btnActualizarOt.Size = New System.Drawing.Size(75, 23)
         Me.btnActualizarOt.TabIndex = 3
@@ -853,7 +788,7 @@ Partial Class ABMCOrdenTrabajo
         'btnGuardarOt
         '
         Me.btnGuardarOt.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnGuardarOt.Location = New System.Drawing.Point(165, 3)
+        Me.btnGuardarOt.Location = New System.Drawing.Point(165, 6)
         Me.btnGuardarOt.Name = "btnGuardarOt"
         Me.btnGuardarOt.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardarOt.TabIndex = 4
@@ -863,7 +798,7 @@ Partial Class ABMCOrdenTrabajo
         'btnCancelarOt
         '
         Me.btnCancelarOt.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnCancelarOt.Location = New System.Drawing.Point(246, 3)
+        Me.btnCancelarOt.Location = New System.Drawing.Point(246, 6)
         Me.btnCancelarOt.Name = "btnCancelarOt"
         Me.btnCancelarOt.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelarOt.TabIndex = 5
@@ -880,22 +815,63 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Controls.Add(Me.btnNvaOt)
         Me.panelBotoneraOt.Location = New System.Drawing.Point(9, 541)
         Me.panelBotoneraOt.Name = "panelBotoneraOt"
-        Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 26)
+        Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
         '
-        'GestionarClientesToolStripMenuItem
+        'DataGridView2
         '
-        Me.GestionarClientesToolStripMenuItem.Name = "GestionarClientesToolStripMenuItem"
-        Me.GestionarClientesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.GestionarClientesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
-        Me.GestionarClientesToolStripMenuItem.Text = "Gestionar Clientes"
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Servicios, Me.Cantidad, Me.SubTotal})
+        Me.DataGridView2.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.Size = New System.Drawing.Size(326, 136)
+        Me.DataGridView2.TabIndex = 0
+        '
+        'Servicios
+        '
+        Me.Servicios.HeaderText = "Servicios"
+        Me.Servicios.Name = "Servicios"
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        '
+        'SubTotal
+        '
+        Me.SubTotal.HeaderText = "SubTotal"
+        Me.SubTotal.Name = "SubTotal"
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Repuesto, Me.ColCantidad, Me.ColSubtotal})
+        Me.DataGridView3.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.Size = New System.Drawing.Size(326, 143)
+        Me.DataGridView3.TabIndex = 0
+        '
+        'Repuesto
+        '
+        Me.Repuesto.HeaderText = "Repuesto"
+        Me.Repuesto.Name = "Repuesto"
+        '
+        'ColCantidad
+        '
+        Me.ColCantidad.HeaderText = "Cantidad"
+        Me.ColCantidad.Name = "ColCantidad"
+        '
+        'ColSubtotal
+        '
+        Me.ColSubtotal.HeaderText = "Subtotal"
+        Me.ColSubtotal.Name = "ColSubtotal"
         '
         'ABMCOrdenTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(1084, 579)
+        Me.ClientSize = New System.Drawing.Size(1084, 577)
         Me.Controls.Add(Me.panelBotoneraOt)
         Me.Controls.Add(Me.gbDatosOT)
         Me.Controls.Add(Me.gbDatosCliOT)
@@ -908,7 +884,6 @@ Partial Class ABMCOrdenTrabajo
         Me.MenuStrip1.PerformLayout()
         Me.gbDatosCliOT.ResumeLayout(False)
         Me.gbDatosCliOT.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbDatosOT.ResumeLayout(False)
         Me.panelDatosNvaOt.ResumeLayout(False)
         Me.panelCierre.ResumeLayout(False)
@@ -926,6 +901,8 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBuscarOT.ResumeLayout(False)
         Me.panelBuscarOT.PerformLayout()
         Me.panelBotoneraOt.ResumeLayout(False)
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -933,8 +910,6 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents gbDatosCliOT As System.Windows.Forms.GroupBox
     Friend WithEvents lblTipoDocBuscCliOT As System.Windows.Forms.Label
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents btnNuevoCliOT As System.Windows.Forms.Button
     Friend WithEvents btnBuscarCliOT As System.Windows.Forms.Button
     Friend WithEvents txtNroDocCliOT As System.Windows.Forms.TextBox
     Friend WithEvents lblNroDocBuscCliOT As System.Windows.Forms.Label
@@ -967,15 +942,7 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents cbServiciosOt As System.Windows.Forms.ComboBox
     Friend WithEvents lblServicioOt As System.Windows.Forms.Label
     Friend WithEvents gbListadoRepuestos As System.Windows.Forms.GroupBox
-    Friend WithEvents lvRepuestosOt As System.Windows.Forms.ListView
-    Friend WithEvents colRepuesto As System.Windows.Forms.ColumnHeader
-    Friend WithEvents colCantidadRepuesto As System.Windows.Forms.ColumnHeader
-    Friend WithEvents colSubTotalRepuesto As System.Windows.Forms.ColumnHeader
     Friend WithEvents gbListadoServiciosOt As System.Windows.Forms.GroupBox
-    Friend WithEvents lvServiciosOt As System.Windows.Forms.ListView
-    Friend WithEvents colServicios As System.Windows.Forms.ColumnHeader
-    Friend WithEvents colCantidad As System.Windows.Forms.ColumnHeader
-    Friend WithEvents colSubTot As System.Windows.Forms.ColumnHeader
     Friend WithEvents panelDatosOt As System.Windows.Forms.Panel
     Friend WithEvents txtDescrFallaOt As System.Windows.Forms.TextBox
     Friend WithEvents lblDescripcionFallaOt As System.Windows.Forms.Label
@@ -1013,4 +980,12 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents GestionarTiposDeDocumentoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GestionarProcesadoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GestionarClientesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DataGridView3 As System.Windows.Forms.DataGridView
+    Friend WithEvents Repuesto As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ColCantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ColSubtotal As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
+    Friend WithEvents Servicios As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SubTotal As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

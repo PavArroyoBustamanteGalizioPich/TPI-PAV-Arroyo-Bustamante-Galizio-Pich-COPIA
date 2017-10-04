@@ -100,3 +100,25 @@ C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pi
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.pdb
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbprojResolveAssemblyReference.cache
 C:\Drive Emma\Facu\2017\PAV 1 3K2\pruebaGit\TPI-PAV-Arroyo-Bustamante-Galizio-Pich-COPIA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.GestionComputadoras.resources
+D:\TPA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.exe.config
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.exe
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.xml
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.pdb
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbprojResolveAssemblyReference.cache
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.GestionComputadoras.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCProcesador.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCRepuesto.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMServicio.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMTipoPc_Memoria.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ACEstadoOt.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ACTipoDocumento.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.GestionClientes.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCProveedores.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMTipoRepuesto.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.GrillaGenerica.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.Resources.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi_pav_3k2.ABMCOrdenTrabajo.resources
+D:\TPA\tpi-pav-3k2\obj\Debug\tpi-pav-3k2.vbproj.GenerateResource.Cache
+D:\TPA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.exe
+D:\TPA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.pdb
+D:\TPA\tpi-pav-3k2\bin\Debug\tpi-pav-3k2.xml
