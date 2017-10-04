@@ -6,7 +6,7 @@ Public Class ClienteDao
     Public Shared Function insertarCliente(ByRef cliente As ClienteDto, ByRef computadora As ComputadoraDto) As Conexion.EventosSql
 
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
-        Dim sql As New SqlClient.SqlCommand
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim comando As String
         Dim transaccion As SqlClient.SqlTransaction
         Dim cantFilas As Int32
@@ -27,7 +27,7 @@ Public Class ClienteDao
 
             cantFilas = sql.ExecuteNonQuery()
             If cantFilas = 1 Then
-                cantFilas = ComputadoraDao.insertarComputadora(computadora, sql)
+                cantFilas = ComputadoraDao.insertarComputadora(computadora)
                 If cantFilas = 1 Then
                     transaccion.Commit() ' se hace el comit solamente si se inserta bien la compu
                     Return Conexion.EventosSql.INSERCION_CORRECTA
