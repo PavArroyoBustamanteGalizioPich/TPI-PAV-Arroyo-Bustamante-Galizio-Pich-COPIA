@@ -70,6 +70,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\DetalleOrdenTrabajoDto.vb" />
+    <Compile Include="Clases\OrdenTrabajoDao.vb" />
+    <Compile Include="Clases\OrdenTrabajoDto.vb" />
     <Compile Include="GestionComputadoras.Designer.vb">
       <DependentUpon>GestionComputadoras.vb</DependentUpon>
     </Compile>

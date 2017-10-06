@@ -82,12 +82,15 @@
             computadora = New ComputadoraDto
             computadora.idComputadora = Convert.ToInt32(tabla.Rows(0)("ID Computadora"))
             computadora.tipoPc = Convert.ToInt32(tabla.Rows(0)("ID Tipo Pc"))
+            computadora.nombreTipoPc = tabla.Rows(0)("Tipo Pc").ToString()
             If Not IsDBNull(tabla.Rows(0)("Procesador")) Then
-                computadora.procesador = Convert.ToInt32(tabla.Rows(0)("Procesador"))
+                computadora.procesador = Convert.ToInt32(tabla.Rows(0)("ID Procesador"))
+                computadora.modeloProcesador = tabla.Rows(0)("Procesador").ToString()
 
             End If
             If Not IsDBNull(tabla.Rows(0)("ID Tipo Memoria")) Then
                 computadora.tipoMemoria = Convert.ToInt32(tabla.Rows(0)("ID Tipo Memoria"))
+
             End If
             If Not IsDBNull(tabla.Rows(0)("Tamaño Memoria")) Then
                 computadora.cantidadMemoria = Convert.ToInt32(tabla.Rows(0)("Tamaño Memoria"))

@@ -3,7 +3,9 @@
     Private _idComputadora As Int32
     Private _nroCliente As Int32
     Private _tipoPc As Int32
+    Private _nombreTipoPc As String
     Private _procesador As Int32
+    Private _modeloProcesador As String
     Private _cantidadMemoria As Decimal
     Private _tipoMemoria As Int32
     Private _capacidadAlmacenamiento As Int32
@@ -17,6 +19,24 @@
         End Get
         Set(value As Int32)
             _idComputadora = value
+        End Set
+    End Property
+
+    Public Property nombreTipoPc As String
+        Get
+            Return _nombreTipoPc
+        End Get
+        Set(value As String)
+            _nombreTipoPc = value
+        End Set
+    End Property
+
+    Public Property modeloProcesador As String
+        Get
+            Return _modeloProcesador
+        End Get
+        Set(value As String)
+            _modeloProcesador = value
         End Set
     End Property
 
@@ -102,8 +122,22 @@
     End Property
 
     Public Overrides Function toString() As String
+        Dim cadena As New System.Text.StringBuilder
 
-        Return "Hola mundo!"
+        If procesador <> 0 Then
+            cadena.Append("Procesador: " & _modeloProcesador & "| ")
+        Else : cadena.Append("Procesador: DESCONOCIDO |")
+        End If
+        If _cantidadMemoria <> 0 Then
+            cadena.Append(" RAM: " & _cantidadMemoria & "GB |")
+        Else : cadena.Append(" RAM: DESCONOCIDO ")
+        End If
+
+        If _capacidadAlmacenamiento <> 0 Then
+            cadena.Append(" Almacenamiento: " & _capacidadAlmacenamiento & "GB")
+        Else : cadena.Append(" Almacenamiento: DESCONOCIDO ")
+        End If
+        Return cadena.ToString()
 
     End Function
 

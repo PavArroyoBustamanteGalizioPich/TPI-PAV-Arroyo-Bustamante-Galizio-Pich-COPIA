@@ -27,30 +27,37 @@
 
     Public Shared Function buscarServicio(ByVal idServicio As Int32) As ServicioDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
-        Dim sql As New SqlClient.SqlCommand
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim tabla As New DataTable
         Dim comando As String
         Dim servicio As New ServicioDto
-
-        comando = "select * from servicio where idServicio = " & idServicio
-
+        
+        comando = "select serv.idServicio as 'ID Servicio', serv.nombreServicio as 'Nombre', serv.detalle as 'Detalle',"
+        comando &= "serv.costo as 'Costo', serv.garantia as 'Garantia', serv.fechaBaja as 'Fecha Baja',"
+        comando &= "serv.repuestoRequerido as 'ID Repuesto Requerido', tipo.tipo as 'Tipo Repuesto'"
+        comando &= " from servicio serv left join tipoComponente tipo on serv.repuestoRequerido = tipo.idTipoComponente where idServicio = " & idServicio
         conex.Open()
         sql.Connection = conex
         sql.CommandType = CommandType.Text
         sql.CommandText = comando
         tabla.Load(sql.ExecuteReader())
         If tabla.Rows.Count = 1 Then
-            servicio.idServ = Convert.ToInt32(tabla.Rows(0)(0))
-            servicio.nomServicio = tabla.Rows(0)(1)
-            servicio.detalleServicio = tabla.Rows(0)(2)
-            servicio.costoServicio = Convert.ToDecimal(tabla.Rows(0)(3))
-            servicio.garantiaServicio = Convert.ToInt32(tabla.Rows(0)(4))
-            If Not IsDBNull(tabla.Rows(0)(5)) Then
-                servicio.fechaBajaServicio = CDate(tabla.Rows(0)(5))
+            servicio.idServ = Convert.ToInt32(tabla.Rows(0)("ID Servicio"))
+            servicio.nomServicio = tabla.Rows(0)("Nombre")
+            servicio.detalleServicio = tabla.Rows(0)("Detalle")
+            servicio.costoServicio = Convert.ToDecimal(tabla.Rows(0)("Costo"))
+            servicio.garantiaServicio = Convert.ToInt32(tabla.Rows(0)("Garantia"))
+            If Not IsDBNull(tabla.Rows(0)("Fecha Baja")) Then
+                servicio.fechaBajaServicio = CDate(tabla.Rows(0)("Fecha Baja"))
             Else : servicio.fechaBajaServicio = Nothing
             End If
-            If Not IsDBNull(tabla.Rows(0)(6)) Then
-                servicio.repuestoReq = Convert.ToInt32(tabla.Rows(0)(6))
+            If Not IsDBNull(tabla.Rows(0)("ID Repuesto Requerido")) Then
+                servicio.repuestoReq = Convert.ToInt32(tabla.Rows(0)("ID Repuesto Requerido"))
+                Dim repuesto As New RepuestoDto
+
+                repuesto.tipo = servicio.repuestoReq
+                repuesto.nombreTipo = tabla.Rows(0)("Tipo Repuesto").ToString()
+                servicio.repuesto = repuesto
             End If
             conex.Close()
             Return servicio
@@ -70,7 +77,11 @@
         Dim comando As String
 
         Try
-            comando = "select * from servicio"
+            comando = "select serv.idServicio as 'ID Servicio', serv.nombreServicio as 'Nombre', serv.detalle as 'Detalle',"
+            comando &= "serv.costo as 'Costo', serv.garantia as 'Garantia', serv.fechaBaja as 'Fecha Baja',"
+            comando &= "serv.repuestoRequerido as 'ID Repuesto Requerido', rep.descripcion as 'Repuesto'"
+            comando &= " from servicio serv left join componente rep on serv.repuestoRequerido = rep.idComponente"
+
             conex.Open()
             sql.Connection = conex
             sql.CommandType = CommandType.Text

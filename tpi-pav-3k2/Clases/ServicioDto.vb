@@ -7,6 +7,9 @@
     Private garantia As Int32
     Private fechaBaja As Date
     Private repuestoRequerido As Int32
+    'Private _nombreRepuesto As String
+    Private _cantidad As Int32
+    Private _repuesto As RepuestoDto
 
 
     Property idServ As Int32
@@ -17,6 +20,24 @@
             idServicio = value
         End Set
     End Property
+
+    Property repuesto As RepuestoDto
+        Get
+            Return _repuesto
+        End Get
+        Set(value As RepuestoDto)
+            _repuesto = value
+        End Set
+    End Property
+
+    Property cantidad As Int32
+        Get
+            Return _cantidad
+        End Get
+        Set(value As Int32)
+            _cantidad = value
+        End Set
+    End Property
     Property nomServicio As String
         Get
             Return nombreServicio
@@ -25,6 +46,15 @@
             nombreServicio = value
         End Set
     End Property
+
+    'Property nombreRepuesto As String
+    ' Get
+    ' Return _nombreRepuesto
+    ' End Get
+    ' Set(value As String)
+    '     _nombreRepuesto = value
+    ' End Set
+    ' End Property
 
     Property detalleServicio As String
         Get
@@ -70,5 +100,21 @@
         End Set
     End Property
 
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        If obj.GetType() <> Me.GetType() Then
+            Return False
+        End If
+
+        Dim serv = CType(obj, ServicioDto)
+        If serv.idServ = Me.idServ Then
+            Return True
+        End If
+
+        Return False
+
+    End Function
+
+   
 
 End Class
