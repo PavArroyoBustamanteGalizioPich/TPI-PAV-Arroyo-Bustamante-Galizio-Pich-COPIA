@@ -4,14 +4,16 @@
     Private repuestoBuscado As Boolean
     Private repuestoActual As RepuestoDto
     Private filaBuscada As DataGridViewRow
-
+    Private combocargado As Boolean
 
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.deshabilitarComponentes()
         Utilidades.cargarCombo("proveedor", CBProveedor)
         Utilidades.cargarCombo("tipoComponente", cbTipo)
+
         Utilidades.cargarCombo("marcaComponente", cbMarca)
+        combocargado = True
         repuestoBuscado = False
         btnNuevo.Focus()
 
@@ -146,7 +148,7 @@
             End If
 
         End If
-
+        Utilidades.cargarCombo("marcaComponente", cbMarca)
     End Sub
 
 
@@ -290,5 +292,18 @@
 
     Private Sub txtDescripcion_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcion.TextChanged
 
+    End Sub
+
+    Private Sub cbTipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTipo.SelectedIndexChanged
+        If combocargado Then
+
+            If cbTipo.SelectedValue > 0 Then
+
+                Dim idx As Int32 = Convert.ToInt32(cbTipo.SelectedValue)
+                'Utilidades.cargarCombo("marcaComponente", cbMarca)
+            End If
+
+
+        End If
     End Sub
 End Class

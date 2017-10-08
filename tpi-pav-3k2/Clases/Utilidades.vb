@@ -60,7 +60,7 @@
             combo.ValueMember = tabla.Columns(0).ColumnName
             If display.Equals("") Then
                 combo.DisplayMember = tabla.Columns(1).ColumnName
-            Else 'combo.DisplayMember = display
+            Else : combo.DisplayMember = display
             End If
 
         Catch ex As Exception

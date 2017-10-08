@@ -58,7 +58,6 @@ Partial Class GestionComputadoras
         Me.btnCancelarPc = New System.Windows.Forms.Button()
         Me.btnGuardarPc = New System.Windows.Forms.Button()
         Me.btnActualizarPc = New System.Windows.Forms.Button()
-        Me.btnBuscarPc = New System.Windows.Forms.Button()
         Me.btnNuevaPc = New System.Windows.Forms.Button()
         Me.gbDatosCliente.SuspendLayout()
         Me.gbDatosPc.SuspendLayout()
@@ -263,7 +262,6 @@ Partial Class GestionComputadoras
         '
         'cbMarcaProc
         '
-        Me.cbMarcaProc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbMarcaProc.FormattingEnabled = True
         Me.cbMarcaProc.Location = New System.Drawing.Point(106, 71)
         Me.cbMarcaProc.Name = "cbMarcaProc"
@@ -324,7 +322,6 @@ Partial Class GestionComputadoras
         '
         'cbTipoMemoria
         '
-        Me.cbTipoMemoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoMemoria.FormattingEnabled = True
         Me.cbTipoMemoria.Location = New System.Drawing.Point(405, 24)
         Me.cbTipoMemoria.Name = "cbTipoMemoria"
@@ -383,7 +380,6 @@ Partial Class GestionComputadoras
         Me.panelBotonera.Controls.Add(Me.btnCancelarPc)
         Me.panelBotonera.Controls.Add(Me.btnGuardarPc)
         Me.panelBotonera.Controls.Add(Me.btnActualizarPc)
-        Me.panelBotonera.Controls.Add(Me.btnBuscarPc)
         Me.panelBotonera.Controls.Add(Me.btnNuevaPc)
         Me.panelBotonera.Location = New System.Drawing.Point(13, 290)
         Me.panelBotonera.Name = "panelBotonera"
@@ -412,20 +408,11 @@ Partial Class GestionComputadoras
         'btnActualizarPc
         '
         Me.btnActualizarPc.Image = CType(resources.GetObject("btnActualizarPc.Image"), System.Drawing.Image)
-        Me.btnActualizarPc.Location = New System.Drawing.Point(217, 1)
+        Me.btnActualizarPc.Location = New System.Drawing.Point(146, 1)
         Me.btnActualizarPc.Name = "btnActualizarPc"
         Me.btnActualizarPc.Size = New System.Drawing.Size(65, 58)
         Me.btnActualizarPc.TabIndex = 2
         Me.btnActualizarPc.UseVisualStyleBackColor = True
-        '
-        'btnBuscarPc
-        '
-        Me.btnBuscarPc.Image = CType(resources.GetObject("btnBuscarPc.Image"), System.Drawing.Image)
-        Me.btnBuscarPc.Location = New System.Drawing.Point(146, 1)
-        Me.btnBuscarPc.Name = "btnBuscarPc"
-        Me.btnBuscarPc.Size = New System.Drawing.Size(65, 58)
-        Me.btnBuscarPc.TabIndex = 1
-        Me.btnBuscarPc.UseVisualStyleBackColor = True
         '
         'btnNuevaPc
         '
@@ -481,7 +468,6 @@ Partial Class GestionComputadoras
     Friend WithEvents lblGB As System.Windows.Forms.Label
     Friend WithEvents txtCapAlm As System.Windows.Forms.TextBox
     Friend WithEvents lblCapAlmac As System.Windows.Forms.Label
-    Friend WithEvents btnBuscarPc As System.Windows.Forms.Button
     Friend WithEvents btnNuevaPc As System.Windows.Forms.Button
     Friend WithEvents btnCancelarPc As System.Windows.Forms.Button
     Friend WithEvents btnGuardarPc As System.Windows.Forms.Button

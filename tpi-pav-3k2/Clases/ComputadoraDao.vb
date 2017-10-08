@@ -1,6 +1,6 @@
 ﻿Public Class ComputadoraDao
 
-    Public Shared Function insertarComputadora(ByRef computadora As ComputadoraDto) As Int32
+    Public Shared Function insertarComputadora(ByRef computadora As ComputadoraDto) As Conexion.EventosSql
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim cantFilas As Int32
@@ -11,7 +11,7 @@
             abierta = True
         End If
 
-        
+
 
         Try
             sql.Connection = conex
@@ -43,9 +43,9 @@
             sql.CommandText = comando
 
             cantFilas = sql.ExecuteNonQuery()
-            Return cantFilas
+            Return Conexion.EventosSql.INSERCION_CORRECTA
         Catch ex As SqlClient.SqlException
-            Return -1
+            Return Conexion.EventosSql.ERROR_COMPUTADORA
         Finally
             If abierta Then
                 conex.Close()
@@ -138,7 +138,7 @@
             sql.CommandType = CommandType.Text
 
             comando = "select compu.idComputadora as 'ID Computadora', compu.tipo as 'ID Tipo Pc', tipoP.tipo as 'Tipo Pc',"
-            comando &= "compu.microProcesador as 'ID Procesador', proce.idMarca as 'Marca Procesador', proce.modeloProcesador as 'Procesador', tipoM.idTipoMemoria as 'ID Tipo Memoria',"
+            comando &= "compu.microProcesador as 'ID Procesador', proce.marca as 'Marca Procesador', proce.modeloProcesador as 'Procesador', tipoM.idTipoMemoria as 'ID Tipo Memoria',"
             comando &= "tipoM.tipo as 'Tipo Memoria',"
             comando &= "compu.cantidadMemoria as 'Cantidad de Memoria', compu.almacenamiento as 'Almacenamiento', compu.fechaAlta as 'Fecha Alta',"
             comando &= "compu.fechaBaja as 'Fecha Baja' from computadora compu"
@@ -228,11 +228,11 @@
 
             If computadora.capAlmacenamiento <> 0 Then
                 comando &= "almacenamiento = " & computadora.capAlmacenamiento & ","
-            Else : comando &= "almacenaiento = null,"
+            Else : comando &= "almacenamiento = null,"
             End If
 
             If Not computadora.fechaBaja.Equals(Nothing) Then
-                comando &= "fechaBaja = " & computadora.fechaBaja.ToString("yyyy/MM/dd")
+                comando &= "fechaBaja = '" & computadora.fechaBaja.ToString("yyyy/MM/dd") & "'"
             Else : comando &= "fechaBaja = null"
             End If
             comando &= " where idComputadora = " & computadora.idComputadora

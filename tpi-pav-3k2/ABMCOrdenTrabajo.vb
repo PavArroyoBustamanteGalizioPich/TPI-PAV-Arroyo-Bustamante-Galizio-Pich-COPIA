@@ -496,8 +496,6 @@
                 itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.calcularMonto() * servicioSeleccionado.cantidad)
                 lvRepuestos.Items.Add(itemRepuesto)
 
-
-
             End If
             'Dim idx As Int32 = dgvServicios.Rows.Count - 1
             ' dgvServicios.Rows(idx).Cells(0).Value = servicioSeleccionado.nomServicio
@@ -537,6 +535,10 @@
             txtMontoOt.Text = ordenActual.calcularTotal()
         End If
 
+
+    End Sub
+
+    Private Sub cbNroPc_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles cbNroPc.SelectedIndexChanged
 
     End Sub
 End Class

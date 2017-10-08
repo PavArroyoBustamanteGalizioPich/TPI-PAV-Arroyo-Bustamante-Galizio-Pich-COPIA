@@ -54,6 +54,7 @@ Partial Class ABMCOrdenTrabajo
         Me.txtFechaReparacion = New System.Windows.Forms.MaskedTextBox()
         Me.lblFechaReparacionOt = New System.Windows.Forms.Label()
         Me.gbAniadirServicios = New System.Windows.Forms.GroupBox()
+        Me.btnQuitarServicio = New System.Windows.Forms.Button()
         Me.txtCantServicios = New System.Windows.Forms.TextBox()
         Me.txtTipoRepRequerido = New System.Windows.Forms.TextBox()
         Me.lblRepuestoRequerido = New System.Windows.Forms.Label()
@@ -64,7 +65,17 @@ Partial Class ABMCOrdenTrabajo
         Me.cbServiciosOt = New System.Windows.Forms.ComboBox()
         Me.lblServicioOt = New System.Windows.Forms.Label()
         Me.gbListadoRepuestos = New System.Windows.Forms.GroupBox()
+        Me.lvRepuestos = New System.Windows.Forms.ListView()
+        Me.idRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.repuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.cantRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.subTotRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.gbServicios = New System.Windows.Forms.GroupBox()
+        Me.lvServicios = New System.Windows.Forms.ListView()
+        Me.colIdServicio = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colServicio = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colCant = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colSubTot = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.panelDatosOt = New System.Windows.Forms.Panel()
         Me.txtDescrFalla = New System.Windows.Forms.TextBox()
         Me.lblDescripcionFallaOt = New System.Windows.Forms.Label()
@@ -95,17 +106,6 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
-        Me.lvServicios = New System.Windows.Forms.ListView()
-        Me.colServicio = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colCant = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colSubTot = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.lvRepuestos = New System.Windows.Forms.ListView()
-        Me.repuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.cantRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.subTotRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.colIdServicio = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.idRepuesto = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btnQuitarServicio = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         Me.gbDatosOT.SuspendLayout()
@@ -420,6 +420,15 @@ Partial Class ABMCOrdenTrabajo
         Me.gbAniadirServicios.TabStop = False
         Me.gbAniadirServicios.Text = "Añadir Servicios"
         '
+        'btnQuitarServicio
+        '
+        Me.btnQuitarServicio.Location = New System.Drawing.Point(609, 44)
+        Me.btnQuitarServicio.Name = "btnQuitarServicio"
+        Me.btnQuitarServicio.Size = New System.Drawing.Size(66, 23)
+        Me.btnQuitarServicio.TabIndex = 10
+        Me.btnQuitarServicio.Text = "Quitar"
+        Me.btnQuitarServicio.UseVisualStyleBackColor = True
+        '
         'txtCantServicios
         '
         Me.txtCantServicios.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
@@ -516,6 +525,35 @@ Partial Class ABMCOrdenTrabajo
         Me.gbListadoRepuestos.TabStop = False
         Me.gbListadoRepuestos.Text = "Listado de Repuestos"
         '
+        'lvRepuestos
+        '
+        Me.lvRepuestos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lvRepuestos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.idRepuesto, Me.repuesto, Me.cantRepuesto, Me.subTotRepuesto})
+        Me.lvRepuestos.Location = New System.Drawing.Point(7, 20)
+        Me.lvRepuestos.Name = "lvRepuestos"
+        Me.lvRepuestos.Size = New System.Drawing.Size(325, 115)
+        Me.lvRepuestos.TabIndex = 0
+        Me.lvRepuestos.UseCompatibleStateImageBehavior = False
+        Me.lvRepuestos.View = System.Windows.Forms.View.Details
+        '
+        'idRepuesto
+        '
+        Me.idRepuesto.Text = "ID Repuesto"
+        '
+        'repuesto
+        '
+        Me.repuesto.Text = "Repuesto"
+        '
+        'cantRepuesto
+        '
+        Me.cantRepuesto.Text = "Cantidad"
+        '
+        'subTotRepuesto
+        '
+        Me.subTotRepuesto.Text = "SubTotal"
+        '
         'gbServicios
         '
         Me.gbServicios.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -527,6 +565,36 @@ Partial Class ABMCOrdenTrabajo
         Me.gbServicios.TabIndex = 13
         Me.gbServicios.TabStop = False
         Me.gbServicios.Text = "Listado de Servicios"
+        '
+        'lvServicios
+        '
+        Me.lvServicios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lvServicios.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdServicio, Me.colServicio, Me.colCant, Me.colSubTot})
+        Me.lvServicios.FullRowSelect = True
+        Me.lvServicios.Location = New System.Drawing.Point(6, 20)
+        Me.lvServicios.Name = "lvServicios"
+        Me.lvServicios.Size = New System.Drawing.Size(326, 163)
+        Me.lvServicios.TabIndex = 0
+        Me.lvServicios.UseCompatibleStateImageBehavior = False
+        Me.lvServicios.View = System.Windows.Forms.View.Details
+        '
+        'colIdServicio
+        '
+        Me.colIdServicio.Text = "ID Servicio"
+        '
+        'colServicio
+        '
+        Me.colServicio.Text = "Servicio"
+        '
+        'colCant
+        '
+        Me.colCant.Text = "Cantidad"
+        '
+        'colSubTot
+        '
+        Me.colSubTot.Text = "SubTotal"
         '
         'panelDatosOt
         '
@@ -827,74 +895,6 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Name = "panelBotoneraOt"
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
-        '
-        'lvServicios
-        '
-        Me.lvServicios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvServicios.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colIdServicio, Me.colServicio, Me.colCant, Me.colSubTot})
-        Me.lvServicios.FullRowSelect = True
-        Me.lvServicios.Location = New System.Drawing.Point(6, 20)
-        Me.lvServicios.Name = "lvServicios"
-        Me.lvServicios.Size = New System.Drawing.Size(326, 163)
-        Me.lvServicios.TabIndex = 0
-        Me.lvServicios.UseCompatibleStateImageBehavior = False
-        Me.lvServicios.View = System.Windows.Forms.View.Details
-        '
-        'colServicio
-        '
-        Me.colServicio.Text = "Servicio"
-        '
-        'colCant
-        '
-        Me.colCant.Text = "Cantidad"
-        '
-        'colSubTot
-        '
-        Me.colSubTot.Text = "SubTotal"
-        '
-        'lvRepuestos
-        '
-        Me.lvRepuestos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvRepuestos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.idRepuesto, Me.repuesto, Me.cantRepuesto, Me.subTotRepuesto})
-        Me.lvRepuestos.Location = New System.Drawing.Point(7, 20)
-        Me.lvRepuestos.Name = "lvRepuestos"
-        Me.lvRepuestos.Size = New System.Drawing.Size(325, 115)
-        Me.lvRepuestos.TabIndex = 0
-        Me.lvRepuestos.UseCompatibleStateImageBehavior = False
-        Me.lvRepuestos.View = System.Windows.Forms.View.Details
-        '
-        'repuesto
-        '
-        Me.repuesto.Text = "Repuesto"
-        '
-        'cantRepuesto
-        '
-        Me.cantRepuesto.Text = "Cantidad"
-        '
-        'subTotRepuesto
-        '
-        Me.subTotRepuesto.Text = "SubTotal"
-        '
-        'colIdServicio
-        '
-        Me.colIdServicio.Text = "ID Servicio"
-        '
-        'idRepuesto
-        '
-        Me.idRepuesto.Text = "ID Repuesto"
-        '
-        'btnQuitarServicio
-        '
-        Me.btnQuitarServicio.Location = New System.Drawing.Point(609, 44)
-        Me.btnQuitarServicio.Name = "btnQuitarServicio"
-        Me.btnQuitarServicio.Size = New System.Drawing.Size(66, 23)
-        Me.btnQuitarServicio.TabIndex = 10
-        Me.btnQuitarServicio.Text = "Quitar"
-        Me.btnQuitarServicio.UseVisualStyleBackColor = True
         '
         'ABMCOrdenTrabajo
         '
