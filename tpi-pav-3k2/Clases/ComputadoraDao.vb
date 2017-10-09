@@ -62,11 +62,14 @@
         Dim tabla As New DataTable
         Dim computadora As ComputadoraDto
         Dim comando As String
-
+        Dim abierta As Boolean
         Try
 
             ' este hay que cambiarlo para que traiga la marca del procesador para cargar el combo
-            conex.Open()
+            If Not conex.State = ConnectionState.Open Then
+                conex.Open()
+                abierta = True
+            End If
             sql.Connection = conex
             sql.CommandType = CommandType.Text
             comando = "select compu.idComputadora as 'ID Computadora',compu.client as 'Cliente', compu.tipo as 'ID Tipo Pc', tipoP.tipo as 'Tipo Pc',"
@@ -114,7 +117,10 @@
 
         Catch ex As Exception
             Return Nothing
-        Finally : conex.Close()
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
         Return computadora

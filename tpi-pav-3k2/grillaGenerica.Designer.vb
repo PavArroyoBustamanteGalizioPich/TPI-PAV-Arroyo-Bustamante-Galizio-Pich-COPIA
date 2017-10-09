@@ -65,12 +65,13 @@ Partial Class GrillaGenerica
         '
         'txtBusqueda
         '
+        Me.txtBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtBusqueda.Location = New System.Drawing.Point(207, 17)
         Me.txtBusqueda.Name = "txtBusqueda"
         Me.txtBusqueda.Size = New System.Drawing.Size(100, 20)
         Me.txtBusqueda.TabIndex = 3
         '
-        'grillaGenerica
+        'GrillaGenerica
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -79,7 +80,7 @@ Partial Class GrillaGenerica
         Me.Controls.Add(Me.cbCriterioBusqueda)
         Me.Controls.Add(Me.lblCriterioBusqueda)
         Me.Controls.Add(Me.dgvBusqueda)
-        Me.Name = "grillaGenerica"
+        Me.Name = "GrillaGenerica"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "grillaGenerica"
         CType(Me.dgvBusqueda, System.ComponentModel.ISupportInitialize).EndInit()

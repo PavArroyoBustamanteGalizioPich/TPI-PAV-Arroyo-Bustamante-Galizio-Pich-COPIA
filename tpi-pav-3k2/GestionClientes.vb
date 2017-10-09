@@ -66,12 +66,14 @@
 
             If Not txtNroCliente.Text.Equals("") Then
                 id = Convert.ToInt32(txtNroCliente.Text)
-            End If
-            If Not txtNroDocumento.Text.Equals("") Then
+                clienteActual = ClienteDao.buscarCliente(id)
+            Else
                 nro = txtNroDocumento.Text
+                tipoDoc = cbTipoDoc.SelectedValue
+                clienteActual = ClienteDao.buscarCliente(tipoDoc, nro)
             End If
-            tipoDoc = cbTipoDoc.SelectedValue
-            clienteActual = ClienteDao.buscarCliente(tipoDoc, nro, id)
+            
+            
         Else
             Dim grilla As New GrillaGenerica("Clientes", GrillaGenerica.formularios.CLIENTE, Me)
             grilla.ShowDialog()

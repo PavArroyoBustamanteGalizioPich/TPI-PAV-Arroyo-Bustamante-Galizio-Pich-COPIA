@@ -16,12 +16,13 @@
 
     End Enum
     Private form As formularios
-    Private formularioEmisor As Buscable
-    Public Sub New(ByRef titulo As String, ByVal nombreFormEmisor As formularios, ByRef formEmisor As Buscable, Optional ByRef cliente As ClienteDto = Nothing)
+    Private formEmisor As Buscable
+    Private comboCargado As Boolean
+    Public Sub New(ByRef titulo As String, ByVal nombreFormEmisor As formularios, ByRef emisor As Buscable, Optional ByRef cliente As ClienteDto = Nothing)
         InitializeComponent()
         Me.Text = titulo
         form = nombreFormEmisor
-        formularioEmisor = formEmisor
+        formEmisor = emisor
 
         Select Case form
             Case formularios.SERVICIO
@@ -132,8 +133,9 @@
             columna.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next
         cbCriterioBusqueda.SelectedIndex = 0
-
-
+        dgvBusqueda.MultiSelect = False
+        dgvBusqueda.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        comboCargado = True
 
     End Sub
     Private Sub grillaGenerica_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -145,11 +147,11 @@
 
     Private Sub dgvBusqueda_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBusqueda.CellDoubleClick
 
-        Dim filaSeleccionada As DataGridViewRow = dgvBusqueda.CurrentRow
-        If filaSeleccionada.Index >= 0 Then
+        Dim fila As DataGridViewRow = dgvBusqueda.CurrentRow
+        If fila.Index >= 0 Then
 
-            formularioEmisor.setFilaBuscada(filaSeleccionada)
-        Else : formularioEmisor.setFilaBuscada(Nothing)
+            formEmisor.setFilaBuscada(fila)
+        Else : formEmisor.setFilaBuscada(Nothing)
         End If
         Me.Close()
 
@@ -161,14 +163,74 @@
 
         If Asc(e.KeyChar) = Keys.Enter Then
 
-            Dim filaSeleccionada As DataGridViewRow = dgvBusqueda.CurrentRow
-            If filaSeleccionada.Index >= 0 Then
-                formularioEmisor.setFilaBuscada(filaSeleccionada)
-            Else : formularioEmisor.setFilaBuscada(Nothing)
+            Dim fila As DataGridViewRow = dgvBusqueda.CurrentRow
+            If fila.Index >= 0 Then
+                formEmisor.setFilaBuscada(fila)
+            Else : formEmisor.setFilaBuscada(Nothing)
             End If
             Me.Close()
         End If
     End Sub
 
 
+    Private Sub txtBusqueda_TextChanged(sender As Object, e As EventArgs) Handles txtBusqueda.TextChanged
+
+        Dim colIdx As Int32 = cbCriterioBusqueda.SelectedIndex
+
+        
+
+        'If Not dgvBusqueda.SortedColumn.Equals(columna) Then
+        'dgvBusqueda.Sort(columna)
+        ' End If
+
+        If Not txtBusqueda.Text.Equals("") Then
+            Dim idx As Int32 = busquedaBinaria(colIdx, txtBusqueda.Text)
+            If idx > 0 Then
+                dgvBusqueda.Rows(idx).Selected = True
+                dgvBusqueda.FirstDisplayedScrollingRowIndex = idx
+            Else
+                dgvBusqueda.Rows(0).Selected = True
+                dgvBusqueda.FirstDisplayedScrollingRowIndex = 0
+            End If
+        Else
+            dgvBusqueda.Rows(0).Selected = True
+            dgvBusqueda.FirstDisplayedScrollingRowIndex = 0
+
+
+        End If
+
+
+    End Sub
+
+    Private Function busquedaBinaria(ByRef idxColumn As Int32, ByRef texto As String) As Int32
+        Dim cant As Int32 = dgvBusqueda.RowCount
+        Dim izq As Int32 = 0
+        Dim der As Int32 = dgvBusqueda.RowCount - 1
+        While (izq <= der)
+            Dim m As Int32 = (izq + der) / 2
+
+            If dgvBusqueda.Rows.Item(m).Cells(idxColumn).Value.ToString().Contains(texto) Then
+                Return m
+            End If
+
+            If dgvBusqueda.Rows.Item(m).Cells(idxColumn).Value.ToString().CompareTo(texto) > 0 Then
+                der = m - 1
+            Else : izq = m + 1
+            End If
+
+        End While
+        Return -1
+    End Function
+
+    Private Sub cbCriterioBusqueda_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCriterioBusqueda.SelectedIndexChanged
+        If comboCargado Then
+            Dim idx As Int32 = cbCriterioBusqueda.SelectedIndex
+
+
+            dgvBusqueda.Sort(dgvBusqueda.Columns(idx), System.ComponentModel.ListSortDirection.Ascending)
+
+
+
+        End If
+    End Sub
 End Class

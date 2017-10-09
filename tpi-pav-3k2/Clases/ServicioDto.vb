@@ -6,7 +6,7 @@
     Private costo As Decimal
     Private garantia As Int32
     Private fechaBaja As Date
-    Private repuestoRequerido As Int32
+    Private _tipoRepuestoReq As Int32
     'Private _nombreRepuesto As String
     Private _cantidad As Int32
     Private _repuesto As RepuestoDto
@@ -84,10 +84,10 @@
 
     Property repuestoReq As Int32
         Get
-            Return repuestoRequerido
+            Return _tipoRepuestoReq
         End Get
         Set(value As Int32)
-            repuestoRequerido = value
+            _tipoRepuestoReq = value
         End Set
     End Property
 

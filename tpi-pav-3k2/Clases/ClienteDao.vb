@@ -65,9 +65,13 @@ Public Class ClienteDao
         Dim sql As New SqlClient.SqlCommand
         Dim cant As Int32
         Dim comando As String
+        Dim abierta As Boolean
         Try
 
-            conex.Open()
+            If Not conex.State = ConnectionState.Open Then
+                conex.Open()
+                abierta = True
+            End If
             sql.Connection = conex
             sql.CommandType = CommandType.Text
             comando = "update cliente set telefono = '" & cliente.telefono & "', email = '"
@@ -86,7 +90,10 @@ Public Class ClienteDao
 
         Catch ex As SqlClient.SqlException
             Return Conexion.EventosSql.OTRO
-        Finally : conex.Close()
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
 
@@ -126,7 +133,7 @@ Public Class ClienteDao
     End Function
 
 
-    Public Shared Function buscarCliente(ByVal tipoDoc As Int32, ByVal nroDoc As String, Optional ByVal id As Int32 = 0) As ClienteDto
+    Public Shared Function buscarCliente(ByVal tipoDoc As Int32, ByVal nroDoc As String) As ClienteDto
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
@@ -137,7 +144,48 @@ Public Class ClienteDao
             conex.Open()
             sql.Connection = conex
             sql.CommandType = CommandType.Text
-            comando = "select * from cliente where idCliente = " & id & " or (nroDocumento = '" & nroDoc & "' and tipoDoc = " & tipoDoc & ")"
+            comando = "select * from cliente where nroDocumento = '" & nroDoc & "' and tipoDoc = " & tipoDoc
+            sql.CommandText = comando
+            tabla.Load(sql.ExecuteReader())
+
+            cliente = New ClienteDto
+            cliente.idCliente = Convert.ToInt32(tabla.Rows(0)(0))
+            cliente.nombre = tabla.Rows(0)(1).ToString()
+            cliente.apellido = tabla.Rows(0)(2).ToString()
+            cliente.telefono = tabla.Rows(0)(3).ToString()
+            cliente.fechaAlta = CDate(tabla.Rows(0)(4))
+            If Not IsDBNull(tabla.Rows(0)(5)) Then
+                cliente.fechaBaja = CDate(tabla.Rows(0)(5))
+            End If
+            cliente.email = tabla.Rows(0)(6).ToString()
+            cliente.nroDocumento = tabla.Rows(0)(7).ToString()
+            cliente.tipoDocumento = Convert.ToInt32(tabla.Rows(0)(8))
+            tabla.Clear()
+
+
+            Return cliente
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return Nothing
+        Finally : conex.Close()
+        End Try
+
+
+    End Function
+
+    Public Shared Function buscarCliente(ByVal id As Int32) As ClienteDto
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As New SqlClient.SqlCommand
+        Dim tabla As New DataTable
+        Dim comando As String
+        Dim cliente As ClienteDto
+
+        Try
+            conex.Open()
+            sql.Connection = conex
+            sql.CommandType = CommandType.Text
+            comando = "select * from cliente where idCliente = " & id
             sql.CommandText = comando
             tabla.Load(sql.ExecuteReader())
 

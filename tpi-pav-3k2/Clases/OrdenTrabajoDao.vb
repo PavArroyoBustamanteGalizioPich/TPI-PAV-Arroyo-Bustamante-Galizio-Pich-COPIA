@@ -75,10 +75,11 @@
             Dim compu As New ComputadoraDto
             Dim cliente As New ClienteDto
 
-            orden.computadora = compu
-            orden.cliente = cliente
-            orden.cliente.idCliente = Convert.ToInt32(tabla.Rows(0)("Nro Cliente"))
-            orden.computadora.idComputadora = Convert.ToInt32(tabla.Rows(0)("ID Computadora"))
+            
+            Dim idCliente As Int32 = Convert.ToInt32(tabla.Rows(0)("Nro Cliente"))
+            Dim idComputadora As Int32 = Convert.ToInt32(tabla.Rows(0)("ID Computadora"))
+            orden.cliente = ClienteDao.buscarCliente(idCliente)
+            orden.computadora = ComputadoraDao.buscarComputadora(idComputadora)
 
 
             comando = "select * from detalleOrdenTrabajo where idDetalleOrdenTrabajo = " & orden.idOrden
@@ -119,16 +120,35 @@
 
     End Function
 
+    Public Shared Function buscarOrdenes() As DataTable
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+        'Dim comando As String
+        Dim tabla As New DataTable
 
+        Try
+            conex.Open()
+            sql.Connection = conex
+
+
+        Catch ex As SqlClient.SqlException
+
+        End Try
+
+        Return tabla
+    End Function
+
+
+    ' este hay que terminarlo
     Public Shared Function actualizarOrden(ByRef orden As OrdenTrabajoDto) As Conexion.EventosSql
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim resultado As Int32
         Dim comando As String
         Dim transaccion As SqlClient.SqlTransaction = Nothing
-        
+
         Try
-            
+
             conex.Open()
             sql.Connection = conex
             transaccion = conex.BeginTransaction
@@ -155,7 +175,7 @@
                     Else : comando &= "null,"
                     End If
                     comando &= orden.idOrden & ")"
-                    
+
                     sql.CommandText = comando
                     sql.ExecuteNonQuery()
                 Next

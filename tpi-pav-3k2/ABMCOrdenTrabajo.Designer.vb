@@ -422,9 +422,9 @@ Partial Class ABMCOrdenTrabajo
         '
         'btnQuitarServicio
         '
-        Me.btnQuitarServicio.Location = New System.Drawing.Point(609, 44)
+        Me.btnQuitarServicio.Location = New System.Drawing.Point(600, 73)
         Me.btnQuitarServicio.Name = "btnQuitarServicio"
-        Me.btnQuitarServicio.Size = New System.Drawing.Size(66, 23)
+        Me.btnQuitarServicio.Size = New System.Drawing.Size(75, 23)
         Me.btnQuitarServicio.TabIndex = 10
         Me.btnQuitarServicio.Text = "Quitar"
         Me.btnQuitarServicio.UseVisualStyleBackColor = True
@@ -443,7 +443,7 @@ Partial Class ABMCOrdenTrabajo
         'txtTipoRepRequerido
         '
         Me.txtTipoRepRequerido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtTipoRepRequerido.Location = New System.Drawing.Point(130, 48)
+        Me.txtTipoRepRequerido.Location = New System.Drawing.Point(158, 48)
         Me.txtTipoRepRequerido.MaxLength = 20
         Me.txtTipoRepRequerido.Name = "txtTipoRepRequerido"
         Me.txtTipoRepRequerido.Size = New System.Drawing.Size(89, 20)
@@ -454,15 +454,15 @@ Partial Class ABMCOrdenTrabajo
         Me.lblRepuestoRequerido.AutoSize = True
         Me.lblRepuestoRequerido.Location = New System.Drawing.Point(7, 55)
         Me.lblRepuestoRequerido.Name = "lblRepuestoRequerido"
-        Me.lblRepuestoRequerido.Size = New System.Drawing.Size(117, 13)
+        Me.lblRepuestoRequerido.Size = New System.Drawing.Size(141, 13)
         Me.lblRepuestoRequerido.TabIndex = 7
-        Me.lblRepuestoRequerido.Text = "Componente requerido:"
+        Me.lblRepuestoRequerido.Text = "Tipo Componente requerido:"
         '
         'cbRepuestoOt
         '
         Me.cbRepuestoOt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbRepuestoOt.FormattingEnabled = True
-        Me.cbRepuestoOt.Location = New System.Drawing.Point(303, 48)
+        Me.cbRepuestoOt.Location = New System.Drawing.Point(331, 48)
         Me.cbRepuestoOt.Name = "cbRepuestoOt"
         Me.cbRepuestoOt.Size = New System.Drawing.Size(214, 21)
         Me.cbRepuestoOt.TabIndex = 6
@@ -470,7 +470,7 @@ Partial Class ABMCOrdenTrabajo
         'lblRepuestoOt
         '
         Me.lblRepuestoOt.AutoSize = True
-        Me.lblRepuestoOt.Location = New System.Drawing.Point(227, 55)
+        Me.lblRepuestoOt.Location = New System.Drawing.Point(255, 55)
         Me.lblRepuestoOt.Name = "lblRepuestoOt"
         Me.lblRepuestoOt.Size = New System.Drawing.Size(70, 13)
         Me.lblRepuestoOt.TabIndex = 5
@@ -478,7 +478,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'btnAniadirServicioOt
         '
-        Me.btnAniadirServicioOt.Location = New System.Drawing.Point(527, 46)
+        Me.btnAniadirServicioOt.Location = New System.Drawing.Point(600, 38)
         Me.btnAniadirServicioOt.Name = "btnAniadirServicioOt"
         Me.btnAniadirServicioOt.Size = New System.Drawing.Size(75, 23)
         Me.btnAniadirServicioOt.TabIndex = 4

@@ -3,10 +3,10 @@
     Private cliente As ClienteDto
     Private computadora As ComputadoraDto
     Private servicioSeleccionado As ServicioDto
-    'Private repuestoSeleccionado As RepuestoDto
-    Private serviciosAgregados As Collections.ArrayList
+
+    'Private serviciosAgregados As List(Of ServicioDto)
     Private ordenActual As OrdenTrabajoDto
-    'Private repuestosAgregados As Collections.ArrayList
+
 
     Private compusCargadas As Boolean
     Private combosCargados As Boolean
@@ -17,7 +17,7 @@
 
         ' Llamada necesaria para el diseñador.
         InitializeComponent()
-        serviciosAgregados = New ArrayList
+        'serviciosAgregados = New List(Of ServicioDto)
 
 
 
@@ -159,10 +159,7 @@
 
         Else
 
-
-
         End If
-
 
 
 
@@ -328,35 +325,21 @@
         formClientes.ShowDialog()
     End Sub
 
-    Private Sub txtNombreCLienteOt_TextChanged(sender As Object, e As EventArgs) Handles txtNombreCLiente.TextChanged
-
-    End Sub
-
-    Private Sub cbTipoDocOT_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTipoDocOT.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub txtNroDocCliOT_TextChanged(sender As Object, e As EventArgs) Handles txtNroDocCliOT.TextChanged
-
-    End Sub
-
+   
     Private Sub cbNroPc_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbNroPc.SelectedValueChanged
 
-        If IsNumeric(cbNroPc.SelectedValue) Then
-
+        If compusCargadas Then
             If cbNroPc.SelectedValue > 0 Then
-                If compusCargadas Then
-                    computadora = ComputadoraDao.buscarComputadora(Convert.ToInt32(cbNroPc.SelectedValue))
-                    'computadoraActual = ComputadoraDao.buscarComputadora(1)
-                    txtDescripcionPcOt.Text = computadora.toString()
-                    txtTipoPcOt.Text = computadora.nombreTipoPc
+                computadora = ComputadoraDao.buscarComputadora(Convert.ToInt32(cbNroPc.SelectedValue))
 
-                End If
+                txtDescripcionPcOt.Text = computadora.toString()
+                txtTipoPcOt.Text = computadora.nombreTipoPc
 
             End If
 
-
         End If
+
+
 
 
     End Sub
@@ -373,6 +356,13 @@
             msjError &= "- La descripción de la falla no puede quedar vacía" & vbCrLf
         End If
 
+        If IsNothing(computadora) Then
+            msjError &= "Por favor seleccione una computadora de la lista!" & vbCrLf
+        End If
+
+        If IsNothing(cbEstadoOt.SelectedValue) Then
+            cbEstadoOt.SelectedValue = 1
+        End If
 
 
         If (txtFechaRecepcionOt.Text.Equals("  /  /")) Then
@@ -465,7 +455,7 @@
             servicioSeleccionado.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
 
             If IsNothing(ordenActual.serviciosAgregados) Then
-                ordenActual.serviciosAgregados = New ArrayList
+                ordenActual.serviciosAgregados = New List(Of ServicioDto)
             End If
 
             If ordenActual.serviciosAgregados.Count = 0 Then

@@ -10,7 +10,7 @@
     Private _cobro As Int32
     Private _falla As String
     Private _monto As Decimal
-    Private _serviciosAgregados As Collections.ArrayList
+    Private _serviciosAgregados As List(Of ServicioDto)
     Private _detalles As List(Of DetalleOrdenTrabajoDto)
 
 
@@ -54,11 +54,11 @@
         End Set
     End Property
 
-    Property serviciosAgregados As Collections.ArrayList
+    Property serviciosAgregados As List(Of ServicioDto)
         Get
             Return _serviciosAgregados
         End Get
-        Set(value As Collections.ArrayList)
+        Set(value As List(Of ServicioDto))
             _serviciosAgregados = value
         End Set
     End Property
