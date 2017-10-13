@@ -1,5 +1,14 @@
 ﻿Public Class OrdenTrabajoDto
 
+    Public Enum estadosOrden
+        RECEPTADA
+        EN_REPARACION
+        REPARADA
+        CERRADA
+        IRREPARABLE
+
+    End Enum
+
 
     Private _idOrden As Int32
     Private _cliente As ClienteDto
@@ -7,7 +16,7 @@
     Private _fechaReparacion As Date
     Private _estado As Int32
     Private _computadora As ComputadoraDto
-    Private _cobro As Int32
+    Private _cobro As CobroDto
     Private _falla As String
     Private _monto As Decimal
     Private _serviciosAgregados As List(Of ServicioDto)
@@ -98,11 +107,11 @@
             _cliente = value
         End Set
     End Property
-    Property cobro As Int32
+    Property cobro As CobroDto
         Get
             Return _cobro
         End Get
-        Set(value As Int32)
+        Set(value As CobroDto)
             _cobro = value
         End Set
     End Property
@@ -116,28 +125,46 @@
         End Set
     End Property
 
+    Public Sub eliminarDetalle(ByRef servicio As ServicioDto)
 
-    Public Sub armarDetalles()
-
-        _detalles = New List(Of DetalleOrdenTrabajoDto)
-
-        For Each servicio As ServicioDto In _serviciosAgregados
+        If Not IsNothing(_detalles) Then
             Dim detalle As New DetalleOrdenTrabajoDto
-
-            detalle.id = Utilidades.sugerirId("detalleOrdenTrabajo", "idDetalleOrdenTrabajo")
             detalle.servicio = servicio.idServ
-            detalle.montoUnitServicio = servicio.costoServicio
 
-            If servicio.repuestoReq > 0 Then
-                detalle.repuesto = servicio.repuesto.id
-                detalle.montoUnitrepuesto = servicio.repuesto.calcularMonto()
-            End If
+            _detalles.Remove(detalle)
+        End If
 
-            detalle.cantidad = servicio.cantidad
+    End Sub
 
+    Public Sub armarDetalles(ByRef servicio As ServicioDto)
+
+
+        If IsNothing(_detalles) Then
+            _detalles = New List(Of DetalleOrdenTrabajoDto)
+        End If
+
+
+        Dim detalle As New DetalleOrdenTrabajoDto
+
+        'detalle.id = Utilidades.sugerirId("detalleOrdenTrabajo", "idDetalleOrdenTrabajo")
+        detalle.servicio = servicio.idServ
+        detalle.montoUnitServicio = servicio.costoServicio
+
+        If servicio.repuestoReq > 0 Then
+            detalle.repuesto = servicio.repuesto.id
+            detalle.montoUnitrepuesto = servicio.repuesto.calcularMonto()
+        End If
+
+        detalle.cantidad = servicio.cantidad
+
+        If Not _detalles.Contains(detalle) Then
             _detalles.Add(detalle)
 
-        Next
+        Else
+            Dim idx As Int32 = _detalles.IndexOf(detalle)
+            _detalles(idx).cantidad += detalle.cantidad
+
+        End If
 
     End Sub
 
@@ -146,7 +173,7 @@
         _monto = 0
         For Each detalle As DetalleOrdenTrabajoDto In _detalles
 
-            _monto = detalle.montoUnitServicio * detalle.cantidad
+            _monto += detalle.montoUnitServicio * detalle.cantidad
 
             If detalle.repuesto > 0 Then
                 _monto += detalle.montoUnitrepuesto * detalle.cantidad

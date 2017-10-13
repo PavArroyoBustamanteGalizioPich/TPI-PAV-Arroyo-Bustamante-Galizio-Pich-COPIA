@@ -48,7 +48,6 @@ Partial Class ABMCOrdenTrabajo
         Me.btnAniadirCobroOt = New System.Windows.Forms.Button()
         Me.txtNroCobroOt = New System.Windows.Forms.TextBox()
         Me.lblNroCobroOt = New System.Windows.Forms.Label()
-        Me.btnCalcularMontoOt = New System.Windows.Forms.Button()
         Me.txtMontoOt = New System.Windows.Forms.TextBox()
         Me.lblMontoOt = New System.Windows.Forms.Label()
         Me.txtFechaReparacion = New System.Windows.Forms.MaskedTextBox()
@@ -319,7 +318,6 @@ Partial Class ABMCOrdenTrabajo
         Me.panelCierre.Controls.Add(Me.btnAniadirCobroOt)
         Me.panelCierre.Controls.Add(Me.txtNroCobroOt)
         Me.panelCierre.Controls.Add(Me.lblNroCobroOt)
-        Me.panelCierre.Controls.Add(Me.btnCalcularMontoOt)
         Me.panelCierre.Controls.Add(Me.txtMontoOt)
         Me.panelCierre.Controls.Add(Me.lblMontoOt)
         Me.panelCierre.Controls.Add(Me.txtFechaReparacion)
@@ -356,18 +354,9 @@ Partial Class ABMCOrdenTrabajo
         Me.lblNroCobroOt.TabIndex = 5
         Me.lblNroCobroOt.Text = "Nro de Cobro:"
         '
-        'btnCalcularMontoOt
-        '
-        Me.btnCalcularMontoOt.Location = New System.Drawing.Point(313, 1)
-        Me.btnCalcularMontoOt.Name = "btnCalcularMontoOt"
-        Me.btnCalcularMontoOt.Size = New System.Drawing.Size(75, 23)
-        Me.btnCalcularMontoOt.TabIndex = 4
-        Me.btnCalcularMontoOt.Text = "Calcular"
-        Me.btnCalcularMontoOt.UseVisualStyleBackColor = True
-        '
         'txtMontoOt
         '
-        Me.txtMontoOt.Location = New System.Drawing.Point(235, 3)
+        Me.txtMontoOt.Location = New System.Drawing.Point(254, 3)
         Me.txtMontoOt.MaxLength = 10
         Me.txtMontoOt.Name = "txtMontoOt"
         Me.txtMontoOt.Size = New System.Drawing.Size(70, 20)
@@ -379,9 +368,9 @@ Partial Class ABMCOrdenTrabajo
         Me.lblMontoOt.AutoSize = True
         Me.lblMontoOt.Location = New System.Drawing.Point(192, 6)
         Me.lblMontoOt.Name = "lblMontoOt"
-        Me.lblMontoOt.Size = New System.Drawing.Size(40, 13)
+        Me.lblMontoOt.Size = New System.Drawing.Size(55, 13)
         Me.lblMontoOt.TabIndex = 2
-        Me.lblMontoOt.Text = "Monto:"
+        Me.lblMontoOt.Text = "Monto: ($)"
         '
         'txtFechaReparacion
         '
@@ -850,7 +839,7 @@ Partial Class ABMCOrdenTrabajo
         Me.btnNvaOt.Name = "btnNvaOt"
         Me.btnNvaOt.Size = New System.Drawing.Size(75, 23)
         Me.btnNvaOt.TabIndex = 1
-        Me.btnNvaOt.Text = "Nueva Orden de Trabajo"
+        Me.btnNvaOt.Text = "Nueva"
         Me.btnNvaOt.UseVisualStyleBackColor = True
         '
         'btnActualizarOt
@@ -958,7 +947,6 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents btnAniadirCobroOt As System.Windows.Forms.Button
     Friend WithEvents txtNroCobroOt As System.Windows.Forms.TextBox
     Friend WithEvents lblNroCobroOt As System.Windows.Forms.Label
-    Friend WithEvents btnCalcularMontoOt As System.Windows.Forms.Button
     Friend WithEvents txtMontoOt As System.Windows.Forms.TextBox
     Friend WithEvents lblMontoOt As System.Windows.Forms.Label
     Friend WithEvents txtFechaReparacion As System.Windows.Forms.MaskedTextBox

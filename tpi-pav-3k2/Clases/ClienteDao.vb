@@ -10,7 +10,12 @@ Public Class ClienteDao
         Dim comando As String
         Dim transaccion As SqlClient.SqlTransaction
         Dim cantFilas As Int32
-        conex.Open()
+        Dim abierta As Boolean
+        If Not conex.State = ConnectionState.Open Then
+            conex.Open()
+            abierta = True
+        End If
+
         transaccion = conex.BeginTransaction()
         Try
 
@@ -27,8 +32,8 @@ Public Class ClienteDao
 
             cantFilas = sql.ExecuteNonQuery()
             If cantFilas = 1 Then
-                cantFilas = ComputadoraDao.insertarComputadora(computadora)
-                If cantFilas = 1 Then
+
+                If ComputadoraDao.insertarComputadora(computadora) = Conexion.EventosSql.INSERCION_CORRECTA Then
                     transaccion.Commit() ' se hace el comit solamente si se inserta bien la compu
                     Return Conexion.EventosSql.INSERCION_CORRECTA
                 Else : Throw New Exception("COMPUTADORA")
@@ -51,7 +56,10 @@ Public Class ClienteDao
             If ex.Message.Equals("CLIENTE") Then
                 Return Conexion.EventosSql.ERROR_CLIENTE
             End If
-        Finally : conex.Close()
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
         Return 0
@@ -139,9 +147,13 @@ Public Class ClienteDao
         Dim tabla As New DataTable
         Dim comando As String
         Dim cliente As ClienteDto
-
+        Dim abierta As Boolean
         Try
-            conex.Open()
+
+            If Not conex.State = ConnectionState.Open Then
+                conex.Open()
+                abierta = True
+            End If
             sql.Connection = conex
             sql.CommandType = CommandType.Text
             comando = "select * from cliente where nroDocumento = '" & nroDoc & "' and tipoDoc = " & tipoDoc
@@ -166,9 +178,12 @@ Public Class ClienteDao
             Return cliente
 
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            'MessageBox.Show(ex.Message)
             Return Nothing
-        Finally : conex.Close()
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
 
@@ -180,9 +195,14 @@ Public Class ClienteDao
         Dim tabla As New DataTable
         Dim comando As String
         Dim cliente As ClienteDto
-
+        Dim abierta As Boolean
         Try
-            conex.Open()
+            If Not conex.State = ConnectionState.Open Then
+                conex.Open()
+                abierta = True
+            End If
+
+
             sql.Connection = conex
             sql.CommandType = CommandType.Text
             comando = "select * from cliente where idCliente = " & id
@@ -209,7 +229,11 @@ Public Class ClienteDao
         Catch ex As Exception
             MessageBox.Show(ex.Message)
             Return Nothing
-        Finally : conex.Close()
+        Finally
+
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
 

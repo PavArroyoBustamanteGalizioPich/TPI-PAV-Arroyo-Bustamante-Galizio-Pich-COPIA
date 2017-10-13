@@ -8,10 +8,11 @@
     Private _nombreTipo As String
     Private _proveedor As Int32
     Private _garantia As Int32
-    Private _precioCompra As Decimal
+    Private _precioCompra As Single
     Private _porcentajeGanancia As Int32
     Private _fechaCompra As Date
     Private _cantidad As Int32
+    Private _monto As Single
 
 
     Property id As Int32
@@ -113,6 +114,16 @@
         End Set
     End Property
 
+
+    Property monto As Single
+        Get
+            Return _monto
+        End Get
+        Set(value As Single)
+            _monto = value
+        End Set
+    End Property
+
     Property fechaCompra As Date
         Get
             Return _fechaCompra
@@ -142,7 +153,9 @@
     End Function
 
     Public Function calcularMonto() As Decimal
-        Return precioCompra + (precioCompra * (porcentajeGanancia / 100))
+
+        _monto = precioCompra + (precioCompra * (porcentajeGanancia / 100))
+        Return monto
     End Function
 
 End Class

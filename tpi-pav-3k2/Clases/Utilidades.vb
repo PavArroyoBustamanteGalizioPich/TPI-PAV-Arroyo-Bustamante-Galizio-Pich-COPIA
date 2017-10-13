@@ -2,11 +2,15 @@
 
     Public Shared Function sugerirId(ByVal nombreTabla As String, ByVal nombrePk As String) As Int32
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
-        Dim sql As New SqlClient.SqlCommand
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
         Dim tabla As New DataTable
         Dim idSugerido As Int32
+        Dim abierta As Boolean
         Try
-            conex.Open()
+            If Not conex.State = ConnectionState.Open Then
+                conex.Open()
+                abierta = True
+            End If
             sql.Connection = conex
             sql.CommandType = CommandType.Text
             sql.CommandText = "select max(" & nombrePk & ") from " & nombreTabla
@@ -16,7 +20,10 @@
             idSugerido = Convert.ToInt32(tabla.Rows(0)(0)) + 1
         Catch ex As Exception
             idSugerido = 1
-        Finally : conex.Close()
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
 
@@ -68,5 +75,22 @@
         Finally : conex.Close()
         End Try
     End Sub
+
+    Public Shared Function armarNumero(ByRef numero As String) As Single
+
+        If IsNumeric(numero) Then
+            Dim aux As String = numero.Replace(",", ".")
+            Return Convert.ToSingle(aux)
+        Else : Return -1
+        End If
+        'For Each car As Char In numero
+
+        'If Not IsNumeric(car) Then
+        'numero.re()
+        'End If
+
+        'Next
+
+    End Function
 
 End Class

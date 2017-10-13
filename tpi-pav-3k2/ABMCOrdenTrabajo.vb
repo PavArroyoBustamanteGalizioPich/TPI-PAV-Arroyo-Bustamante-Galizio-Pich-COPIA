@@ -3,8 +3,9 @@
     Private cliente As ClienteDto
     Private computadora As ComputadoraDto
     Private servicioSeleccionado As ServicioDto
+    Private cobro As CobroDto
 
-    'Private serviciosAgregados As List(Of ServicioDto)
+    Private serviciosBrindados As List(Of ServicioDto)
     Private ordenActual As OrdenTrabajoDto
 
 
@@ -18,8 +19,6 @@
         ' Llamada necesaria para el diseñador.
         InitializeComponent()
         'serviciosAgregados = New List(Of ServicioDto)
-
-
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
@@ -76,6 +75,8 @@
         txtNroDocCliOT.Focus()
         txtNroOT.Text = Utilidades.sugerirId("ordenTrabajo", "idOrdenTrabajo")
         txtNroOT.Enabled = False
+        cbNroPc.Enabled = True
+        txtDescrFalla.Enabled = True
 
         'gbServicios.Enabled = True ' este se desabilita
         'gbAniadirServicios.Enabled = True
@@ -148,11 +149,9 @@
                 txtNombreCLiente.Text = cliente.nombre
                 txtApellidoCliente.Text = cliente.apellido
                 Utilidades.cargarCombo("computadora", "idComputadora", "client", cliente.idCliente, cbNroPc, "idComputadora")
-                cbNroPc.SelectedValue = -1
-                compusCargadas = True
-                If Not IsNothing(computadora) Then
 
-                End If
+                compusCargadas = True
+                cbNroPc.SelectedValue = -1
 
             End If
 
@@ -175,6 +174,13 @@
 
             If Not IsNothing(ordenActual) Then
                 txtNroCliente.Text = ordenActual.cliente.idCliente
+                txtNombreCLiente.Text = ordenActual.cliente.nombre
+                txtApellidoCliente.Text = ordenActual.cliente.apellido
+                Utilidades.cargarCombo("computadora", "idComputadora", "client", ordenActual.cliente.idCliente, cbNroPc, "idComputadora")
+                cbNroPc.SelectedValue = ordenActual.computadora.idComputadora
+                txtTipoPcOt.Text = ordenActual.computadora.nombreTipoPc
+                txtDescripcionPcOt.Text = ordenActual.computadora.toString()
+                computadora = ordenActual.computadora
                 ' falta toda la parte del cliente y las computadoras
                 txtFechaRecepcionOt.Text = ordenActual.fechaRecepcion.ToString("dd/MM/yyyy")
                 If Not ordenActual.fechaReparacion.Equals(Nothing) Then
@@ -187,6 +193,10 @@
                     txtMontoOt.Text = ordenActual.monto
                 End If
                 btnActualizarOt.Enabled = True
+                'panelDatosOt.Enabled = True
+                'cbEstadoOt.Enabled = True
+                'txtFechaRecepcionOt.Enabled = False
+                'txtDescrFalla.Enabled = False
 
             End If
 
@@ -198,7 +208,11 @@
             txtDescrFalla.Enabled = False
             btnCancelarOt.Enabled = True
             btnNvaOt.Enabled = False
-            btnGuardarOt.Enabled = True
+
+            gbAniadirServicios.Enabled = False
+            panelCierre.Enabled = False
+            btnGuardarOt.Enabled = False
+            btnActualizarOt.Enabled = True
 
 
         Else
@@ -209,18 +223,106 @@
 
         ' SI LA OT SE ENCUENTRA SE ACTIVA EL BOTON ACTUALIZAR y los paneles aniadirServicio y aniadirReparacion
     End Sub
+
+
+
+    Public Sub cargarDetalles()
+
+
+        If Not IsNothing(ordenActual.detalles) Then
+
+            For Each detalle As DetalleOrdenTrabajoDto In ordenActual.detalles
+
+                Dim servTemp As ServicioDto = ServicioDao.buscarServicio(detalle.servicio)
+
+
+                Dim item As New ListViewItem
+                item.Text = servTemp.idServ
+                item.SubItems.Add(servTemp.nomServicio)
+                item.SubItems.Add(servTemp.cantidad)
+                item.SubItems.Add(servTemp.cantidad * detalle.montoUnitServicio)
+                lvServicios.Items.Add(item)
+
+                If detalle.repuesto > 0 Then
+                    servTemp.repuesto = RepuestoDao.buscarRepuesto(detalle.repuesto)
+                    servTemp.repuesto.monto = detalle.montoUnitrepuesto
+                    item = New ListViewItem
+                    item.Text = servTemp.repuesto.id
+                    item.SubItems.Add(servTemp.repuesto.descripcion)
+                    item.SubItems.Add(servTemp.cantidad)
+                    item.SubItems.Add(servTemp.cantidad * servTemp.repuesto.monto)
+                    lvServicios.Items.Add(item)
+
+                End If
+
+                If IsNothing(serviciosBrindados) Then
+                    serviciosBrindados = New List(Of ServicioDto)
+                End If
+                serviciosBrindados.Add(servTemp)
+
+            Next
+
+
+
+        End If
+
+
+    End Sub
+
     'inserta los detalles pero estan incompletas las busquedas y las validaciones
     Private Sub btnActualizarOt_Click(sender As Object, e As EventArgs) Handles btnActualizarOt.Click
 
         If validarDatos() Then
-            ordenActual.estado = Convert.ToInt32(cbEstadoOt.SelectedValue)
-            'ordenActual.serviciosAgregados = serviciosAgregados
 
-            Dim result As Conexion.EventosSql = OrdenTrabajoDao.actualizarOrden(ordenActual)
-            If result = Conexion.EventosSql.INSERCION_CORRECTA Then
-                MessageBox.Show("Correcto")
-            Else : MessageBox.Show("Error")
+            If combosCargados Then
+
+                Dim indice As Int32 = cbEstadoOt.SelectedValue - 1
+                Select Case indice
+                    Case OrdenTrabajoDto.estadosOrden.RECEPTADA
+                        Exit Select
+                    Case OrdenTrabajoDto.estadosOrden.EN_REPARACION
+                        ordenActual.estado = Convert.ToInt32(cbEstadoOt.SelectedValue)
+                        'ordenActual.serviciosAgregados = serviciosAgregados
+
+                        Dim result As Conexion.EventosSql = OrdenTrabajoDao.actualizarOrden(ordenActual)
+                        If result = Conexion.EventosSql.INSERCION_CORRECTA Then
+                            MessageBox.Show("Correcto")
+                        Else : MessageBox.Show("Error")
+                        End If
+
+                        Exit Select
+                    Case OrdenTrabajoDto.estadosOrden.REPARADA
+
+                        ordenActual.estado = cbEstadoOt.SelectedValue
+                        ordenActual.fechaReparacion = CDate(txtFechaReparacion.Text)
+                        Dim result As Conexion.EventosSql = OrdenTrabajoDao.actualizarOrden(ordenActual, OrdenTrabajoDto.estadosOrden.REPARADA)
+                        If result = Conexion.EventosSql.INSERCION_CORRECTA Then
+                            MessageBox.Show("Actualización Correcta!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Else
+                            MessageBox.Show("Actualización Incorrecta! :(", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If
+
+                        Exit Select
+                    Case OrdenTrabajoDto.estadosOrden.CERRADA
+                        If Not IsNothing(cobro) Then
+                            ordenActual.estado = Convert.ToInt32(cbEstadoOt.SelectedValue)
+                            Dim result As Conexion.EventosSql = OrdenTrabajoDao.actualizarOrden(ordenActual, OrdenTrabajoDto.estadosOrden.CERRADA, cobro)
+                            If result = Conexion.EventosSql.INSERCION_CORRECTA Then
+                                MessageBox.Show("Actualización Correcta!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Else
+                                MessageBox.Show("Actualización Incorrecta! :(", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            End If
+                        End If
+
+                        Exit Select
+                    Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
+
+                        Exit Select
+                End Select
             End If
+
+
+            
 
         End If
 
@@ -256,6 +358,7 @@
         btnActualizarOt.Enabled = False
         btnNvaOt.Enabled = True
         panelBuscarOT.Enabled = True
+        txtNroOT.Enabled = True
         txtNroOT.Focus()
         ordenActual = Nothing
         cliente = Nothing
@@ -314,12 +417,6 @@
         formProcesadores.ShowDialog()
     End Sub
 
-    Private Sub btnNuevaPcOt_Click(sender As Object, e As EventArgs) Handles btnNuevaPcOt.Click
-        'Dim formNvaCompu As New GestionComputadoras
-        'formNvaCompu.ShowDialog()
-    End Sub
-
-
     Private Sub GestionarClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GestionarClientesToolStripMenuItem.Click
         Dim formClientes As New GestionClientes
         formClientes.ShowDialog()
@@ -339,65 +436,9 @@
 
         End If
 
-
-
-
     End Sub
 
 
-    Private Function validarDatos() As Boolean
-        Dim msjError As String = ""
-
-        If (txtNroCliente.Text.Equals("")) Then
-            msjError &= "- Debe especificar un cliente" & vbCrLf
-        End If
-
-        If (txtDescrFalla.Text.Equals("")) Then
-            msjError &= "- La descripción de la falla no puede quedar vacía" & vbCrLf
-        End If
-
-        If IsNothing(computadora) Then
-            msjError &= "Por favor seleccione una computadora de la lista!" & vbCrLf
-        End If
-
-        If IsNothing(cbEstadoOt.SelectedValue) Then
-            cbEstadoOt.SelectedValue = 1
-        End If
-
-
-        If (txtFechaRecepcionOt.Text.Equals("  /  /")) Then
-            txtFechaRecepcionOt.Text = Format(Date.Now, "dd/MM/yyyy")
-        ElseIf (Not txtFechaRecepcionOt.Text = Format(CDate(txtFechaRecepcionOt.Text), "dd/MM/yyyy")) Then
-            msjError &= "- Ingrese una fecha valida (dd/mm/aaaa)"
-
-        End If
-
-
-        If (Not msjError.Equals("")) Then
-            MessageBox.Show(msjError, "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return False
-        End If
-        Return True
-
-    End Function
-
-    Private Sub inicializarGrillas()
-
-        Dim anchoTotalServicios As Int32 = lvServicios.Size.Width
-        Dim anchoTotalRepuestos As Int32 = lvRepuestos.Size.Width
-
-        lvServicios.Columns(0).Width = Math.Round(0.1 * anchoTotalServicios)
-        lvServicios.Columns(1).Width = Math.Round(0.53 * anchoTotalServicios)
-        lvServicios.Columns(2).Width = Math.Round(0.15 * anchoTotalServicios)
-        lvServicios.Columns(3).Width = Math.Round(0.15 * anchoTotalServicios)
-
-        lvRepuestos.Columns(0).Width = Math.Round(0.1 * anchoTotalRepuestos)
-        lvRepuestos.Columns(1).Width = Math.Round(0.53 * anchoTotalRepuestos)
-        lvRepuestos.Columns(2).Width = Math.Round(0.15 * anchoTotalRepuestos)
-        lvRepuestos.Columns(3).Width = Math.Round(0.15 * anchoTotalRepuestos)
-
-
-    End Sub
  
     Private Sub cbServiciosOt_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbServiciosOt.SelectedIndexChanged
 
@@ -439,7 +480,10 @@
     End Sub
 
     Private Sub btnAniadirServicioOt_Click(sender As Object, e As EventArgs) Handles btnAniadirServicioOt.Click
-        Dim agregado As Boolean
+
+        If IsNothing(serviciosBrindados) Then
+            serviciosBrindados = New List(Of ServicioDto)
+        End If
 
         If Not IsNothing(servicioSeleccionado) Then
 
@@ -453,53 +497,43 @@
 
 
             servicioSeleccionado.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
+        End If
+      
 
-            If IsNothing(ordenActual.serviciosAgregados) Then
-                ordenActual.serviciosAgregados = New List(Of ServicioDto)
-            End If
+        If servicioSeleccionado.repuestoReq > 0 Then
 
-            If ordenActual.serviciosAgregados.Count = 0 Then
-                ordenActual.serviciosAgregados.Add(servicioSeleccionado)
-                agregado = True
-            Else
-                If Not ordenActual.serviciosAgregados.Contains(servicioSeleccionado) Then
-                    ordenActual.serviciosAgregados.Add(servicioSeleccionado)
-                    agregado = True
-                End If
-            End If
+            servicioSeleccionado.repuesto.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
+
+            Dim itemRepuesto As New ListViewItem
+            itemRepuesto.Text = servicioSeleccionado.repuesto.id
+            itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.descripcion)
+            itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.cantidad)
+            itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.calcularMonto() * servicioSeleccionado.cantidad)
+            lvRepuestos.Items.Add(itemRepuesto)
+
+        End If
+        Dim item As New ListViewItem
+        item.Text = servicioSeleccionado.idServ
+        item.SubItems.Add(servicioSeleccionado.nomServicio)
+        item.SubItems.Add(servicioSeleccionado.cantidad)
+        item.SubItems.Add(servicioSeleccionado.cantidad * servicioSeleccionado.costoServicio)
+        lvServicios.Items.Add(item)
+        ordenActual.armarDetalles(servicioSeleccionado)
+
+        ' faltaria hacer que cuando se agregue un servicio nuevo, si éste ya está cargado en los detalles
+        ' que se actualice el monto que está almacenado en el detalle en caso de que sea distinto
+
+
+        If Not serviciosBrindados.Contains(servicioSeleccionado) Then
+            serviciosBrindados.Add(servicioSeleccionado)
+        Else
+            Dim idx As Int32 = serviciosBrindados.IndexOf(servicioSeleccionado)
+            serviciosBrindados(idx).cantidad += servicioSeleccionado.cantidad
         End If
 
-        If agregado Then
-            If servicioSeleccionado.repuestoReq > 0 Then
+        txtMontoOt.Text = ordenActual.calcularTotal()
 
-                servicioSeleccionado.repuesto.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
-                'dgvRepuestos.Rows.Add()
 
-                'Dim indx As Int32 = dgvRepuestos.Rows.Count - 1
-                'dgvRepuestos.Rows(indx).Cells(0).Value = servicioSeleccionado.repuesto.descripcion
-                'dgvRepuestos.Rows(indx).Cells(1).Value = servicioSeleccionado.repuesto.cantidad
-                'dgvRepuestos.Rows(indx).Cells(2).Value = servicioSeleccionado.repuesto.cantidad * servicioSeleccionado.repuesto.precioVenta()
-                Dim itemRepuesto As New ListViewItem
-                itemRepuesto.Text = servicioSeleccionado.repuesto.id
-                itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.descripcion)
-                itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.cantidad)
-                itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.calcularMonto() * servicioSeleccionado.cantidad)
-                lvRepuestos.Items.Add(itemRepuesto)
-
-            End If
-            'Dim idx As Int32 = dgvServicios.Rows.Count - 1
-            ' dgvServicios.Rows(idx).Cells(0).Value = servicioSeleccionado.nomServicio
-            'dgvServicios.Rows(idx).Cells(1).Value = servicioSeleccionado.cantidad
-            'dgvServicios.Rows(idx).Cells(2).Value = servicioSeleccionado.costoServicio * servicioSeleccionado.cantidad
-            Dim item As New ListViewItem
-            item.Text = servicioSeleccionado.idServ
-            item.SubItems.Add(servicioSeleccionado.nomServicio)
-            item.SubItems.Add(servicioSeleccionado.cantidad)
-            item.SubItems.Add(servicioSeleccionado.cantidad * servicioSeleccionado.costoServicio)
-            lvServicios.Items.Add(item)
-            ordenActual.armarDetalles()
-            txtMontoOt.Text = ordenActual.calcularTotal()
-        End If
         btnQuitarServicio.Enabled = True
 
     End Sub
@@ -509,21 +543,141 @@
         'lvServicios.CheckedItems.Count > 0
         If lvServicios.SelectedItems.Count = 1 Then
             Dim servTemp As New ServicioDto
-            Dim idx As Int32
+
             servTemp.idServ = Convert.ToInt32(lvServicios.SelectedItems(0).Text.Trim())
-            idx = ordenActual.serviciosAgregados.IndexOf(servTemp)
-            servTemp = CType(ordenActual.serviciosAgregados.Item(idx), ServicioDto)
+            servTemp = ServicioDao.buscarServicio(servTemp.idServ)
+            ordenActual.eliminarDetalle(servTemp)
+
             If servTemp.repuestoReq > 0 Then
                 Dim repItemTemp As ListViewItem = lvRepuestos.FindItemWithText(servTemp.repuesto.id)
                 repItemTemp.Remove()
             End If
-            ordenActual.serviciosAgregados.RemoveAt(idx)
+
+           
             lvServicios.SelectedItems(0).Remove()
             If lvServicios.Items.Count = 0 Then
                 btnQuitarServicio.Enabled = False
             End If
             txtMontoOt.Text = ordenActual.calcularTotal()
+
+
         End If
+
+
+    End Sub
+
+  
+    Private Sub cbEstadoOt_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEstadoOt.SelectedIndexChanged
+
+        If combosCargados Then
+
+            Dim indice As Int32 = cbEstadoOt.SelectedValue - 1
+            Select Case indice
+                Case OrdenTrabajoDto.estadosOrden.RECEPTADA
+                    Exit Select
+                Case OrdenTrabajoDto.estadosOrden.EN_REPARACION
+                    gbAniadirServicios.Enabled = True
+                    Exit Select
+                Case OrdenTrabajoDto.estadosOrden.REPARADA
+                    panelCierre.Enabled = True
+                    gbAniadirServicios.Enabled = False
+                    If Not IsNothing(ordenActual) Then
+                        If Not IsNothing(ordenActual.fechaReparacion) Then
+                            txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
+                        Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
+                        End If
+
+                    Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
+
+                    End If
+                    Exit Select
+                Case OrdenTrabajoDto.estadosOrden.CERRADA
+                    panelCierre.Enabled = False
+                    gbAniadirServicios.Enabled = False
+                    Exit Select
+                Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
+                    panelCierre.Enabled = False
+                    gbAniadirServicios.Enabled = False
+                    Exit Select
+            End Select
+        End If
+
+
+        'panelDatosNvaOt.Enabled = True
+        'panelDatosClienteOt.Enabled = False
+        'panelDatosPcOt.Enabled = False
+        'txtFechaRecepcionOt.Enabled = False
+        'txtDescrFalla.Enabled = False
+        'btnCancelarOt.Enabled = True
+        'btnNvaOt.Enabled = False
+        'btnGuardarOt.Enabled = True
+
+    End Sub
+
+    Private Sub btnAniadirCobroOt_Click(sender As Object, e As EventArgs) Handles btnAniadirCobroOt.Click
+
+        cobro = New CobroDto
+        cobro.id = Utilidades.sugerirId("cobro", "idCobro")
+        txtNroCobroOt.Text = cobro.id
+        cobro.monto = Convert.ToSingle(txtMontoOt.Text)
+        cobro.fechaCobro = Date.Today
+        cbEstadoOt.SelectedValue = OrdenTrabajoDto.estadosOrden.CERRADA + 1
+
+
+    End Sub
+
+   
+
+    Private Function validarDatos() As Boolean
+        Dim msjError As String = ""
+
+        If (txtNroCliente.Text.Equals("")) Then
+            msjError &= "- Debe especificar un cliente" & vbCrLf
+        End If
+
+        If (txtDescrFalla.Text.Equals("")) Then
+            msjError &= "- La descripción de la falla no puede quedar vacía" & vbCrLf
+        End If
+
+        If IsNothing(cbNroPc.SelectedValue) Then
+            msjError &= "-Por favor seleccione una computadora de la lista!" & vbCrLf
+        End If
+
+        If IsNothing(cbEstadoOt.SelectedValue) Then
+            cbEstadoOt.SelectedValue = 1
+        End If
+
+
+        If (txtFechaRecepcionOt.Text.Equals("  /  /")) Then
+            txtFechaRecepcionOt.Text = Format(Date.Now, "dd/MM/yyyy")
+        ElseIf (Not txtFechaRecepcionOt.Text = Format(CDate(txtFechaRecepcionOt.Text), "dd/MM/yyyy")) Then
+            msjError &= "- Ingrese una fecha valida (dd/mm/aaaa)"
+
+        End If
+
+
+        If (Not msjError.Equals("")) Then
+            MessageBox.Show(msjError, "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+        Return True
+
+    End Function
+
+    Private Sub inicializarGrillas()
+
+        Dim anchoTotalServicios As Int32 = lvServicios.Size.Width
+        Dim anchoTotalRepuestos As Int32 = lvRepuestos.Size.Width
+
+        lvServicios.Columns(0).Width = Math.Round(0.1 * anchoTotalServicios)
+        lvServicios.Columns(1).Width = Math.Round(0.53 * anchoTotalServicios)
+        lvServicios.Columns(2).Width = Math.Round(0.15 * anchoTotalServicios)
+        lvServicios.Columns(3).Width = Math.Round(0.15 * anchoTotalServicios)
+
+        lvRepuestos.Columns(0).Width = Math.Round(0.1 * anchoTotalRepuestos)
+        lvRepuestos.Columns(1).Width = Math.Round(0.53 * anchoTotalRepuestos)
+        lvRepuestos.Columns(2).Width = Math.Round(0.15 * anchoTotalRepuestos)
+        lvRepuestos.Columns(3).Width = Math.Round(0.15 * anchoTotalRepuestos)
 
 
     End Sub

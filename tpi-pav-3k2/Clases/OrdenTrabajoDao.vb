@@ -62,8 +62,10 @@
             orden.falla = tabla.Rows(0)("Falla").ToString()
 
             If Not IsDBNull(tabla.Rows(0)("Cobro")) Then
-                orden.cobro = Convert.ToInt32(tabla.Rows(0)("Cobro"))
-            Else : orden.cobro = 0
+                Dim cob As New CobroDto
+                orden.cobro = cob
+                orden.cobro.id = Convert.ToInt32(tabla.Rows(0)("Cobro"))
+            Else : orden.cobro = Nothing
             End If
 
             If Not IsDBNull(tabla.Rows(0)("Monto")) Then
@@ -155,7 +157,7 @@
             sql.Transaction = transaccion
             sql.CommandType = CommandType.Text
 
-            comando = "update ordenTrabajo set estado = " & orden.estado & " where idOrdenTrabajo = " & orden.idOrden
+            comando = "update ordenTrabajo set estado = " & orden.estado & ", monto  = " & orden.monto & " where idOrdenTrabajo = " & orden.idOrden
             sql.CommandText = comando
             resultado = sql.ExecuteNonQuery()
 
@@ -163,13 +165,14 @@
 
                 For Each detalle As DetalleOrdenTrabajoDto In orden.detalles
                     ' despues convertir a stringBuilder
+                    detalle.id = Utilidades.sugerirId("detalleOrdenTrabajo", "idDetalleOrdenTrabajo")
                     comando = "insert into detalleOrdenTrabajo values(" & detalle.id & ","
                     comando &= detalle.servicio & ","
                     If detalle.repuesto > 0 Then
                         comando &= detalle.repuesto & ","
                     Else : comando &= "null, "
                     End If
-                    comando &= detalle.cantidad & "," & detalle.montoUnitServicio & ","
+                    comando &= detalle.cantidad & "," & Convert.ToSingle(detalle.montoUnitServicio) & ","
                     If detalle.montoUnitrepuesto > 0 Then
                         comando &= detalle.montoUnitrepuesto & ","
                     Else : comando &= "null,"
@@ -190,7 +193,60 @@
 
         Return Conexion.EventosSql.OTRO
 
+    End Function
 
+    Public Shared Function actualizarOrden(ByRef orden As OrdenTrabajoDto, ByVal est As OrdenTrabajoDto.estadosOrden, Optional ByRef cobro As CobroDto = Nothing) As Conexion.EventosSql
+
+        Dim con As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+        Dim transaccion As SqlClient.SqlTransaction = Nothing
+        Dim comando As String = ""
+
+        Select Case est
+            Case OrdenTrabajoDto.estadosOrden.REPARADA
+                comando = "UPDATE ordenTrabajo SET estado = " & orden.estado & " , fechaReparacion = '" & orden.fechaReparacion.ToString("yyyy/MM/dd") & "' WHERE idOrdenTrabajo = " & orden.idOrden & ";"
+                Try
+                    con.Open()
+                    sql.Connection = con
+                    sql.CommandType = CommandType.Text
+                    sql.CommandText = comando
+                    sql.ExecuteNonQuery()
+                    Return Conexion.EventosSql.INSERCION_CORRECTA
+
+                Catch ex As SqlClient.SqlException
+                    Return Conexion.EventosSql.OTRO
+
+                Finally : con.Close()
+                End Try
+
+                Exit Select
+            Case OrdenTrabajoDto.estadosOrden.CERRADA
+                Try
+                    con.Open()
+                    sql.Connection = con
+                    transaccion = con.BeginTransaction()
+                    sql.Transaction = transaccion
+                    sql.CommandType = CommandType.Text
+                    sql.CommandText = "INSERT INTO cobro VALUES (" & cobro.id & ", '" & cobro.fechaCobro.ToString("yyyy/MM/dd") & "', " & cobro.monto & ")"
+                    sql.ExecuteNonQuery()
+                    sql.CommandText = " UPDATE ordenTrabajo SET estado = " & orden.estado & ", cobro = " & cobro.id & "WHERE idOrdenTrabajo = " & orden.idOrden
+                    sql.ExecuteNonQuery()
+                    transaccion.Commit()
+                    Return Conexion.EventosSql.INSERCION_CORRECTA
+
+                Catch ex As SqlClient.SqlException
+                    transaccion.Rollback()
+                    Return Conexion.EventosSql.OTRO
+                Finally : con.Close()
+
+                End Try
+
+
+                Exit Select
+
+        End Select
+        
+        Return Conexion.EventosSql.OTRO
 
     End Function
 

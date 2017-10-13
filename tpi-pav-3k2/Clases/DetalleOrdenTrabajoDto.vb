@@ -61,4 +61,19 @@
         End Set
     End Property
 
+    Public Overrides Function Equals(obj As Object) As Boolean
+
+        If Not obj.GetType = Me.GetType Then
+            Return False
+
+        End If
+
+        Dim aux As DetalleOrdenTrabajoDto = CType(obj, DetalleOrdenTrabajoDto)
+        If aux.servicio = Me.servicio Then
+            Return True
+        End If
+        Return False
+
+    End Function
+
 End Class

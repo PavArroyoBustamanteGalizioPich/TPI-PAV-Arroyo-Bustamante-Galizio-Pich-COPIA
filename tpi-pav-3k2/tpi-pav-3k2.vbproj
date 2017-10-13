@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FB456BAE-6B7E-4EF5-BE59-7E6DE66428C1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>tpi_pav_3k2.My.MyApplication</StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>tpi_pav_3k2</RootNamespace>
     <AssemblyName>tpi-pav-3k2</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -70,9 +70,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CobroDto.vb" />
     <Compile Include="Clases\DetalleOrdenTrabajoDto.vb" />
     <Compile Include="Clases\OrdenTrabajoDao.vb" />
     <Compile Include="Clases\OrdenTrabajoDto.vb" />
+    <Compile Include="Clases\Principal.vb" />
     <Compile Include="GestionComputadoras.Designer.vb">
       <DependentUpon>GestionComputadoras.vb</DependentUpon>
     </Compile>
