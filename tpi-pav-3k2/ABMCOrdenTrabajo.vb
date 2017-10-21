@@ -197,6 +197,7 @@
                 'cbEstadoOt.Enabled = True
                 'txtFechaRecepcionOt.Enabled = False
                 'txtDescrFalla.Enabled = False
+                cargarDetalles()
 
             End If
 
@@ -228,7 +229,7 @@
 
     Public Sub cargarDetalles()
 
-
+        ' no carga bien la lista, carga uno solo.......!!!!!!!
         If Not IsNothing(ordenActual.detalles) Then
 
             For Each detalle As DetalleOrdenTrabajoDto In ordenActual.detalles
@@ -239,8 +240,8 @@
                 Dim item As New ListViewItem
                 item.Text = servTemp.idServ
                 item.SubItems.Add(servTemp.nomServicio)
-                item.SubItems.Add(servTemp.cantidad)
-                item.SubItems.Add(servTemp.cantidad * detalle.montoUnitServicio)
+                item.SubItems.Add(detalle.cantidad)
+                item.SubItems.Add(detalle.cantidad * detalle.montoUnitServicio)
                 lvServicios.Items.Add(item)
 
                 If detalle.repuesto > 0 Then
@@ -249,9 +250,9 @@
                     item = New ListViewItem
                     item.Text = servTemp.repuesto.id
                     item.SubItems.Add(servTemp.repuesto.descripcion)
-                    item.SubItems.Add(servTemp.cantidad)
-                    item.SubItems.Add(servTemp.cantidad * servTemp.repuesto.monto)
-                    lvServicios.Items.Add(item)
+                    item.SubItems.Add(detalle.cantidad)
+                    item.SubItems.Add(detalle.cantidad * servTemp.repuesto.monto)
+                    lvRepuestos.Items.Add(item)
 
                 End If
 
@@ -363,6 +364,8 @@
         ordenActual = Nothing
         cliente = Nothing
         computadora = Nothing
+        lvServicios.Items.Clear()
+        lvRepuestos.Items.Clear()
 
 
     End Sub
@@ -582,7 +585,7 @@
                     panelCierre.Enabled = True
                     gbAniadirServicios.Enabled = False
                     If Not IsNothing(ordenActual) Then
-                        If Not IsNothing(ordenActual.fechaReparacion) Then
+                        If Not ordenActual.fechaReparacion.Equals(Nothing) Then
                             txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
                         Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
                         End If

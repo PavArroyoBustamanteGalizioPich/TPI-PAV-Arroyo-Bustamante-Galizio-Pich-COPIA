@@ -84,7 +84,7 @@
             orden.computadora = ComputadoraDao.buscarComputadora(idComputadora)
 
 
-            comando = "select * from detalleOrdenTrabajo where idDetalleOrdenTrabajo = " & orden.idOrden
+            comando = "select * from detalleOrdenTrabajo where idOrden = " & orden.idOrden
             sql.CommandType = CommandType.Text
             sql.CommandText = comando
             Dim tablaDetalles As New DataTable
@@ -92,19 +92,19 @@
             Dim detalles As New List(Of DetalleOrdenTrabajoDto)
             For Each fila As DataRow In tablaDetalles.Rows
 
-                If Not IsDBNull(fila(0)) Then
+                If Not IsDBNull(fila("idDetalleOrdenTrabajo")) Then
                     Dim detalle As New DetalleOrdenTrabajoDto
 
-                    detalle.id = Convert.ToInt32(fila(0))
-                    detalle.servicio = Convert.ToInt32(fila(1))
-                    If Not IsDBNull(fila(2)) Then
-                        detalle.repuesto = Convert.ToInt32(fila(2))
-                        detalle.montoUnitrepuesto = Convert.ToDecimal(fila(5))
+                    detalle.id = Convert.ToInt32(fila("idDetalleOrdenTrabajo"))
+                    detalle.servicio = Convert.ToInt32(fila("servicio"))
+                    If Not IsDBNull(fila("componente")) Then
+                        detalle.repuesto = Convert.ToInt32(fila("componente"))
+                        detalle.montoUnitrepuesto = Convert.ToDecimal(fila("montoUnitarioComponente"))
                     Else : detalle.repuesto = 0
                     End If
 
-                    detalle.cantidad = Convert.ToInt32(fila(3))
-                    detalle.montoUnitServicio = Convert.ToDecimal(fila(4))
+                    detalle.cantidad = Convert.ToInt32(fila("cantidad"))
+                    detalle.montoUnitServicio = Convert.ToDecimal(fila("montoUnitarioServicio"))
                     detalles.Add(detalle)
                 End If
 
@@ -157,7 +157,7 @@
             sql.Transaction = transaccion
             sql.CommandType = CommandType.Text
 
-            comando = "update ordenTrabajo set estado = " & orden.estado & ", monto  = " & orden.monto & " where idOrdenTrabajo = " & orden.idOrden
+            comando = "update ordenTrabajo set estado = " & orden.estado & ", monto  = " & Utilidades.armarNumero(orden.monto.ToString()) & " where idOrdenTrabajo = " & orden.idOrden
             sql.CommandText = comando
             resultado = sql.ExecuteNonQuery()
 
@@ -172,9 +172,9 @@
                         comando &= detalle.repuesto & ","
                     Else : comando &= "null, "
                     End If
-                    comando &= detalle.cantidad & "," & Convert.ToSingle(detalle.montoUnitServicio) & ","
+                    comando &= detalle.cantidad & "," & Utilidades.armarNumero(detalle.montoUnitServicio.ToString()) & ","
                     If detalle.montoUnitrepuesto > 0 Then
-                        comando &= detalle.montoUnitrepuesto & ","
+                        comando &= Utilidades.armarNumero(detalle.montoUnitrepuesto.ToString()) & ","
                     Else : comando &= "null,"
                     End If
                     comando &= orden.idOrden & ")"
@@ -227,7 +227,7 @@
                     transaccion = con.BeginTransaction()
                     sql.Transaction = transaccion
                     sql.CommandType = CommandType.Text
-                    sql.CommandText = "INSERT INTO cobro VALUES (" & cobro.id & ", '" & cobro.fechaCobro.ToString("yyyy/MM/dd") & "', " & cobro.monto & ")"
+                    sql.CommandText = "INSERT INTO cobro VALUES (" & cobro.id & ", '" & cobro.fechaCobro.ToString("yyyy/MM/dd") & "', " & Utilidades.armarNumero(cobro.monto.ToString()) & ")"
                     sql.ExecuteNonQuery()
                     sql.CommandText = " UPDATE ordenTrabajo SET estado = " & orden.estado & ", cobro = " & cobro.id & "WHERE idOrdenTrabajo = " & orden.idOrden
                     sql.ExecuteNonQuery()

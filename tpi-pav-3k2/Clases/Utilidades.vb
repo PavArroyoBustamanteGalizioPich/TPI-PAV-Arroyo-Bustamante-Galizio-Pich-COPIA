@@ -76,11 +76,11 @@
         End Try
     End Sub
 
-    Public Shared Function armarNumero(ByRef numero As String) As Single
+    Public Shared Function armarNumero(ByRef numero As String) As String
 
         If IsNumeric(numero) Then
             Dim aux As String = numero.Replace(",", ".")
-            Return Convert.ToSingle(aux)
+            Return aux
         Else : Return -1
         End If
         'For Each car As Char In numero
