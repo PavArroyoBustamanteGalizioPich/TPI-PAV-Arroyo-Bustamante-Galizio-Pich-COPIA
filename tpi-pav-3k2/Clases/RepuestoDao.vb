@@ -35,9 +35,14 @@
         Dim sql As New SqlClient.SqlCommand
         Dim tabla As New DataTable
         Dim repuesto As RepuestoDto
+        Dim abierta As Boolean
 
         Try
-            conex.Open()
+            If Not conex.State = ConnectionState.Open Then
+                conex.Open()
+                abierta = True
+            End If
+
             sql.Connection = conex
             sql.CommandType = CommandType.Text
             sql.CommandText = "select * from componente where idComponente = @ID order by idComponente"
@@ -62,7 +67,10 @@
             Return repuesto
         Catch ex As SqlClient.SqlException
             Return Nothing
-        Finally : conex.Close()
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
     End Function

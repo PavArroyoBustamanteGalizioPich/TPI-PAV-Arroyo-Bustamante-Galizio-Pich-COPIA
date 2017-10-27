@@ -46,10 +46,19 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -183,6 +192,33 @@
     <Compile Include="ABMCOrdenTrabajo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\ConsultasReportes.vb" />
+    <Compile Include="Reportes\dataSetOrdenTrabajo.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\dataSetOrdenTrabajo.vb">
+      <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\pruebaDataSet.Designer.vb">
+      <DependentUpon>pruebaDataSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\pruebaDataSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteOrdenTrabajo.Designer.vb">
+      <DependentUpon>ReporteOrdenTrabajo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteOrdenTrabajo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\reporteOT.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reporteOT.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GestionComputadoras.resx">
@@ -227,6 +263,16 @@
     <EmbeddedResource Include="ABMCOrdenTrabajo.resx">
       <DependentUpon>ABMCOrdenTrabajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\pruebaDataSet.resx">
+      <DependentUpon>pruebaDataSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ReporteOrdenTrabajo.resx">
+      <DependentUpon>ReporteOrdenTrabajo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\reporteOT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>reporteOT.vb</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
@@ -239,6 +285,20 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Reportes\dataSetOrdenTrabajo.xsc">
+      <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\dataSetOrdenTrabajo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetOrdenTrabajo.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reportes\dataSetOrdenTrabajo.xss">
+      <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

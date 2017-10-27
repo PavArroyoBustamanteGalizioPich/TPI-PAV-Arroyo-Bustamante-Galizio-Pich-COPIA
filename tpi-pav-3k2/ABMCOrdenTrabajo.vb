@@ -77,7 +77,10 @@
         txtNroOT.Enabled = False
         cbNroPc.Enabled = True
         txtDescrFalla.Enabled = True
-
+        panelDatosPcOt.Enabled = True
+        txtTipoPcOt.ReadOnly = True
+        txtDescripcionPcOt.ReadOnly = True
+        cbNroPc.Enabled = True
         'gbServicios.Enabled = True ' este se desabilita
         'gbAniadirServicios.Enabled = True
 
@@ -149,7 +152,6 @@
                 txtNombreCLiente.Text = cliente.nombre
                 txtApellidoCliente.Text = cliente.apellido
                 Utilidades.cargarCombo("computadora", "idComputadora", "client", cliente.idCliente, cbNroPc, "idComputadora")
-
                 compusCargadas = True
                 cbNroPc.SelectedValue = -1
 
@@ -687,5 +689,15 @@
 
     Private Sub cbNroPc_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles cbNroPc.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub OrdenDeTrabajoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrdenDeTrabajoToolStripMenuItem.Click
+        Dim form As New ReporteOrdenTrabajo
+        form.ShowDialog()
+    End Sub
+
+    Private Sub PruebaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PruebaToolStripMenuItem.Click
+        Dim form As New pruebaDataSet
+        form.ShowDialog()
     End Sub
 End Class

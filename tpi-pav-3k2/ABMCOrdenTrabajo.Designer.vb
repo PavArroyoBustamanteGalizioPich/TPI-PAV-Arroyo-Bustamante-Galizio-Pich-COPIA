@@ -35,6 +35,8 @@ Partial Class ABMCOrdenTrabajo
         Me.GestionarTiposDeDocumentoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestionarProcesadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GestionarClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OrdenDeTrabajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbDatosCliOT = New System.Windows.Forms.GroupBox()
         Me.btnNuevaPcOt = New System.Windows.Forms.Button()
         Me.btnBuscarCliOT = New System.Windows.Forms.Button()
@@ -105,6 +107,7 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
+        Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         Me.gbDatosOT.SuspendLayout()
@@ -122,7 +125,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ARCHIVOToolStripMenuItem, Me.AdministrarToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ARCHIVOToolStripMenuItem, Me.AdministrarToolStripMenuItem, Me.ReportesToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1084, 24)
@@ -209,6 +212,19 @@ Partial Class ABMCOrdenTrabajo
         Me.GestionarClientesToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
         Me.GestionarClientesToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.GestionarClientesToolStripMenuItem.Text = "Gestionar Clientes"
+        '
+        'ReportesToolStripMenuItem
+        '
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrdenDeTrabajoToolStripMenuItem, Me.PruebaToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
+        Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
+        Me.ReportesToolStripMenuItem.Text = "Reportes"
+        '
+        'OrdenDeTrabajoToolStripMenuItem
+        '
+        Me.OrdenDeTrabajoToolStripMenuItem.Name = "OrdenDeTrabajoToolStripMenuItem"
+        Me.OrdenDeTrabajoToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.OrdenDeTrabajoToolStripMenuItem.Text = "Orden de Trabajo"
         '
         'gbDatosCliOT
         '
@@ -885,6 +901,12 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
         '
+        'PruebaToolStripMenuItem
+        '
+        Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
+        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.PruebaToolStripMenuItem.Text = "prueba"
+        '
         'ABMCOrdenTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1007,4 +1029,7 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents idRepuesto As System.Windows.Forms.ColumnHeader
     Friend WithEvents colIdServicio As System.Windows.Forms.ColumnHeader
     Friend WithEvents btnQuitarServicio As System.Windows.Forms.Button
+    Friend WithEvents ReportesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OrdenDeTrabajoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PruebaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
