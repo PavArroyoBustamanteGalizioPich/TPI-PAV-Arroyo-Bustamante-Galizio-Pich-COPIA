@@ -11,24 +11,18 @@
         If Not txtIdOrden.Text.Trim().Equals("") Then
             Dim id As Int32 = Convert.ToInt32(txtIdOrden.Text.Trim())
             Dim ds As New dataSetOrdenTrabajo
-            Dim reporte As New reporteOT
 
+            reporteOrden.ReportSource = Nothing
+            If ConsultasReportes.reporteOt(id, ds) Then
+                Dim reporte As New reporteOT
+                reporte.SetDataSource(ds)
 
-            'Dim ds As New DataSet
-            ConsultasReportes.reporteOt(id, ds)
-            'dgvOrden.DataMember = "OrdenTrabajo"
-            'dgvOrden.DataSource = ds.Tables("OrdenTrabajo")
+                Me.reporteOrden.ReportSource = reporte
+                reporteOrden.Show()
+            Else : MessageBox.Show("El número indicado no pertenece a una orden de trabajo registrada!", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
 
-            'dgvDetalle.DataMember = "DetalleOrden"
-            'dgvDetalle.DataSource = ds.Tables("DetalleOrden")
-
-            reporte.SetDataSource(ds)
-            'reporteOrden.RefreshReport()
-            Me.reporteOrden.ReportSource = reporte
-            'reporteOrden.RefreshReport()
-            reporteOrden.Show()
-
-
+        Else : MessageBox.Show("Por favor indique el nro de orden que desea buscar!", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
         End If
 
@@ -43,4 +37,13 @@
     Private Sub ReporteOrdenTrabajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Private Sub txtIdOrden_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtIdOrden.KeyPress
+
+        If Not (IsNumeric(e.KeyChar) Or Asc(e.KeyChar) = 8) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    
 End Class

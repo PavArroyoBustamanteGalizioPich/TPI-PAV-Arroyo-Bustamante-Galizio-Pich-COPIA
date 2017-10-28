@@ -1,12 +1,8 @@
 ﻿Public Class ConsultasReportes
 
 
-    Public Shared Sub reporteOt(ByVal id As Int32, ByRef ds As dataSetOrdenTrabajo)
+    Public Shared Function reporteOt(ByVal id As Int32, ByRef ds As dataSetOrdenTrabajo) As Boolean
 
-        'select ord.idOrdenTrabajo, ord.nroCliente, ord.compu, ord.monto, ord.detalleFalla, est.estado,
-        'ord.fechaRecepcion, ord.fechaReparacion, cob.fechaCobro from ordenTrabajo  ord
-        'left join estadoOrdenTrabajo est on est.idEstado = ord.estado
-        'left join cobro as cob on cob.idCobro = ord.cobro  where idOrdenTrabajo = 1;
 
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As SqlClient.SqlCommand = Conexion.getComando()
@@ -26,25 +22,28 @@
 
             ds.OrdenTrabajo.Load(sql.ExecuteReader())
 
+            If ds.OrdenTrabajo.Rows.Count = 1 Then
 
-            comando = "select det.idDetalleOrdenTrabajo, det.servicio, det.idOrden, det.componente, serv.nombreServicio, comp.descripcion as 'Repuesto',"
-            comando &= "det.cantidad, det.montoUnitarioServicio, det.montoUnitarioComponente from detalleOrdenTrabajo det"
-            comando &= " left join servicio serv on det.servicio = serv.idServicio"
-            comando &= " left join componente comp on det.componente = comp.idComponente"
-            comando &= " left join marcaComponente marc on comp.marca = marc.idMarcaComponente where idOrden = " & id & ";"
+                comando = "select det.idDetalleOrdenTrabajo, det.servicio, det.idOrden, det.componente, serv.nombreServicio, comp.descripcion as 'Repuesto',"
+                comando &= "det.cantidad, det.montoUnitarioServicio, det.montoUnitarioComponente from detalleOrdenTrabajo det"
+                comando &= " left join servicio serv on det.servicio = serv.idServicio"
+                comando &= " left join componente comp on det.componente = comp.idComponente"
+                comando &= " left join marcaComponente marc on comp.marca = marc.idMarcaComponente where idOrden = " & id & ";"
 
-            sql.CommandText = comando
-            ds.DetalleOrden.Load(sql.ExecuteReader())
+                sql.CommandText = comando
+                ds.DetalleOrden.Load(sql.ExecuteReader())
+                Return True
 
-            'Dim adapter As New SqlClient.SqlDataAdapter(sql)
-            'adapter.Fill(ds)
-            'ds.Tables(0).TableName = "OrdenTrabajo"
-            'ds.Tables(1).TableName = "DetalleOrden"
+            Else : Return False
+
+            End If
+
+
 
         Catch ex As Exception
 
             MessageBox.Show(ex.Message)
-
+            Return False
         Finally : conex.Close()
 
         End Try
@@ -54,6 +53,6 @@
 
 
 
-    End Sub
+    End Function
 
 End Class

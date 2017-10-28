@@ -122,6 +122,9 @@
                 Exit Select
 
             Case formularios.ORDEN_TRABAJO
+                dgvBusqueda.DataSource = OrdenTrabajoDao.buscarOrdenes()
+                Me.Size = New Size(800, 400)
+
                 Exit Select
 
         End Select

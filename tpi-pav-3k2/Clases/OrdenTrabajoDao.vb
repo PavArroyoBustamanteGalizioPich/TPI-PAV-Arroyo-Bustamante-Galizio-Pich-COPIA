@@ -125,16 +125,33 @@
     Public Shared Function buscarOrdenes() As DataTable
         Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
         Dim sql As SqlClient.SqlCommand = Conexion.getComando()
-        'Dim comando As String
+        Dim comando As String
         Dim tabla As New DataTable
-
+        Dim abierta As Boolean
         Try
-            conex.Open()
-            sql.Connection = conex
 
+            If Not conex.State = ConnectionState.Open Then
+
+                conex.Open()
+                abierta = True
+            End If
+
+
+            sql.Connection = conex
+            comando = "select ord.idOrdenTrabajo as 'Id Orden', est.estado as 'Estado', ord.nroCliente as 'Cliente', "
+            comando &= "ord.compu as 'Computadora', ord.detalleFalla as 'Falla', ord.monto as 'Monto' from ordenTrabajo ord"
+            comando &= " join estadoOrdenTrabajo est on ord.estado = est.idEstado;"
+
+            sql.CommandType = CommandType.Text
+            sql.CommandText = comando
+
+            tabla.Load(sql.ExecuteReader())
 
         Catch ex As SqlClient.SqlException
-
+        Finally
+            If abierta Then
+                conex.Close()
+            End If
         End Try
 
         Return tabla

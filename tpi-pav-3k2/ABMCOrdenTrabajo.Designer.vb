@@ -37,8 +37,9 @@ Partial Class ABMCOrdenTrabajo
         Me.GestionarClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenDeTrabajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbDatosCliOT = New System.Windows.Forms.GroupBox()
-        Me.btnNuevaPcOt = New System.Windows.Forms.Button()
+        Me.btnGestionCliente = New System.Windows.Forms.Button()
         Me.btnBuscarCliOT = New System.Windows.Forms.Button()
         Me.txtNroDocCliOT = New System.Windows.Forms.TextBox()
         Me.lblNroDocBuscCliOT = New System.Windows.Forms.Label()
@@ -107,7 +108,6 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
-        Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         Me.gbDatosOT.SuspendLayout()
@@ -223,14 +223,20 @@ Partial Class ABMCOrdenTrabajo
         'OrdenDeTrabajoToolStripMenuItem
         '
         Me.OrdenDeTrabajoToolStripMenuItem.Name = "OrdenDeTrabajoToolStripMenuItem"
-        Me.OrdenDeTrabajoToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.OrdenDeTrabajoToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.OrdenDeTrabajoToolStripMenuItem.Text = "Orden de Trabajo"
+        '
+        'PruebaToolStripMenuItem
+        '
+        Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
+        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.PruebaToolStripMenuItem.Text = "prueba"
         '
         'gbDatosCliOT
         '
         Me.gbDatosCliOT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbDatosCliOT.Controls.Add(Me.btnNuevaPcOt)
+        Me.gbDatosCliOT.Controls.Add(Me.btnGestionCliente)
         Me.gbDatosCliOT.Controls.Add(Me.btnBuscarCliOT)
         Me.gbDatosCliOT.Controls.Add(Me.txtNroDocCliOT)
         Me.gbDatosCliOT.Controls.Add(Me.lblNroDocBuscCliOT)
@@ -243,14 +249,14 @@ Partial Class ABMCOrdenTrabajo
         Me.gbDatosCliOT.TabStop = False
         Me.gbDatosCliOT.Text = "Datos Cliente"
         '
-        'btnNuevaPcOt
+        'btnGestionCliente
         '
-        Me.btnNuevaPcOt.Location = New System.Drawing.Point(487, 11)
-        Me.btnNuevaPcOt.Name = "btnNuevaPcOt"
-        Me.btnNuevaPcOt.Size = New System.Drawing.Size(117, 23)
-        Me.btnNuevaPcOt.TabIndex = 7
-        Me.btnNuevaPcOt.Text = "Gestionar Clientes"
-        Me.btnNuevaPcOt.UseVisualStyleBackColor = True
+        Me.btnGestionCliente.Location = New System.Drawing.Point(487, 11)
+        Me.btnGestionCliente.Name = "btnGestionCliente"
+        Me.btnGestionCliente.Size = New System.Drawing.Size(117, 23)
+        Me.btnGestionCliente.TabIndex = 7
+        Me.btnGestionCliente.Text = "Gestionar Cliente"
+        Me.btnGestionCliente.UseVisualStyleBackColor = True
         '
         'btnBuscarCliOT
         '
@@ -901,12 +907,6 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
         '
-        'PruebaToolStripMenuItem
-        '
-        Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
-        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
-        Me.PruebaToolStripMenuItem.Text = "prueba"
-        '
         'ABMCOrdenTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -963,7 +963,7 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents btnGuardarOt As System.Windows.Forms.Button
     Friend WithEvents btnCancelarOt As System.Windows.Forms.Button
     Friend WithEvents panelBotoneraOt As System.Windows.Forms.Panel
-    Friend WithEvents btnNuevaPcOt As System.Windows.Forms.Button
+    Friend WithEvents btnGestionCliente As System.Windows.Forms.Button
     Friend WithEvents panelDatosNvaOt As System.Windows.Forms.Panel
     Friend WithEvents panelCierre As System.Windows.Forms.Panel
     Friend WithEvents btnAniadirCobroOt As System.Windows.Forms.Button

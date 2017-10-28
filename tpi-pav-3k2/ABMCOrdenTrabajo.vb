@@ -1,4 +1,5 @@
 ﻿Public Class ABMCOrdenTrabajo
+    Implements Buscable
 
     Private cliente As ClienteDto
     Private computadora As ComputadoraDto
@@ -12,6 +13,8 @@
     Private compusCargadas As Boolean
     Private combosCargados As Boolean
     Private comboRepuestosCargado As Boolean
+
+    Private filaBuscada As DataGridViewRow
 
 
     Public Sub New()
@@ -38,7 +41,7 @@
 
         gbDatosCliOT.Enabled = False
         panelDatosNvaOt.Enabled = False
-
+        btnGestionCliente.Enabled = False
         btnGuardarOt.Enabled = False
         btnCancelarOt.Enabled = False
         btnActualizarOt.Enabled = False
@@ -99,7 +102,7 @@
 
 
     Private Sub btnGuardarOt_Click(sender As Object, e As EventArgs) Handles btnGuardarOt.Click
-        
+
         If validarDatos() Then
             ordenActual = New OrdenTrabajoDto
             ordenActual.idOrden = Convert.ToInt32(txtNroOT.Text.Trim())
@@ -144,9 +147,7 @@
                     btnBuscarCliOT.PerformClick()
 
                 End If
-
             End If
-
             If Not IsNothing(cliente) Then
                 txtNroCliente.Text = cliente.idCliente
                 txtNombreCLiente.Text = cliente.nombre
@@ -154,7 +155,7 @@
                 Utilidades.cargarCombo("computadora", "idComputadora", "client", cliente.idCliente, cbNroPc, "idComputadora")
                 compusCargadas = True
                 cbNroPc.SelectedValue = -1
-
+                btnGestionCliente.Enabled = True
             End If
 
 
@@ -167,14 +168,25 @@
     End Sub
 
     Private Sub btnBuscarOT_Click(sender As Object, e As EventArgs) Handles btnBuscarOT.Click
+
+        Dim id As Int32
+        ordenActual = Nothing
+        cliente = Nothing
+        computadora = Nothing
         If Not txtNroOT.Text.Equals("") Then
-            ordenActual = Nothing
-            cliente = Nothing
-            computadora = Nothing
-            Dim id As Int32 = Convert.ToInt32(txtNroOT.Text.Trim())
+            id = Convert.ToInt32(txtNroOT.Text.Trim())
+        Else
+            Dim grilla As New GrillaGenerica("Ordenes de Trabajo", GrillaGenerica.formularios.ORDEN_TRABAJO, Me)
+            grilla.ShowDialog()
+            If Not IsNothing(filaBuscada) Then
+                id = Convert.ToInt32(filaBuscada.Cells("Id Orden").Value)
+            End If
+
+
             ordenActual = OrdenTrabajoDao.buscarOt(id)
 
             If Not IsNothing(ordenActual) Then
+                txtNroOT.Text = ordenActual.idOrden
                 txtNroCliente.Text = ordenActual.cliente.idCliente
                 txtNombreCLiente.Text = ordenActual.cliente.nombre
                 txtApellidoCliente.Text = ordenActual.cliente.apellido
@@ -187,12 +199,19 @@
                 txtFechaRecepcionOt.Text = ordenActual.fechaRecepcion.ToString("dd/MM/yyyy")
                 If Not ordenActual.fechaReparacion.Equals(Nothing) Then
                     txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
+                Else : txtFechaReparacion.Text = ""
                 End If
 
                 cbEstadoOt.SelectedValue = ordenActual.estado
                 txtDescrFalla.Text = ordenActual.falla
                 If ordenActual.monto > 0 Then
                     txtMontoOt.Text = ordenActual.monto
+                Else : txtMontoOt.Text = ""
+                End If
+
+                If Not IsNothing(ordenActual.cobro) Then
+                    txtNroCobroOt.Text = ordenActual.cobro.id
+                Else : txtNroCobroOt.Text = ""
                 End If
                 btnActualizarOt.Enabled = True
                 'panelDatosOt.Enabled = True
@@ -200,27 +219,20 @@
                 'txtFechaRecepcionOt.Enabled = False
                 'txtDescrFalla.Enabled = False
                 cargarDetalles()
+                Me.cambioEstado(True)
+                panelDatosNvaOt.Enabled = True
+                panelDatosClienteOt.Enabled = False
+                panelDatosPcOt.Enabled = False
+                txtFechaRecepcionOt.Enabled = False
+                txtDescrFalla.Enabled = False
+                btnCancelarOt.Enabled = True
+                btnNvaOt.Enabled = False
 
+                gbAniadirServicios.Enabled = False
+                panelCierre.Enabled = False
+                btnGuardarOt.Enabled = False
+                btnActualizarOt.Enabled = True
             End If
-
-
-            panelDatosNvaOt.Enabled = True
-            panelDatosClienteOt.Enabled = False
-            panelDatosPcOt.Enabled = False
-            txtFechaRecepcionOt.Enabled = False
-            txtDescrFalla.Enabled = False
-            btnCancelarOt.Enabled = True
-            btnNvaOt.Enabled = False
-
-            gbAniadirServicios.Enabled = False
-            panelCierre.Enabled = False
-            btnGuardarOt.Enabled = False
-            btnActualizarOt.Enabled = True
-
-
-        Else
-            MessageBox.Show("- Ingrese un número de Orden de trabajo!", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            txtNroOT.Focus()
 
         End If
 
@@ -228,16 +240,52 @@
     End Sub
 
 
+    Public Sub cambioEstado(ByVal buscada As Boolean)
+        Dim indice As Int32
+        If buscada Then
+            indice = ordenActual.estado - 1
+        Else : indice = cbEstadoOt.SelectedValue - 1
+        End If
+
+        Select Case indice
+            Case OrdenTrabajoDto.estadosOrden.RECEPTADA
+                Exit Select
+            Case OrdenTrabajoDto.estadosOrden.EN_REPARACION
+                gbAniadirServicios.Enabled = True
+                Exit Select
+            Case OrdenTrabajoDto.estadosOrden.REPARADA
+                panelCierre.Enabled = True
+                gbAniadirServicios.Enabled = False
+                If Not IsNothing(ordenActual) Then
+                    If Not ordenActual.fechaReparacion.Equals(Nothing) Then
+                        txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
+                    Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
+                    End If
+
+                Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
+
+                End If
+                Exit Select
+            Case OrdenTrabajoDto.estadosOrden.CERRADA
+                panelCierre.Enabled = False
+                gbAniadirServicios.Enabled = False
+                Exit Select
+            Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
+                panelCierre.Enabled = False
+                gbAniadirServicios.Enabled = False
+                Exit Select
+        End Select
+    End Sub
 
     Public Sub cargarDetalles()
 
-        ' no carga bien la lista, carga uno solo.......!!!!!!!
         If Not IsNothing(ordenActual.detalles) Then
+            lvServicios.Items.Clear()
+            lvRepuestos.Items.Clear()
 
             For Each detalle As DetalleOrdenTrabajoDto In ordenActual.detalles
 
                 Dim servTemp As ServicioDto = ServicioDao.buscarServicio(detalle.servicio)
-
 
                 Dim item As New ListViewItem
                 item.Text = servTemp.idServ
@@ -265,11 +313,7 @@
 
             Next
 
-
-
         End If
-
-
     End Sub
 
     'inserta los detalles pero estan incompletas las busquedas y las validaciones
@@ -324,9 +368,6 @@
                 End Select
             End If
 
-
-            
-
         End If
 
     End Sub
@@ -351,7 +392,6 @@
 
     Private Sub btnCancelarOt_Click(sender As Object, e As EventArgs) Handles btnCancelarOt.Click
 
-
         Me.limpiarTextos()
         gbDatosCliOT.Enabled = False
         panelDatosNvaOt.Enabled = False
@@ -368,12 +408,9 @@
         computadora = Nothing
         lvServicios.Items.Clear()
         lvRepuestos.Items.Clear()
-
+        cbNroPc.DataSource = Nothing
 
     End Sub
-
-
-
 
 
 
@@ -427,7 +464,7 @@
         formClientes.ShowDialog()
     End Sub
 
-   
+
     Private Sub cbNroPc_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbNroPc.SelectedValueChanged
 
         If compusCargadas Then
@@ -444,7 +481,7 @@
     End Sub
 
 
- 
+
     Private Sub cbServiciosOt_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbServiciosOt.SelectedIndexChanged
 
         If combosCargados Then
@@ -503,7 +540,7 @@
 
             servicioSeleccionado.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
         End If
-      
+
 
         If servicioSeleccionado.repuestoReq > 0 Then
 
@@ -527,7 +564,6 @@
 
         ' faltaria hacer que cuando se agregue un servicio nuevo, si éste ya está cargado en los detalles
         ' que se actualice el monto que está almacenado en el detalle en caso de que sea distinto
-
 
         If Not serviciosBrindados.Contains(servicioSeleccionado) Then
             serviciosBrindados.Add(servicioSeleccionado)
@@ -558,64 +594,22 @@
                 repItemTemp.Remove()
             End If
 
-           
+
             lvServicios.SelectedItems(0).Remove()
             If lvServicios.Items.Count = 0 Then
                 btnQuitarServicio.Enabled = False
             End If
             txtMontoOt.Text = ordenActual.calcularTotal()
 
-
         End If
-
-
     End Sub
 
-  
     Private Sub cbEstadoOt_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEstadoOt.SelectedIndexChanged
 
         If combosCargados Then
 
-            Dim indice As Int32 = cbEstadoOt.SelectedValue - 1
-            Select Case indice
-                Case OrdenTrabajoDto.estadosOrden.RECEPTADA
-                    Exit Select
-                Case OrdenTrabajoDto.estadosOrden.EN_REPARACION
-                    gbAniadirServicios.Enabled = True
-                    Exit Select
-                Case OrdenTrabajoDto.estadosOrden.REPARADA
-                    panelCierre.Enabled = True
-                    gbAniadirServicios.Enabled = False
-                    If Not IsNothing(ordenActual) Then
-                        If Not ordenActual.fechaReparacion.Equals(Nothing) Then
-                            txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
-                        Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
-                        End If
-
-                    Else : txtFechaReparacion.Text = Date.Today.ToString("dd/MM/yyyy")
-
-                    End If
-                    Exit Select
-                Case OrdenTrabajoDto.estadosOrden.CERRADA
-                    panelCierre.Enabled = False
-                    gbAniadirServicios.Enabled = False
-                    Exit Select
-                Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
-                    panelCierre.Enabled = False
-                    gbAniadirServicios.Enabled = False
-                    Exit Select
-            End Select
+            Me.cambioEstado(False)
         End If
-
-
-        'panelDatosNvaOt.Enabled = True
-        'panelDatosClienteOt.Enabled = False
-        'panelDatosPcOt.Enabled = False
-        'txtFechaRecepcionOt.Enabled = False
-        'txtDescrFalla.Enabled = False
-        'btnCancelarOt.Enabled = True
-        'btnNvaOt.Enabled = False
-        'btnGuardarOt.Enabled = True
 
     End Sub
 
@@ -628,10 +622,8 @@
         cobro.fechaCobro = Date.Today
         cbEstadoOt.SelectedValue = OrdenTrabajoDto.estadosOrden.CERRADA + 1
 
-
     End Sub
 
-   
 
     Private Function validarDatos() As Boolean
         Dim msjError As String = ""
@@ -699,5 +691,14 @@
     Private Sub PruebaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PruebaToolStripMenuItem.Click
         Dim form As New pruebaDataSet
         form.ShowDialog()
+    End Sub
+
+    Public Sub setFilaBuscada(ByRef fila As DataGridViewRow) Implements Buscable.setFilaBuscada
+        filaBuscada = fila
+    End Sub
+
+    Private Sub btnNuevaPcOt_Click(sender As Object, e As EventArgs) Handles btnGestionCliente.Click
+        Dim formCliente As New GestionClientes(cliente)
+        formCliente.ShowDialog()
     End Sub
 End Class

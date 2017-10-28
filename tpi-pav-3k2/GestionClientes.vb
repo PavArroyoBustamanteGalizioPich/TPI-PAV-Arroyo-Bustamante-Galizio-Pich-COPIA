@@ -5,6 +5,12 @@
     Private clienteActual As ClienteDto
     Private desdeOt As Boolean
     Private cargado As Boolean
+    Private origen As origenLlamada
+    Private Enum origenLlamada
+        NVO_CLIENTE_OT
+        MODIFICAR_CLIENTE_OT
+        MODIFICAR_CLIENTE
+    End Enum
 
 
     Public Sub New()
@@ -15,7 +21,8 @@
         Utilidades.cargarCombo("tipoMemoria", cbTipoMemoria)
         Utilidades.cargarCombo("marcaProcesador", cbMarcaProc)
         Me.deshabilitarComponentes()
-        btnNuevoCliente.Enabled = False
+        origen = origenLlamada.MODIFICAR_CLIENTE
+
     End Sub
     Public Sub New(ByVal nroDoc As String, ByVal tipoDoc As Int32, ByRef cliente As ClienteDto)
         cargado = False
@@ -30,22 +37,60 @@
         cbTipoDoc.SelectedItem = tipoDoc
         desdeOt = True
         clienteActual = cliente
+        origen = origenLlamada.NVO_CLIENTE_OT
+    End Sub
+
+    Public Sub New(ByRef cliente As ClienteDto)
+        cargado = False
+        InitializeComponent()
+        Utilidades.cargarCombo("tipoDocumento", cbTipoDoc)
+        Utilidades.cargarCombo("tipoPc", cbTipoPc)
+        Utilidades.cargarCombo("tipoMemoria", cbTipoMemoria)
+        Utilidades.cargarCombo("marcaProcesador", cbMarcaProc)
+        cbMarcaProc.SelectedValue = -1
+        chkEstadoCliente.Enabled = False
+        desdeOt = True
+        clienteActual = cliente
+        origen = origenLlamada.MODIFICAR_CLIENTE_OT
     End Sub
 
 
     Private Sub AltaCliente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
-
         Me.deshabilitarComponentes()
-        If desdeOt Then
-            btnNuevoCliente.PerformClick()
-            txtNombre.Focus()
-        End If
+
+        Select Case origen
+
+            Case origenLlamada.NVO_CLIENTE_OT
+                Me.nuevoCliente()
+                txtNombre.Focus()
+                Exit Select
+
+            Case origenLlamada.MODIFICAR_CLIENTE
+                txtNroDocumento.Enabled = True
+                cbTipoDoc.Enabled = True
+                btnBuscar.Enabled = True
+
+            Case origenLlamada.MODIFICAR_CLIENTE_OT
+                cbTipoDoc.SelectedValue = clienteActual.tipoDocumento
+                txtNroDocumento.Text = clienteActual.nroDocumento
+                txtNombre.Text = clienteActual.nombre
+                txtApellido.Text = clienteActual.apellido
+                txtTelefono.Text = clienteActual.telefono
+                txtEmail.Text = clienteActual.email
+                txtFechaAlta.Text = clienteActual.fechaAlta.ToString("dd/MM/yyyy")
+                If Not txtFechaBaja.Equals(Nothing) Then
+                    chkEstadoCliente.Checked = False
+                End If
+
+                Exit Select
+
+        End Select
+
         cargado = True
     End Sub
 
-    Private Sub btnNuevoCliente_Click(sender As Object, e As EventArgs) Handles btnNuevoCliente.Click
+    Private Sub nuevoCliente()
         Me.limpiarComponentes()
         Me.habilitarComponentes()
         txtNroCliente.Text = Utilidades.sugerirId("cliente", "idCliente")
@@ -116,7 +161,6 @@
             btnMostrarPcs.Enabled = True
             chkEstadoCliente.Enabled = True
             txtNroCliente.Enabled = False
-
         End If
 
     End Sub

@@ -67,7 +67,6 @@ Partial Class GestionClientes
         Me.btnActualizarCli = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
-        Me.btnNuevoCliente = New System.Windows.Forms.Button()
         Me.gbDatosCliente.SuspendLayout()
         Me.gbDatosComputadora.SuspendLayout()
         Me.panelBotones.SuspendLayout()
@@ -485,7 +484,6 @@ Partial Class GestionClientes
         Me.panelBotones.Controls.Add(Me.btnActualizarCli)
         Me.panelBotones.Controls.Add(Me.btnCancelar)
         Me.panelBotones.Controls.Add(Me.btnGuardar)
-        Me.panelBotones.Controls.Add(Me.btnNuevoCliente)
         Me.panelBotones.Location = New System.Drawing.Point(13, 353)
         Me.panelBotones.Name = "panelBotones"
         Me.panelBotones.Size = New System.Drawing.Size(759, 73)
@@ -494,7 +492,7 @@ Partial Class GestionClientes
         'btnActualizarCli
         '
         Me.btnActualizarCli.Image = CType(resources.GetObject("btnActualizarCli.Image"), System.Drawing.Image)
-        Me.btnActualizarCli.Location = New System.Drawing.Point(73, 4)
+        Me.btnActualizarCli.Location = New System.Drawing.Point(15, 4)
         Me.btnActualizarCli.Name = "btnActualizarCli"
         Me.btnActualizarCli.Size = New System.Drawing.Size(64, 64)
         Me.btnActualizarCli.TabIndex = 5
@@ -513,21 +511,11 @@ Partial Class GestionClientes
         'btnGuardar
         '
         Me.btnGuardar.Image = CType(resources.GetObject("btnGuardar.Image"), System.Drawing.Image)
-        Me.btnGuardar.Location = New System.Drawing.Point(143, 4)
+        Me.btnGuardar.Location = New System.Drawing.Point(85, 4)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(64, 64)
         Me.btnGuardar.TabIndex = 3
         Me.btnGuardar.UseVisualStyleBackColor = True
-        '
-        'btnNuevoCliente
-        '
-        Me.btnNuevoCliente.Image = CType(resources.GetObject("btnNuevoCliente.Image"), System.Drawing.Image)
-        Me.btnNuevoCliente.Location = New System.Drawing.Point(3, 4)
-        Me.btnNuevoCliente.Name = "btnNuevoCliente"
-        Me.btnNuevoCliente.Size = New System.Drawing.Size(64, 64)
-        Me.btnNuevoCliente.TabIndex = 0
-        Me.btnNuevoCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.btnNuevoCliente.UseVisualStyleBackColor = True
         '
         'GestionClientes
         '
@@ -591,7 +579,6 @@ Partial Class GestionClientes
     Friend WithEvents btnActualizarCli As System.Windows.Forms.Button
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnGuardar As System.Windows.Forms.Button
-    Friend WithEvents btnNuevoCliente As System.Windows.Forms.Button
     Friend WithEvents btnBuscar As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents btnGestionPc As System.Windows.Forms.Button
