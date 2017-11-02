@@ -32,13 +32,16 @@
 
                 sql.CommandText = comando
                 ds.DetalleOrden.Load(sql.ExecuteReader())
+
+                Dim nroCliente = Convert.ToInt32(ds.OrdenTrabajo.Rows(0)("nroCliente"))
+                comando = "select idCliente, nombre, apellido, telefono from cliente where idCliente = " & nroCliente & ";"
+                sql.CommandText = comando
+                ds.Cliente.Load(sql.ExecuteReader())
                 Return True
 
             Else : Return False
 
             End If
-
-
 
         Catch ex As Exception
 
@@ -48,11 +51,76 @@
 
         End Try
 
+    End Function
 
 
+    Public Shared Function listadoOrdenesRecibidas(ByRef fechaDesde As Date, ByRef fechaHasta As Date, ByRef ds As dataSetListadoRecibidas) As Boolean
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+
+        Dim comando As String
 
 
+        Try
+            conex.Open()
+            sql.CommandType = CommandType.Text
+            sql.Connection = conex
+
+            comando = "select ord.idOrdenTrabajo, ord.nroCliente, cli.apellido, cli.nombre, ord.compu, ord.detalleFalla,"
+            comando &= "est.estado, ord.monto, ord.fechaRecepcion from ordenTrabajo ord"
+            comando &= " join cliente cli on ord.nroCliente = cli.idCliente "
+            comando &= " join estadoOrdenTrabajo est on ord.estado = est.idEstado where ord.fechaRecepcion between '" & fechaDesde.ToString("yyyy/MM/dd")
+            comando &= "' and '" & fechaHasta.ToString("yyyy/MM/dd") & "';"
+
+            sql.CommandText = comando
+            ds.OrdenTrabajo.Load(sql.ExecuteReader())
+            If ds.OrdenTrabajo.Rows.Count > 0 Then
+                Return True
+            Else : Return False
+            End If
+
+        Catch ex As Exception
+            Return False
+        Finally : conex.Close()
+
+        End Try
 
     End Function
+
+    Public Shared Function listadoClientesRegistrados(ByRef fechaDesde As Date, ByRef fechaHasta As Date, ByRef ds As dataSetListadoRecibidas) As Boolean
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+
+        Dim comando As String
+
+
+        Try
+            conex.Open()
+            sql.CommandType = CommandType.Text
+            sql.Connection = conex
+
+            comando = "select cli.idCliente, cli.nombre, cli.apellido, cli.telefono, cli.fechaAlta, cli.fechaBaja,"
+            comando &= "cli.email, cli.nroDocumento, tipoD.tipo as 'tipoDocumento' from cliente cli"
+            comando &= " join tipoDocumento tipoD on cli.tipoDoc = tipoD.idTipoDocumento where fechaAlta between '"
+            comando &= fechaDesde.ToString("yyyy/MM/dd") & "' and '" & fechaHasta.ToString("yyyy/MM/dd") & "';"
+
+            sql.CommandText = comando
+            ds.Cliente.Load(sql.ExecuteReader())
+            If ds.Cliente.Rows.Count > 0 Then
+                Return True
+            Else : Return False
+            End If
+
+        Catch ex As Exception
+            Return False
+        Finally : conex.Close()
+
+        End Try
+
+    End Function
+
+
+
+
 
 End Class

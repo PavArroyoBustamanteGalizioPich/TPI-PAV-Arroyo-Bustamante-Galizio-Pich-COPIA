@@ -701,4 +701,9 @@
         Dim formCliente As New GestionClientes(cliente)
         formCliente.ShowDialog()
     End Sub
+
+    Private Sub ListadosPeriodicosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadosPeriodicosToolStripMenuItem.Click
+        Dim listados As New ListadosPeriodicos
+        listados.ShowDialog()
+    End Sub
 End Class

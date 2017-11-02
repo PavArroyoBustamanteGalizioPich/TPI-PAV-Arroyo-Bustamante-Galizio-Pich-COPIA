@@ -193,6 +193,14 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\ConsultasReportes.vb" />
+    <Compile Include="Reportes\dataSetListadoRecibidas.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSetListadoRecibidas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\dataSetListadoRecibidas.vb">
+      <DependentUpon>dataSetListadoRecibidas.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\dataSetOrdenTrabajo.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -200,6 +208,24 @@
     </Compile>
     <Compile Include="Reportes\dataSetOrdenTrabajo.vb">
       <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\listadoClientesRegistrados.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>listadoClientesRegistrados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ListadoOrdenesRecibidas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoOrdenesRecibidas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ListadosPeriodicos.Designer.vb">
+      <DependentUpon>ListadosPeriodicos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ListadosPeriodicos.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\pruebaDataSet.Designer.vb">
       <DependentUpon>pruebaDataSet.vb</DependentUpon>
@@ -263,6 +289,17 @@
     <EmbeddedResource Include="ABMCOrdenTrabajo.resx">
       <DependentUpon>ABMCOrdenTrabajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\listadoClientesRegistrados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>listadoClientesRegistrados.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ListadoOrdenesRecibidas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoOrdenesRecibidas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ListadosPeriodicos.resx">
+      <DependentUpon>ListadosPeriodicos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\pruebaDataSet.resx">
       <DependentUpon>pruebaDataSet.vb</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +322,17 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Reportes\dataSetListadoRecibidas.xsc">
+      <DependentUpon>dataSetListadoRecibidas.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\dataSetListadoRecibidas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSetListadoRecibidas.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reportes\dataSetListadoRecibidas.xss">
+      <DependentUpon>dataSetListadoRecibidas.xsd</DependentUpon>
+    </None>
     <None Include="Reportes\dataSetOrdenTrabajo.xsc">
       <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
     </None>
