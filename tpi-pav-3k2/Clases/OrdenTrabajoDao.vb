@@ -105,6 +105,7 @@
 
                     detalle.cantidad = Convert.ToInt32(fila("cantidad"))
                     detalle.montoUnitServicio = Convert.ToDecimal(fila("montoUnitarioServicio"))
+                    detalle.cargado = True
                     detalles.Add(detalle)
                 End If
 
@@ -181,23 +182,26 @@
             If resultado = 1 Then
 
                 For Each detalle As DetalleOrdenTrabajoDto In orden.detalles
-                    ' despues convertir a stringBuilder
-                    detalle.id = Utilidades.sugerirId("detalleOrdenTrabajo", "idDetalleOrdenTrabajo")
-                    comando = "insert into detalleOrdenTrabajo values(" & detalle.id & ","
-                    comando &= detalle.servicio & ","
-                    If detalle.repuesto > 0 Then
-                        comando &= detalle.repuesto & ","
-                    Else : comando &= "null, "
-                    End If
-                    comando &= detalle.cantidad & "," & Utilidades.armarNumero(detalle.montoUnitServicio.ToString()) & ","
-                    If detalle.montoUnitrepuesto > 0 Then
-                        comando &= Utilidades.armarNumero(detalle.montoUnitrepuesto.ToString()) & ","
-                    Else : comando &= "null,"
-                    End If
-                    comando &= orden.idOrden & ")"
 
-                    sql.CommandText = comando
-                    sql.ExecuteNonQuery()
+                    If Not detalle.cargado Then
+                        ' despues convertir a stringBuilder
+                        detalle.id = Utilidades.sugerirId("detalleOrdenTrabajo", "idDetalleOrdenTrabajo")
+                        comando = "insert into detalleOrdenTrabajo values(" & detalle.id & ","
+                        comando &= detalle.servicio & ","
+                        If detalle.repuesto > 0 Then
+                            comando &= detalle.repuesto & ","
+                        Else : comando &= "null, "
+                        End If
+                        comando &= detalle.cantidad & "," & Utilidades.armarNumero(detalle.montoUnitServicio.ToString()) & ","
+                        If detalle.montoUnitrepuesto > 0 Then
+                            comando &= Utilidades.armarNumero(detalle.montoUnitrepuesto.ToString()) & ","
+                        Else : comando &= "null,"
+                        End If
+                        comando &= orden.idOrden & ")"
+
+                        sql.CommandText = comando
+                        sql.ExecuteNonQuery()
+                    End If
                 Next
                 transaccion.Commit()
             Else : Throw New Exception

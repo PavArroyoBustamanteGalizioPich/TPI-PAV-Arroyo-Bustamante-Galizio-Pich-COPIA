@@ -47,12 +47,12 @@ Partial Class ListadosPeriodicos
         Me.panelParametros.Controls.Add(Me.lblListadoAMostrar)
         Me.panelParametros.Location = New System.Drawing.Point(13, 13)
         Me.panelParametros.Name = "panelParametros"
-        Me.panelParametros.Size = New System.Drawing.Size(895, 69)
+        Me.panelParametros.Size = New System.Drawing.Size(917, 69)
         Me.panelParametros.TabIndex = 0
         '
         'btnGenerarReporte
         '
-        Me.btnGenerarReporte.Location = New System.Drawing.Point(809, 14)
+        Me.btnGenerarReporte.Location = New System.Drawing.Point(835, 14)
         Me.btnGenerarReporte.Name = "btnGenerarReporte"
         Me.btnGenerarReporte.Size = New System.Drawing.Size(75, 23)
         Me.btnGenerarReporte.TabIndex = 6
@@ -61,18 +61,18 @@ Partial Class ListadosPeriodicos
         '
         'dtpHasta
         '
-        Me.dtpHasta.Location = New System.Drawing.Point(603, 17)
-        Me.dtpHasta.MaxDate = New Date(2017, 10, 28, 0, 0, 0, 0)
+        Me.dtpHasta.Location = New System.Drawing.Point(629, 17)
+        Me.dtpHasta.MaxDate = New Date(2050, 12, 1, 0, 0, 0, 0)
         Me.dtpHasta.MinDate = New Date(2010, 1, 1, 0, 0, 0, 0)
         Me.dtpHasta.Name = "dtpHasta"
         Me.dtpHasta.Size = New System.Drawing.Size(200, 20)
         Me.dtpHasta.TabIndex = 5
-        Me.dtpHasta.Value = New Date(2017, 10, 28, 0, 0, 0, 0)
+        Me.dtpHasta.Value = New Date(2017, 11, 2, 0, 0, 0, 0)
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(528, 22)
+        Me.Label2.Location = New System.Drawing.Point(554, 22)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(68, 13)
         Me.Label2.TabIndex = 4
@@ -80,8 +80,8 @@ Partial Class ListadosPeriodicos
         '
         'dtpDesde
         '
-        Me.dtpDesde.Location = New System.Drawing.Point(312, 18)
-        Me.dtpDesde.MaxDate = New Date(2017, 10, 28, 0, 0, 0, 0)
+        Me.dtpDesde.Location = New System.Drawing.Point(338, 18)
+        Me.dtpDesde.MaxDate = New Date(2040, 12, 1, 0, 0, 0, 0)
         Me.dtpDesde.MinDate = New Date(2010, 1, 1, 0, 0, 0, 0)
         Me.dtpDesde.Name = "dtpDesde"
         Me.dtpDesde.Size = New System.Drawing.Size(200, 20)
@@ -91,7 +91,7 @@ Partial Class ListadosPeriodicos
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(237, 22)
+        Me.Label1.Location = New System.Drawing.Point(263, 22)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(74, 13)
         Me.Label1.TabIndex = 2
@@ -101,9 +101,9 @@ Partial Class ListadosPeriodicos
         '
         Me.cbReporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbReporte.FormattingEnabled = True
-        Me.cbReporte.Location = New System.Drawing.Point(102, 18)
+        Me.cbReporte.Location = New System.Drawing.Point(97, 18)
         Me.cbReporte.Name = "cbReporte"
-        Me.cbReporte.Size = New System.Drawing.Size(121, 21)
+        Me.cbReporte.Size = New System.Drawing.Size(160, 21)
         Me.cbReporte.TabIndex = 1
         '
         'lblListadoAMostrar
@@ -129,7 +129,7 @@ Partial Class ListadosPeriodicos
         Me.crvReportes.ShowLogo = False
         Me.crvReportes.ShowParameterPanelButton = False
         Me.crvReportes.ShowRefreshButton = False
-        Me.crvReportes.Size = New System.Drawing.Size(895, 332)
+        Me.crvReportes.Size = New System.Drawing.Size(917, 332)
         Me.crvReportes.TabIndex = 1
         Me.crvReportes.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         '
@@ -137,11 +137,12 @@ Partial Class ListadosPeriodicos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(920, 433)
+        Me.ClientSize = New System.Drawing.Size(942, 433)
         Me.Controls.Add(Me.crvReportes)
         Me.Controls.Add(Me.panelParametros)
         Me.Name = "ListadosPeriodicos"
         Me.Text = "Listados Periodicos"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.panelParametros.ResumeLayout(False)
         Me.panelParametros.PerformLayout()
         Me.ResumeLayout(False)

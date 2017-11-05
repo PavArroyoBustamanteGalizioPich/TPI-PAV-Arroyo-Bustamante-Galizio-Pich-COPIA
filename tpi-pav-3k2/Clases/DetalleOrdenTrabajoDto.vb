@@ -76,4 +76,15 @@
 
     End Function
 
+    Private _cargado As Boolean
+    Public Property cargado As Boolean
+        Get
+            Return _cargado
+        End Get
+        Set(ByVal value As Boolean)
+            _cargado = value
+        End Set
+    End Property
+
+
 End Class

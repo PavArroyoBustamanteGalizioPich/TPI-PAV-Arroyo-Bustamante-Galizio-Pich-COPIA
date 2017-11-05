@@ -182,59 +182,59 @@
                 id = Convert.ToInt32(filaBuscada.Cells("Id Orden").Value)
             End If
 
+        End If
+        ordenActual = OrdenTrabajoDao.buscarOt(id)
 
-            ordenActual = OrdenTrabajoDao.buscarOt(id)
-
-            If Not IsNothing(ordenActual) Then
-                txtNroOT.Text = ordenActual.idOrden
-                txtNroCliente.Text = ordenActual.cliente.idCliente
-                txtNombreCLiente.Text = ordenActual.cliente.nombre
-                txtApellidoCliente.Text = ordenActual.cliente.apellido
-                Utilidades.cargarCombo("computadora", "idComputadora", "client", ordenActual.cliente.idCliente, cbNroPc, "idComputadora")
-                cbNroPc.SelectedValue = ordenActual.computadora.idComputadora
-                txtTipoPcOt.Text = ordenActual.computadora.nombreTipoPc
-                txtDescripcionPcOt.Text = ordenActual.computadora.toString()
-                computadora = ordenActual.computadora
-                ' falta toda la parte del cliente y las computadoras
-                txtFechaRecepcionOt.Text = ordenActual.fechaRecepcion.ToString("dd/MM/yyyy")
-                If Not ordenActual.fechaReparacion.Equals(Nothing) Then
-                    txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
-                Else : txtFechaReparacion.Text = ""
-                End If
-
-                cbEstadoOt.SelectedValue = ordenActual.estado
-                txtDescrFalla.Text = ordenActual.falla
-                If ordenActual.monto > 0 Then
-                    txtMontoOt.Text = ordenActual.monto
-                Else : txtMontoOt.Text = ""
-                End If
-
-                If Not IsNothing(ordenActual.cobro) Then
-                    txtNroCobroOt.Text = ordenActual.cobro.id
-                Else : txtNroCobroOt.Text = ""
-                End If
-                btnActualizarOt.Enabled = True
-                'panelDatosOt.Enabled = True
-                'cbEstadoOt.Enabled = True
-                'txtFechaRecepcionOt.Enabled = False
-                'txtDescrFalla.Enabled = False
-                cargarDetalles()
-                Me.cambioEstado(True)
-                panelDatosNvaOt.Enabled = True
-                panelDatosClienteOt.Enabled = False
-                panelDatosPcOt.Enabled = False
-                txtFechaRecepcionOt.Enabled = False
-                txtDescrFalla.Enabled = False
-                btnCancelarOt.Enabled = True
-                btnNvaOt.Enabled = False
-
-                gbAniadirServicios.Enabled = False
-                panelCierre.Enabled = False
-                btnGuardarOt.Enabled = False
-                btnActualizarOt.Enabled = True
+        If Not IsNothing(ordenActual) Then
+            txtNroOT.Text = ordenActual.idOrden
+            txtNroCliente.Text = ordenActual.cliente.idCliente
+            txtNombreCLiente.Text = ordenActual.cliente.nombre
+            txtApellidoCliente.Text = ordenActual.cliente.apellido
+            Utilidades.cargarCombo("computadora", "idComputadora", "client", ordenActual.cliente.idCliente, cbNroPc, "idComputadora")
+            cbNroPc.SelectedValue = ordenActual.computadora.idComputadora
+            txtTipoPcOt.Text = ordenActual.computadora.nombreTipoPc
+            txtDescripcionPcOt.Text = ordenActual.computadora.toString()
+            computadora = ordenActual.computadora
+            ' falta toda la parte del cliente y las computadoras
+            txtFechaRecepcionOt.Text = ordenActual.fechaRecepcion.ToString("dd/MM/yyyy")
+            If Not ordenActual.fechaReparacion.Equals(Nothing) Then
+                txtFechaReparacion.Text = ordenActual.fechaReparacion.ToString("dd/MM/yyyy")
+            Else : txtFechaReparacion.Text = ""
             End If
 
+            cbEstadoOt.SelectedValue = ordenActual.estado
+            txtDescrFalla.Text = ordenActual.falla
+            If ordenActual.monto > 0 Then
+                txtMontoOt.Text = ordenActual.monto
+            Else : txtMontoOt.Text = ""
+            End If
+
+            If Not IsNothing(ordenActual.cobro) Then
+                txtNroCobroOt.Text = ordenActual.cobro.id
+            Else : txtNroCobroOt.Text = ""
+            End If
+            btnActualizarOt.Enabled = True
+            'panelDatosOt.Enabled = True
+            'cbEstadoOt.Enabled = True
+            'txtFechaRecepcionOt.Enabled = False
+            'txtDescrFalla.Enabled = False
+            cargarDetalles()
+            panelDatosNvaOt.Enabled = True
+            panelDatosClienteOt.Enabled = False
+            panelDatosPcOt.Enabled = False
+            txtFechaRecepcionOt.Enabled = False
+            txtDescrFalla.Enabled = False
+            btnCancelarOt.Enabled = True
+            btnNvaOt.Enabled = False
+
+            gbAniadirServicios.Enabled = False
+            panelCierre.Enabled = False
+            btnGuardarOt.Enabled = False
+            btnActualizarOt.Enabled = True
+            Me.cambioEstado(True)
         End If
+
+
 
         ' SI LA OT SE ENCUENTRA SE ACTIVA EL BOTON ACTUALIZAR y los paneles aniadirServicio y aniadirReparacion
     End Sub
@@ -271,8 +271,12 @@
                 gbAniadirServicios.Enabled = False
                 Exit Select
             Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
-                panelCierre.Enabled = False
+                If IsNothing(ordenActual.cobro) Then
+                    panelCierre.Enabled = True
+                End If
+
                 gbAniadirServicios.Enabled = False
+
                 Exit Select
         End Select
     End Sub
@@ -363,6 +367,15 @@
 
                         Exit Select
                     Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
+                        If Not IsNothing(cobro) Then
+                            ordenActual.estado = Convert.ToInt32(cbEstadoOt.SelectedValue)
+                            Dim result As Conexion.EventosSql = OrdenTrabajoDao.actualizarOrden(ordenActual, OrdenTrabajoDto.estadosOrden.CERRADA, cobro)
+                            If result = Conexion.EventosSql.INSERCION_CORRECTA Then
+                                MessageBox.Show("Actualización Correcta!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Else
+                                MessageBox.Show("Actualización Incorrecta! :(", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            End If
+                        End If
 
                         Exit Select
                 End Select
@@ -395,7 +408,7 @@
         Me.limpiarTextos()
         gbDatosCliOT.Enabled = False
         panelDatosNvaOt.Enabled = False
-
+        cbEstadoOt.SelectedValue = 1
         btnGuardarOt.Enabled = False
         btnCancelarOt.Enabled = False
         btnActualizarOt.Enabled = False
@@ -523,59 +536,63 @@
 
     Private Sub btnAniadirServicioOt_Click(sender As Object, e As EventArgs) Handles btnAniadirServicioOt.Click
 
-        If IsNothing(serviciosBrindados) Then
-            serviciosBrindados = New List(Of ServicioDto)
-        End If
+        If Not IsNothing(cbServiciosOt.SelectedValue) Then
+            If IsNothing(serviciosBrindados) Then
+                serviciosBrindados = New List(Of ServicioDto)
+            End If
 
-        If Not IsNothing(servicioSeleccionado) Then
+            If Not IsNothing(servicioSeleccionado) Then
 
-            If servicioSeleccionado.repuestoReq > 0 Then
-                If Not cbRepuestoOt.SelectedValue > 0 Then
-                    MessageBox.Show("Por favor seleccione un repuesto!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Return
+                If servicioSeleccionado.repuestoReq > 0 Then
+                    If Not cbRepuestoOt.SelectedValue > 0 Then
+                        MessageBox.Show("Por favor seleccione un repuesto!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+
                 End If
 
+
+                servicioSeleccionado.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
             End If
 
 
-            servicioSeleccionado.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
+            If servicioSeleccionado.repuestoReq > 0 Then
+
+                servicioSeleccionado.repuesto.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
+
+                Dim itemRepuesto As New ListViewItem
+                itemRepuesto.Text = servicioSeleccionado.repuesto.id
+                itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.descripcion)
+                itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.cantidad)
+                itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.calcularMonto() * servicioSeleccionado.cantidad)
+                lvRepuestos.Items.Add(itemRepuesto)
+
+            End If
+            Dim item As New ListViewItem
+            item.Text = servicioSeleccionado.idServ
+            item.SubItems.Add(servicioSeleccionado.nomServicio)
+            item.SubItems.Add(servicioSeleccionado.cantidad)
+            item.SubItems.Add(servicioSeleccionado.cantidad * servicioSeleccionado.costoServicio)
+            lvServicios.Items.Add(item)
+            ordenActual.armarDetalles(servicioSeleccionado)
+
+            ' faltaria hacer que cuando se agregue un servicio nuevo, si éste ya está cargado en los detalles
+            ' que se actualice el monto que está almacenado en el detalle en caso de que sea distinto
+
+            If Not serviciosBrindados.Contains(servicioSeleccionado) Then
+                serviciosBrindados.Add(servicioSeleccionado)
+            Else
+                Dim idx As Int32 = serviciosBrindados.IndexOf(servicioSeleccionado)
+                serviciosBrindados(idx).cantidad += servicioSeleccionado.cantidad
+            End If
+
+            txtMontoOt.Text = ordenActual.calcularTotal()
+
+
+            btnQuitarServicio.Enabled = True
+
+        Else : MessageBox.Show("Por favor seleccione un servicio!")
         End If
-
-
-        If servicioSeleccionado.repuestoReq > 0 Then
-
-            servicioSeleccionado.repuesto.cantidad = Convert.ToInt32(txtCantServicios.Text.Trim())
-
-            Dim itemRepuesto As New ListViewItem
-            itemRepuesto.Text = servicioSeleccionado.repuesto.id
-            itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.descripcion)
-            itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.cantidad)
-            itemRepuesto.SubItems.Add(servicioSeleccionado.repuesto.calcularMonto() * servicioSeleccionado.cantidad)
-            lvRepuestos.Items.Add(itemRepuesto)
-
-        End If
-        Dim item As New ListViewItem
-        item.Text = servicioSeleccionado.idServ
-        item.SubItems.Add(servicioSeleccionado.nomServicio)
-        item.SubItems.Add(servicioSeleccionado.cantidad)
-        item.SubItems.Add(servicioSeleccionado.cantidad * servicioSeleccionado.costoServicio)
-        lvServicios.Items.Add(item)
-        ordenActual.armarDetalles(servicioSeleccionado)
-
-        ' faltaria hacer que cuando se agregue un servicio nuevo, si éste ya está cargado en los detalles
-        ' que se actualice el monto que está almacenado en el detalle en caso de que sea distinto
-
-        If Not serviciosBrindados.Contains(servicioSeleccionado) Then
-            serviciosBrindados.Add(servicioSeleccionado)
-        Else
-            Dim idx As Int32 = serviciosBrindados.IndexOf(servicioSeleccionado)
-            serviciosBrindados(idx).cantidad += servicioSeleccionado.cantidad
-        End If
-
-        txtMontoOt.Text = ordenActual.calcularTotal()
-
-
-        btnQuitarServicio.Enabled = True
 
     End Sub
 
@@ -620,7 +637,20 @@
         txtNroCobroOt.Text = cobro.id
         cobro.monto = Convert.ToSingle(txtMontoOt.Text)
         cobro.fechaCobro = Date.Today
-        cbEstadoOt.SelectedValue = OrdenTrabajoDto.estadosOrden.CERRADA + 1
+        Dim estado As OrdenTrabajoDto.estadosOrden = cbEstadoOt.SelectedValue - 1
+        Select Case estado
+            Case OrdenTrabajoDto.estadosOrden.REPARADA
+                cbEstadoOt.SelectedValue = OrdenTrabajoDto.estadosOrden.CERRADA + 1
+                Exit Select
+
+            Case OrdenTrabajoDto.estadosOrden.IRREPARABLE
+                cbEstadoOt.SelectedValue = OrdenTrabajoDto.estadosOrden.IRREPARABLE + 1
+                Exit Select
+
+        End Select
+
+
+
 
     End Sub
 
@@ -705,5 +735,10 @@
     Private Sub ListadosPeriodicosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadosPeriodicosToolStripMenuItem.Click
         Dim listados As New ListadosPeriodicos
         listados.ShowDialog()
+    End Sub
+
+    Private Sub ListadoIngresosMensualesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadoIngresosMensualesToolStripMenuItem.Click
+        Dim formIngresos As New IngresosMensuales
+        formIngresos.ShowDialog()
     End Sub
 End Class

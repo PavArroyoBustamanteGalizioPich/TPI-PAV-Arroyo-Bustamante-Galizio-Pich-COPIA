@@ -193,6 +193,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\ConsultasReportes.vb" />
+    <Compile Include="Reportes\DataSetIngresosMensuales.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetIngresosMensuales.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\dataSetListadoRecibidas.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,16 +214,46 @@
     <Compile Include="Reportes\dataSetOrdenTrabajo.vb">
       <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\IngresosMensuales.Designer.vb">
+      <DependentUpon>IngresosMensuales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\IngresosMensuales.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\listadoClientesRegistrados.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>listadoClientesRegistrados.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\ListadoCobros.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoCobros.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ListadoIngresosMensuales.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoIngresosMensuales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\listadoOrdenesIrreparables.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>listadoOrdenesIrreparables.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\ListadoOrdenesRecibidas.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ListadoOrdenesRecibidas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ListadoOrdenesReparadas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoOrdenesReparadas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\ListadosPeriodicos.Designer.vb">
@@ -289,13 +324,32 @@
     <EmbeddedResource Include="ABMCOrdenTrabajo.resx">
       <DependentUpon>ABMCOrdenTrabajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\IngresosMensuales.resx">
+      <DependentUpon>IngresosMensuales.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\listadoClientesRegistrados.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>listadoClientesRegistrados.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ListadoCobros.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoCobros.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ListadoIngresosMensuales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoIngresosMensuales.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\listadoOrdenesIrreparables.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>listadoOrdenesIrreparables.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ListadoOrdenesRecibidas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListadoOrdenesRecibidas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ListadoOrdenesReparadas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoOrdenesReparadas.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ListadosPeriodicos.resx">
       <DependentUpon>ListadosPeriodicos.vb</DependentUpon>
@@ -322,6 +376,17 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Reportes\DataSetIngresosMensuales.xsc">
+      <DependentUpon>DataSetIngresosMensuales.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSetIngresosMensuales.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetIngresosMensuales.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSetIngresosMensuales.xss">
+      <DependentUpon>DataSetIngresosMensuales.xsd</DependentUpon>
+    </None>
     <None Include="Reportes\dataSetListadoRecibidas.xsc">
       <DependentUpon>dataSetListadoRecibidas.xsd</DependentUpon>
     </None>

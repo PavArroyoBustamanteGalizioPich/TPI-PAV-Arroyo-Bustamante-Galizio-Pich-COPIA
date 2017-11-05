@@ -38,6 +38,7 @@ Partial Class ABMCOrdenTrabajo
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenDeTrabajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListadosPeriodicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbDatosCliOT = New System.Windows.Forms.GroupBox()
         Me.btnGestionCliente = New System.Windows.Forms.Button()
         Me.btnBuscarCliOT = New System.Windows.Forms.Button()
@@ -108,7 +109,7 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
-        Me.ListadosPeriodicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListadoIngresosMensualesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         Me.gbDatosOT.SuspendLayout()
@@ -216,7 +217,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrdenDeTrabajoToolStripMenuItem, Me.PruebaToolStripMenuItem, Me.ListadosPeriodicosToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrdenDeTrabajoToolStripMenuItem, Me.PruebaToolStripMenuItem, Me.ListadosPeriodicosToolStripMenuItem, Me.ListadoIngresosMensualesToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -224,14 +225,20 @@ Partial Class ABMCOrdenTrabajo
         'OrdenDeTrabajoToolStripMenuItem
         '
         Me.OrdenDeTrabajoToolStripMenuItem.Name = "OrdenDeTrabajoToolStripMenuItem"
-        Me.OrdenDeTrabajoToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.OrdenDeTrabajoToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.OrdenDeTrabajoToolStripMenuItem.Text = "Orden de Trabajo"
         '
         'PruebaToolStripMenuItem
         '
         Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
-        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.PruebaToolStripMenuItem.Text = "prueba"
+        '
+        'ListadosPeriodicosToolStripMenuItem
+        '
+        Me.ListadosPeriodicosToolStripMenuItem.Name = "ListadosPeriodicosToolStripMenuItem"
+        Me.ListadosPeriodicosToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.ListadosPeriodicosToolStripMenuItem.Text = "Listados Periodicos"
         '
         'gbDatosCliOT
         '
@@ -908,11 +915,11 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
         '
-        'ListadosPeriodicosToolStripMenuItem
+        'ListadoIngresosMensualesToolStripMenuItem
         '
-        Me.ListadosPeriodicosToolStripMenuItem.Name = "ListadosPeriodicosToolStripMenuItem"
-        Me.ListadosPeriodicosToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
-        Me.ListadosPeriodicosToolStripMenuItem.Text = "Listados Periodicos"
+        Me.ListadoIngresosMensualesToolStripMenuItem.Name = "ListadoIngresosMensualesToolStripMenuItem"
+        Me.ListadoIngresosMensualesToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.ListadoIngresosMensualesToolStripMenuItem.Text = "Listado Ingresos Mensuales"
         '
         'ABMCOrdenTrabajo
         '
@@ -1040,4 +1047,5 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents OrdenDeTrabajoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PruebaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadosPeriodicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ListadoIngresosMensualesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
