@@ -12,7 +12,7 @@
   <xs:element name="DataSetIngresosMensuales" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetIngresosMensuales" msprop:Generator_UserDSName="DataSetIngresosMensuales">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Ingreso" msprop:Generator_TableClassName="IngresoDataTable" msprop:Generator_TableVarName="tableIngreso" msprop:Generator_TablePropName="Ingreso" msprop:Generator_RowDeletingName="IngresoRowDeleting" msprop:Generator_RowChangingName="IngresoRowChanging" msprop:Generator_RowEvHandlerName="IngresoRowChangeEventHandler" msprop:Generator_RowDeletedName="IngresoRowDeleted" msprop:Generator_UserTableName="Ingreso" msprop:Generator_RowChangedName="IngresoRowChanged" msprop:Generator_RowEvArgName="IngresoRowChangeEvent" msprop:Generator_RowClassName="IngresoRow">
+        <xs:element name="Ingreso" msprop:Generator_TableClassName="IngresoDataTable" msprop:Generator_TableVarName="tableIngreso" msprop:Generator_RowChangedName="IngresoRowChanged" msprop:Generator_TablePropName="Ingreso" msprop:Generator_RowDeletingName="IngresoRowDeleting" msprop:Generator_RowChangingName="IngresoRowChanging" msprop:Generator_RowEvHandlerName="IngresoRowChangeEventHandler" msprop:Generator_RowDeletedName="IngresoRowDeleted" msprop:Generator_RowClassName="IngresoRow" msprop:Generator_UserTableName="Ingreso" msprop:Generator_RowEvArgName="IngresoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Mes" msprop:Generator_ColumnVarNameInTable="columnMes" msprop:Generator_ColumnPropNameInRow="Mes" msprop:Generator_ColumnPropNameInTable="MesColumn" msprop:Generator_UserColumnName="Mes" type="xs:int" minOccurs="0" />
@@ -20,6 +20,15 @@
               <xs:element name="TotalMes" msprop:Generator_ColumnVarNameInTable="columnTotalMes" msprop:Generator_ColumnPropNameInRow="TotalMes" msprop:Generator_ColumnPropNameInTable="TotalMesColumn" msprop:Generator_UserColumnName="TotalMes" type="xs:double" minOccurs="0" />
               <xs:element name="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" msprop:Generator_UserColumnName="Cantidad" type="xs:int" minOccurs="0" />
               <xs:element name="Promedio" msprop:Generator_ColumnVarNameInTable="columnPromedio" msprop:Generator_ColumnPropNameInRow="Promedio" msprop:Generator_ColumnPropNameInTable="PromedioColumn" msprop:Generator_UserColumnName="Promedio" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IngresoPorServicio" msprop:Generator_TableClassName="IngresoPorServicioDataTable" msprop:Generator_TableVarName="tableIngresoPorServicio" msprop:Generator_TablePropName="IngresoPorServicio" msprop:Generator_RowDeletingName="IngresoPorServicioRowDeleting" msprop:Generator_RowChangingName="IngresoPorServicioRowChanging" msprop:Generator_RowEvHandlerName="IngresoPorServicioRowChangeEventHandler" msprop:Generator_RowDeletedName="IngresoPorServicioRowDeleted" msprop:Generator_UserTableName="IngresoPorServicio" msprop:Generator_RowChangedName="IngresoPorServicioRowChanged" msprop:Generator_RowEvArgName="IngresoPorServicioRowChangeEvent" msprop:Generator_RowClassName="IngresoPorServicioRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="servicio" msprop:Generator_ColumnVarNameInTable="columnservicio" msprop:Generator_ColumnPropNameInRow="servicio" msprop:Generator_ColumnPropNameInTable="servicioColumn" msprop:Generator_UserColumnName="servicio" type="xs:int" minOccurs="0" />
+              <xs:element name="nombreServicio" msprop:Generator_ColumnVarNameInTable="columnnombreServicio" msprop:Generator_ColumnPropNameInRow="nombreServicio" msprop:Generator_ColumnPropNameInTable="nombreServicioColumn" msprop:Generator_UserColumnName="nombreServicio" type="xs:string" minOccurs="0" />
+              <xs:element name="monto" msprop:Generator_ColumnVarNameInTable="columnmonto" msprop:Generator_ColumnPropNameInRow="monto" msprop:Generator_ColumnPropNameInTable="montoColumn" msprop:Generator_UserColumnName="monto" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -214,10 +214,22 @@
     <Compile Include="Reportes\dataSetOrdenTrabajo.vb">
       <DependentUpon>dataSetOrdenTrabajo.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\InformeIngresosServicios.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeIngresosServicios.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\IngresosMensuales.Designer.vb">
       <DependentUpon>IngresosMensuales.vb</DependentUpon>
     </Compile>
     <Compile Include="Reportes\IngresosMensuales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\IngresosPorServicio.Designer.vb">
+      <DependentUpon>IngresosPorServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\IngresosPorServicio.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\listadoClientesRegistrados.vb">
@@ -260,12 +272,6 @@
       <DependentUpon>ListadosPeriodicos.vb</DependentUpon>
     </Compile>
     <Compile Include="Reportes\ListadosPeriodicos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\pruebaDataSet.Designer.vb">
-      <DependentUpon>pruebaDataSet.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\pruebaDataSet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\ReporteOrdenTrabajo.Designer.vb">
@@ -324,8 +330,15 @@
     <EmbeddedResource Include="ABMCOrdenTrabajo.resx">
       <DependentUpon>ABMCOrdenTrabajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InformeIngresosServicios.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeIngresosServicios.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\IngresosMensuales.resx">
       <DependentUpon>IngresosMensuales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\IngresosPorServicio.resx">
+      <DependentUpon>IngresosPorServicio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\listadoClientesRegistrados.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -353,9 +366,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ListadosPeriodicos.resx">
       <DependentUpon>ListadosPeriodicos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\pruebaDataSet.resx">
-      <DependentUpon>pruebaDataSet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ReporteOrdenTrabajo.resx">
       <DependentUpon>ReporteOrdenTrabajo.vb</DependentUpon>

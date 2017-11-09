@@ -718,10 +718,6 @@
         form.ShowDialog()
     End Sub
 
-    Private Sub PruebaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PruebaToolStripMenuItem.Click
-        Dim form As New pruebaDataSet
-        form.ShowDialog()
-    End Sub
 
     Public Sub setFilaBuscada(ByRef fila As DataGridViewRow) Implements Buscable.setFilaBuscada
         filaBuscada = fila
@@ -740,5 +736,10 @@
     Private Sub ListadoIngresosMensualesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListadoIngresosMensualesToolStripMenuItem.Click
         Dim formIngresos As New IngresosMensuales
         formIngresos.ShowDialog()
+    End Sub
+
+    Private Sub InformeServiciosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeServiciosToolStripMenuItem.Click
+        Dim formServicios As New IngresosPorServicio
+        formServicios.ShowDialog()
     End Sub
 End Class

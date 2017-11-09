@@ -37,8 +37,9 @@ Partial Class ABMCOrdenTrabajo
         Me.GestionarClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenDeTrabajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadosPeriodicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListadoIngresosMensualesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InformeServiciosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gbDatosCliOT = New System.Windows.Forms.GroupBox()
         Me.btnGestionCliente = New System.Windows.Forms.Button()
         Me.btnBuscarCliOT = New System.Windows.Forms.Button()
@@ -109,7 +110,6 @@ Partial Class ABMCOrdenTrabajo
         Me.btnGuardarOt = New System.Windows.Forms.Button()
         Me.btnCancelarOt = New System.Windows.Forms.Button()
         Me.panelBotoneraOt = New System.Windows.Forms.Panel()
-        Me.ListadoIngresosMensualesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.gbDatosCliOT.SuspendLayout()
         Me.gbDatosOT.SuspendLayout()
@@ -217,7 +217,7 @@ Partial Class ABMCOrdenTrabajo
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrdenDeTrabajoToolStripMenuItem, Me.PruebaToolStripMenuItem, Me.ListadosPeriodicosToolStripMenuItem, Me.ListadoIngresosMensualesToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrdenDeTrabajoToolStripMenuItem, Me.ListadosPeriodicosToolStripMenuItem, Me.ListadoIngresosMensualesToolStripMenuItem, Me.InformeServiciosToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -228,17 +228,23 @@ Partial Class ABMCOrdenTrabajo
         Me.OrdenDeTrabajoToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.OrdenDeTrabajoToolStripMenuItem.Text = "Orden de Trabajo"
         '
-        'PruebaToolStripMenuItem
-        '
-        Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
-        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
-        Me.PruebaToolStripMenuItem.Text = "prueba"
-        '
         'ListadosPeriodicosToolStripMenuItem
         '
         Me.ListadosPeriodicosToolStripMenuItem.Name = "ListadosPeriodicosToolStripMenuItem"
         Me.ListadosPeriodicosToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.ListadosPeriodicosToolStripMenuItem.Text = "Listados Periodicos"
+        '
+        'ListadoIngresosMensualesToolStripMenuItem
+        '
+        Me.ListadoIngresosMensualesToolStripMenuItem.Name = "ListadoIngresosMensualesToolStripMenuItem"
+        Me.ListadoIngresosMensualesToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.ListadoIngresosMensualesToolStripMenuItem.Text = "Listado Ingresos Mensuales"
+        '
+        'InformeServiciosToolStripMenuItem
+        '
+        Me.InformeServiciosToolStripMenuItem.Name = "InformeServiciosToolStripMenuItem"
+        Me.InformeServiciosToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.InformeServiciosToolStripMenuItem.Text = "Informe Servicios"
         '
         'gbDatosCliOT
         '
@@ -915,12 +921,6 @@ Partial Class ABMCOrdenTrabajo
         Me.panelBotoneraOt.Size = New System.Drawing.Size(1063, 29)
         Me.panelBotoneraOt.TabIndex = 3
         '
-        'ListadoIngresosMensualesToolStripMenuItem
-        '
-        Me.ListadoIngresosMensualesToolStripMenuItem.Name = "ListadoIngresosMensualesToolStripMenuItem"
-        Me.ListadoIngresosMensualesToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
-        Me.ListadoIngresosMensualesToolStripMenuItem.Text = "Listado Ingresos Mensuales"
-        '
         'ABMCOrdenTrabajo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1045,7 +1045,7 @@ Partial Class ABMCOrdenTrabajo
     Friend WithEvents btnQuitarServicio As System.Windows.Forms.Button
     Friend WithEvents ReportesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OrdenDeTrabajoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PruebaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadosPeriodicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadoIngresosMensualesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents InformeServiciosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

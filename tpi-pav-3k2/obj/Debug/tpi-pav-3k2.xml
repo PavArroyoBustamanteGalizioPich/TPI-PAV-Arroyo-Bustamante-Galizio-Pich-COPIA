@@ -10,11 +10,23 @@ tpi-pav-3k2
 	<summary>
 Represents the strongly named DataTable class.
 </summary>
+</member><member name="T:tpi_pav_3k2.DataSetIngresosMensuales.IngresoPorServicioDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
 </member><member name="T:tpi_pav_3k2.DataSetIngresosMensuales.IngresoRow">
 	<summary>
 Represents strongly named DataRow class.
 </summary>
+</member><member name="T:tpi_pav_3k2.DataSetIngresosMensuales.IngresoPorServicioRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
 </member><member name="T:tpi_pav_3k2.DataSetIngresosMensuales.IngresoRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:tpi_pav_3k2.DataSetIngresosMensuales.IngresoPorServicioRowChangeEvent">
 	<summary>
 Row event argument class
 </summary>

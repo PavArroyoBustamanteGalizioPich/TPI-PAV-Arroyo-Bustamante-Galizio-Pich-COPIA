@@ -251,6 +251,36 @@
 
     End Function
 
+    Public Shared Function informeIngresosServicio(ByRef ds As DataSetIngresosMensuales) As Boolean
+        Dim conex As SqlClient.SqlConnection = Conexion.getConexion()
+        Dim sql As SqlClient.SqlCommand = Conexion.getComando()
+
+        Dim comando As String
+
+
+        Try
+            conex.Open()
+            sql.CommandType = CommandType.Text
+            sql.Connection = conex
+            comando = "select det.servicio, (select nombreServicio from servicio where idServicio = det.servicio) as 'nombreServicio',"
+            comando &= " SUM((det.montoUnitarioServicio * det.cantidad)) as 'monto' from detalleOrdenTrabajo det "
+            comando &= " group by det.servicio order by Monto desc;"
+            
+            sql.CommandText = comando
+            ds.IngresoPorServicio.Load(sql.ExecuteReader())
+            If ds.IngresoPorServicio.Rows.Count > 0 Then
+                Return True
+            Else : Return False
+            End If
+
+        Catch ex As Exception
+            Return False
+        Finally : conex.Close()
+
+        End Try
+
+    End Function
+
 
 
 
